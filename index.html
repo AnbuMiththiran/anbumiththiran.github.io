@@ -1,75 +1,117 @@
 <!DOCTYPE html>
-<html lang="ta">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>அன்புடன் மித்திரன்</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anbudan Miththiran</title>
 
-  <!-- Tamil Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Tamil&display=swap" rel="stylesheet">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      font-family: 'Noto Serif Tamil', serif;
-      background: #f5f3ef;
-      color: #2b2b2b;
-      max-width: 800px;
-      margin: auto;
-      padding: 40px 20px;
-      line-height: 1.8;
-    }
-    h1 {
-      text-align: center;
-      font-size: 36px;
-    }
-    h2 {
-      margin-top: 50px;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 5px;
-    }
-    .quote {
-      font-style: italic;
-      text-align: center;
-      margin: 30px 0;
-      color: #555;
-    }
-    footer {
-      margin-top: 80px;
-      text-align: center;
-      font-size: 14px;
-      color: #777;
-    }
-  </style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #533483);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            padding: 20px;
+            animation: fadeIn 2s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .typing {
+            font-size: 1.2rem;
+            font-weight: 300;
+            border-right: 2px solid #fff;
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 4s steps(40, end), blink 0.7s infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 10px 25px;
+            border: 1px solid #fff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 15px;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+    </style>
 </head>
-
 <body>
 
-<h1>அன்புடன் மித்திரன்</h1>
+    <div class="container">
+        <h1>அன்புடன் மித்திரன்</h1>
+        <div class="typing">Writer • Thinker • Storyteller</div>
 
-<p class="quote">
-“வாழ்க்கையை புரிந்துகொள்ள முடியாத தருணங்களில்  
-எழுத்து தான் எனக்கான தஞ்சம்.”
-</p>
+        <br>
+        <a href="https://anbumiththiran.in" class="btn">Read My Writings</a>
+    </div>
 
-<h2>எழுத்தாளர் பற்றி</h2>
-<p>
-நான் <strong>அன்புடன் மித்திரன்</strong>.  
-வாழ்க்கை, தத்துவம், காதல், சமூக உண்மைகள்  
-என்னும் பாதைகளில் பயணிக்கும் ஒரு எழுத்தாளர்.
-</p>
-
-<h2>எழுத்துகள்</h2>
-<p>
-இங்கே என் கவிதைகள், சிந்தனைகள்  
-மற்றும் வாழ்க்கை உணர்வுகள் பதிவாகும்.
-</p>
-
-<p>
-🌱 (விரைவில் மேலும் எழுதுகள் சேர்க்கப்படும்…)
-</p>
-
-<footer>
-© 2026 • அன்புடன் மித்திரன்
-</footer>
+    <footer>
+        © 2026 Anbudan Miththiran
+    </footer>
 
 </body>
 </html>
