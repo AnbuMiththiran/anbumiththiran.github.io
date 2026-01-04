@@ -143,26 +143,6 @@ nav a:hover {
          <br>
         <a href="https://anbusnp.wordpress.com" class="btn">Read My Writings</a>
     </div>
-
-      <section style="max-width:900px;margin:40px auto;">
-  <h2>🆕 Latest Poems & Stories</h2>
-  <ul id="latestList"></ul>
-</section>
-
-<script>
-fetch('writings/latest.json')
-  .then(res => res.json())
-  .then(data => {
-    const list = document.getElementById('latestList');
-    data.items.forEach(item => {
-      const li = document.createElement('li');
-      li.innerHTML = `${item.type === "Poem" ? "✍️" : "📖"} 
-        <a href="${item.url}">${item.title}</a>
-        <span style="font-size:12px;opacity:0.7;"> (${item.date})</span>`;
-      list.appendChild(li);
-    });
-  });
-</script>
     
     <footer>
         © 2026 Anbudan Miththiran
