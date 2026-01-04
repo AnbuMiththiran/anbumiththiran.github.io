@@ -2,19 +2,20 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Podcast | Anbudan Miththiran</title>
+<title>Writings | Anbudan Miththiran</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 body {
-    background:#0f3460;
-    font-family:'Poppins', sans-serif;
+    background: linear-gradient(-45deg,#1a1a2e,#16213e,#533483);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
     color:#fff;
+    font-family:Poppins;
     text-align:center;
-    padding:40px;
-}
+} 
 nav {
     position: fixed;
     top: 15px;
@@ -33,10 +34,37 @@ nav a:hover {
     opacity: 1;
     text-decoration: underline;
 }
+@keyframes gradientBG {
+    0% {background-position:0% 50%;}
+    50% {background-position:100% 50%;}
+    100% {background-position:0% 50%;}
+}
+.container {
+    padding:80px 20px;
+}
+.card {
+    display:inline-block;
+    width:260px;
+    margin:20px;
+    padding:30px;
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:20px;
+    transition:.3s;
+}
+.card:hover {
+    background:rgba(255,255,255,0.1);
+    transform:translateY(-5px);
+}
+.card a {
+    color:#fff;
+    text-decoration:none;
+    font-size:1.2rem;
+}
 </style>
 </head>
 
 <body>
+    
 <nav>
     <a href="index.html">Home</a>
     <a href="podcast.html">Podcast</a>
@@ -44,13 +72,20 @@ nav a:hover {
     <a href="writings.html">Writings</a>
     <a href="about.html">About</a>
 </nav>
-<h1>✍️ My Writings</h1>
+    
+<div class="container">
+    <h1>✍️ My Writings</h1>
 
-<p>
-<a href="https://anbusnp.wordpress.com" target="_blank">
-Visit My WordPress Blog →
-</a>
-</p>
+    <div class="card">
+        <a href="poems.html">📝 Poems</a>
+        <p>Life • Philosophy • Feelings</p>
+    </div>
+
+    <div class="card">
+        <a href="stories.html">📖 Stories</a>
+        <p>Short stories • Reflections</p>
+    </div>
+</div>
 
     <footer>
         © 2026 Anbudan Miththiran
