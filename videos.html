@@ -1,54 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
 <meta charset="UTF-8">
-      <!-- Google tag (gtag.js) -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google tag -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-9RLGNJL2ZQ');
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-9RLGNJL2ZQ');
 </script>
-<title>Podcast | Anbudan Miththiran</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Videos | Anbudan Miththiran</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-body {
-    background:#0f3460;
-    font-family:'Poppins', sans-serif;
-    color:#fff;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+/* ===== BODY ===== */
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#fff4e6,#ffd8a8,#ffb703);
+    color:#3a2c1a;
+}
+
+/* ===== NAV ===== */
+nav{
+    display:flex;
+    justify-content:flex-end;
+    gap:18px;
+    padding:18px 25px;
+}
+
+nav a{
+    text-decoration:none;
+    font-size:0.9rem;
+    color:#5a3a1a;
+    font-weight:500;
+}
+
+nav a:hover{
+    text-decoration:underline;
+}
+
+/* ===== PAGE TITLE ===== */
+.header{
     text-align:center;
-    padding:40px;
-}
-nav {
-    position: fixed;
-    top: 15px;
-    right: 20px;
+    margin:30px auto 10px;
 }
 
-nav a {
-    color: #fff;
-    margin-left: 15px;
-    text-decoration: none;
-    font-size: 0.9rem;
-    opacity: 0.8;
+.header h1{
+    font-size:2.3rem;
 }
 
-nav a:hover {
-    opacity: 1;
-    text-decoration: underline;
+/* ===== VIDEO FEED ===== */
+.videos{
+    max-width:1000px;
+    margin:30px auto;
+    padding:0 20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
 }
+
+.video-card{
+    background:#fff;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 6px 18px rgba(0,0,0,0.12);
+    transition:.3s;
 }
-iframe {
+
+.video-card:hover{
+    transform:translateY(-4px);
+}
+
+.video-card iframe{
     width:100%;
-    max-width:800px;
-    border-radius:12px;
-    margin-top:20px;
+    height:200px;
+    border:none;
+}
+
+.video-info{
+    padding:14px;
+    text-align:left;
+}
+
+.video-info h3{
+    font-size:1rem;
+    margin-bottom:6px;
+}
+
+.video-info span{
+    font-size:12px;
+    opacity:.7;
+}
+
+/* ===== FOOTER ===== */
+footer{
+    text-align:center;
+    padding:25px;
+    font-size:.8rem;
+    opacity:.7;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:600px){
+    nav{
+        justify-content:center;
+        flex-wrap:wrap;
+    }
 }
 </style>
 </head>
@@ -56,20 +125,45 @@ iframe {
 <body>
 
 <nav>
-<a href="index.html">Home</a>
-<a href="podcast.html">Podcast</a>
-<a href="videos.html">Videos</a>
-<a href="writings/index.html">Writings</a>
-<a href="about.html">About</a>
+    <a href="index.html">Home</a>
+    <a href="podcast.html">Podcast</a>
+    <a href="videos.html">Videos</a>
+    <a href="writings/index.html">Writings</a>
+    <a href="about.html">About</a>
 </nav>
 
-<h1>📺 YouTube Channel</h1>
+<section class="header">
+    <h1>📺 Videos</h1>
+</section>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/NEZvHG6ltLY?si=poBQbd1voQOYj7ZK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
- 
-    <footer>
-        © 2026 Anbudan Miththiran
-    </footer>
-    
+<section class="videos">
+
+    <!-- VIDEO CARD 1 -->
+    <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/NEZvHG6ltLY"
+        allowfullscreen></iframe>
+        <div class="video-info">
+            <h3>Life • Thought • Reality</h3>
+            <span>YouTube • Anbudan Miththiran</span>
+        </div>
+    </div>
+
+    <!-- VIDEO CARD 2 (sample) -->
+    <!--
+    <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID"></iframe>
+        <div class="video-info">
+            <h3>Video Title</h3>
+            <span>Uploaded on Jan 2026</span>
+        </div>
+    </div>
+    -->
+
+</section>
+
+<footer>
+    © 2026 Anbudan Miththiran
+</footer>
+
 </body>
 </html>
