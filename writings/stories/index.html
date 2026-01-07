@@ -2,6 +2,7 @@
 <html lang="ta">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- Google tag -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
@@ -13,7 +14,6 @@ gtag('config', 'G-9RLGNJL2ZQ');
 </script>
 
 <title>Stories | Anbudan Miththiran</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -25,97 +25,84 @@ gtag('config', 'G-9RLGNJL2ZQ');
     font-family:'Poppins',sans-serif;
 }
 
-/* ===== BODY ===== */
+/* BODY */
 body{
     min-height:100vh;
-    background:linear-gradient(135deg,#1a1a2e,#16213e,#533483);
-    background-size:400% 400%;
-    animation:bgMove 14s ease infinite;
-    color:#ffffff;
+    background:linear-gradient(135deg,#fff4e6,#ffd8a8,#ffb703);
+    color:#3a2c1a;
 }
 
-@keyframes bgMove{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
-}
-
-/* ===== NAV ===== */
+/* NAVIGATION */
 nav{
     display:flex;
     justify-content:flex-end;
-    gap:18px;
+    gap:16px;
     padding:18px 25px;
 }
-
 nav a{
     text-decoration:none;
-    font-size:0.9rem;
-    color:#ffffff;
-    opacity:.85;
+    font-size:.9rem;
+    color:#5a3a1a;
+    font-weight:500;
 }
-
 nav a:hover{
-    opacity:1;
     text-decoration:underline;
 }
 
-/* ===== CONTENT ===== */
+/* CONTENT */
 .container{
-    max-width:900px;
+    max-width:1000px;
     margin:40px auto;
     padding:0 20px;
+    text-align:center;
 }
 
 .container h1{
-    text-align:center;
-    font-size:2.3rem;
+    font-size:2.4rem;
     margin-bottom:30px;
 }
 
-/* ===== STORY LIST ===== */
-.story-list{
-    display:flex;
-    flex-direction:column;
-    gap:16px;
+/* STORY CARDS */
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:22px;
 }
 
-.story-item{
-    background:rgba(255,255,255,0.08);
-    padding:18px 20px;
-    border-radius:16px;
-    box-shadow:0 8px 22px rgba(0,0,0,0.25);
+.card{
+    background:#fff;
+    padding:26px 22px;
+    border-radius:20px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.12);
     transition:.3s;
-    border-left:5px solid #ffd369;
 }
 
-.story-item:hover{
-    transform:translateY(-5px);
-    background:rgba(255,255,255,0.12);
+.card:hover{
+    transform:translateY(-6px);
 }
 
-.story-item a{
+.card a{
     text-decoration:none;
-    color:#ffffff;
-    font-size:1.15rem;
+    color:#5a3a1a;
+    font-size:1.3rem;
     font-weight:600;
 }
 
-.story-meta{
-    margin-top:6px;
-    font-size:12px;
+.card p{
+    margin-top:10px;
+    font-size:.9rem;
+    opacity:.8;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:25px;
+    font-size:.8rem;
     opacity:.7;
 }
 
-/* ===== FOOTER ===== */
-footer{
-    text-align:center;
-    padding:30px;
-    font-size:.8rem;
-    opacity:.65;
-}
-
-/* ===== MOBILE ===== */
+/* MOBILE */
 @media(max-width:600px){
     nav{
         justify-content:center;
@@ -131,35 +118,35 @@ footer{
 <body>
 
 <nav>
-    <a href="../../index.html">Home</a>
-    <a href="../index.html">Writings</a>
-    <a href="../../videos.html">Videos</a>
-    <a href="../../podcast.html">Podcast</a>
-    <a href="../../about.html">About</a>
+    <a href="../index.html">Home</a>
+    <a href="../podcast.html">Podcast</a>
+    <a href="../videos.html">Videos</a>
+    <a href="index.html">Writings</a>
+    <a href="../about.html">About</a>
 </nav>
 
 <section class="container">
     <h1>📖 Stories</h1>
 
-    <div class="story-list">
+    <div class="cards">
 
         <!-- STORY 1 -->
-        <div class="story-item">
+        <div class="card">
             <a href="veriyai-vathaikkathirkal.html">வெறியை விதைக்காதீர்கள்</a>
-            <div class="story-meta">Short Story • Social Reflection</div>
+            <p>True story • Social reflection</p>
         </div>
 
         <!-- STORY 2 -->
-        <div class="story-item">
+        <div class="card">
             <a href="vivasayathin-rakasiyam.html">விவசாயத்தின் இரகசியம்</a>
-            <div class="story-meta">Short Story • Agriculture • Life</div>
+            <p>Inspirational • Agriculture</p>
         </div>
 
     </div>
 </section>
 
 <footer>
-© 2026 Anbudan Miththiran
+    © 2026 Anbudan Miththiran
 </footer>
 
 </body>
