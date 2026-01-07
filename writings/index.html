@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ta">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +13,7 @@ gtag('js', new Date());
 gtag('config', 'G-9RLGNJL2ZQ');
 </script>
 
-<title>Stories | Anbudan Miththiran</title>
+<title>Writings | Anbudan Miththiran</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -25,31 +25,33 @@ gtag('config', 'G-9RLGNJL2ZQ');
     font-family:'Poppins',sans-serif;
 }
 
-/* BODY */
+/* ===== BODY ===== */
 body{
     min-height:100vh;
     background:linear-gradient(135deg,#fff4e6,#ffd8a8,#ffb703);
     color:#3a2c1a;
 }
 
-/* NAVIGATION */
+/* ===== NAV ===== */
 nav{
     display:flex;
     justify-content:flex-end;
-    gap:16px;
+    gap:18px;
     padding:18px 25px;
 }
+
 nav a{
     text-decoration:none;
-    font-size:.9rem;
+    font-size:0.9rem;
     color:#5a3a1a;
     font-weight:500;
 }
+
 nav a:hover{
     text-decoration:underline;
 }
 
-/* CONTENT */
+/* ===== CONTENT ===== */
 .container{
     max-width:1000px;
     margin:40px auto;
@@ -62,7 +64,7 @@ nav a:hover{
     margin-bottom:30px;
 }
 
-/* STORY CARDS */
+/* ===== CARDS ===== */
 .cards{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -71,7 +73,7 @@ nav a:hover{
 
 .card{
     background:#fff;
-    padding:26px 22px;
+    padding:28px 22px;
     border-radius:20px;
     box-shadow:0 6px 18px rgba(0,0,0,0.12);
     transition:.3s;
@@ -94,7 +96,7 @@ nav a:hover{
     opacity:.8;
 }
 
-/* FOOTER */
+/* ===== FOOTER ===== */
 footer{
     text-align:center;
     padding:25px;
@@ -102,7 +104,7 @@ footer{
     opacity:.7;
 }
 
-/* MOBILE */
+/* ===== MOBILE ===== */
 @media(max-width:600px){
     nav{
         justify-content:center;
@@ -126,20 +128,20 @@ footer{
 </nav>
 
 <section class="container">
-    <h1>📖 Stories</h1>
+    <h1>✍️ My Writings</h1>
 
     <div class="cards">
 
-        <!-- STORY 1 -->
+        <!-- POEMS -->
         <div class="card">
-            <a href="veriyai-vathaikkathirkal.html">வெறியை விதைக்காதீர்கள்</a>
-            <p>True story • Social reflection</p>
+            <a href="poems/index.html">📝 Poems</a>
+            <p>Life • Philosophy • Feelings</p>
         </div>
 
-        <!-- STORY 2 -->
+        <!-- STORIES -->
         <div class="card">
-            <a href="vivasayathin-rakasiyam.html">விவசாயத்தின் இரகசியம்</a>
-            <p>Inspirational • Agriculture</p>
+            <a href="stories/index.html">📖 Stories</a>
+            <p>Short Stories • Reflections</p>
         </div>
 
     </div>
