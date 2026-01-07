@@ -1,52 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-      
 <meta charset="UTF-8">
-      <!-- Google tag (gtag.js) -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google tag -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-9RLGNJL2ZQ');
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-9RLGNJL2ZQ');
 </script>
-<title>Podcast | Anbudan Miththiran</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>About | Anbudan Miththiran</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-body {
-    background:#0f3460;
-    font-family:'Poppins', sans-serif;
-    color:#fff;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+/* ===== BODY ===== */
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#fff4e6,#ffd8a8,#ffb703);
+    color:#3a2c1a;
+}
+
+/* ===== NAV ===== */
+nav{
+    display:flex;
+    justify-content:flex-end;
+    gap:18px;
+    padding:18px 25px;
+}
+
+nav a{
+    text-decoration:none;
+    font-size:0.9rem;
+    color:#5a3a1a;
+    font-weight:500;
+}
+
+nav a:hover{
+    text-decoration:underline;
+}
+
+/* ===== CONTENT ===== */
+.about{
+    max-width:900px;
+    margin:40px auto;
+    padding:0 20px;
+}
+
+.about h1{
+    font-size:2.4rem;
     text-align:center;
-    padding:40px;
-}
-nav {
-    position: fixed;
-    top: 15px;
-    right: 20px;
+    margin-bottom:20px;
 }
 
-nav a {
-    color: #fff;
-    margin-left: 15px;
-    text-decoration: none;
-    font-size: 0.9rem;
-    opacity: 0.8;
+.about-card{
+    background:#fff;
+    padding:28px;
+    border-radius:18px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.12);
 }
 
-nav a:hover {
-    opacity: 1;
-    text-decoration: underline;
+.about-card h2{
+    font-size:1.4rem;
+    margin-bottom:12px;
+}
+
+.about-card p{
+    line-height:1.7;
+    margin-bottom:15px;
+    font-size:0.95rem;
+}
+
+/* ===== BOOKS ===== */
+.books{
+    margin-top:25px;
+}
+
+.books h3{
+    margin-bottom:10px;
+}
+
+.books ul{
+    list-style:none;
+}
+
+.books li{
+    background:#fff7eb;
+    padding:10px 14px;
+    border-radius:10px;
+    margin-bottom:10px;
+}
+
+.books a{
+    text-decoration:none;
+    color:#b45309;
+    font-weight:500;
+}
+
+.books a:hover{
+    text-decoration:underline;
+}
+
+/* ===== FOOTER ===== */
+footer{
+    text-align:center;
+    padding:25px;
+    font-size:.8rem;
+    opacity:.7;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:600px){
+    nav{
+        justify-content:center;
+        flex-wrap:wrap;
+    }
+    .about h1{
+        font-size:2rem;
+    }
 }
 </style>
 </head>
 
 <body>
+
 <nav>
     <a href="index.html">Home</a>
     <a href="podcast.html">Podcast</a>
@@ -54,15 +142,48 @@ nav a:hover {
     <a href="writings/index.html">Writings</a>
     <a href="about.html">About</a>
 </nav>
-<h1>About Me</h1>
 
-<p>
-I am Anbudan Miththiran — writer, thinker, podcaster, and storyteller.
-</p>
- 
-    <footer>
-        © 2026 Anbudan Miththiran
-    </footer>
-    
+<section class="about">
+    <h1>About Me</h1>
+
+    <div class="about-card">
+        <h2>## About Me</h2>
+
+        <p>
+            I am <strong>Anbudan Miththiran</strong> — a writer, thinker, podcaster, and storyteller.
+            A devotee of <strong>Lord Krishna</strong> and <strong>Lord Shiva</strong>, I walk the path
+            of wisdom, love, and social reform.
+        </p>
+
+        <p>
+            Born into an economically poorest family, my native village lies near
+            <strong>Puliangudi, Tamil Nadu</strong>. From childhood, my heart searched for the
+            purest form of love — a search that eventually shaped me into a writer.
+        </p>
+
+        <p>
+            I believe words can heal, awaken, and transform society.
+        </p>
+
+        <div class="books">
+            <h3>📚 Books</h3>
+            <ul>
+                <li><a href="https://amzn.eu/d/iRWs8ez" target="_blank">அன்பை நீங்கள் ஏன் நாடவில்லை – புத்தகம்</a></li>
+                <li><a href="https://amzn.eu/d/fIGw4G6" target="_blank">சிந்தனை வேள்வி – புத்தகம்</a></li>
+                <li><a href="https://amzn.eu/d/4msQU44" target="_blank">அன்பான புரிதல் – புத்தகம்</a></li>
+                <li><a href="https://amzn.eu/d/d2PYIVx" target="_blank">தேசபக்தியும், மனிதநேயமும் – புத்தகம்</a></li>
+                <li><a href="https://amzn.eu/d/cXzYeoG" target="_blank">True Love Doesn’t Split – Book</a></li>
+                <li><a href="https://amzn.eu/d/a3RLLQw" target="_blank">உண்மையான காதல் பிரிவதில்லை – புத்தகம்</a></li>
+                <li><a href="https://amzn.eu/d/9fxStQT" target="_blank">My Mind Feels as Butterfly – Book</a></li>
+                <li><a href="https://amzn.eu/d/iLB4sxp" target="_blank">மென்மையானவள் – புத்தகம்</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<footer>
+    © 2026 Anbudan Miththiran
+</footer>
+
 </body>
 </html>
