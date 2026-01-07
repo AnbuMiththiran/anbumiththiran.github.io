@@ -1,187 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <!-- Google tag (gtag.js) -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google tag -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-9RLGNJL2ZQ');
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-9RLGNJL2ZQ');
 </script>
-    <title>Anbudan Miththiran | Podcast & Videos</title>
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<title>Anbudan Miththiran | Podcast & Videos</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-nav {
-    position: fixed;
-    top: 15px;
-    right: 20px;
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
 }
 
-nav a {
-    color: #fff;
-    margin-left: 15px;
-    text-decoration: none;
-    font-size: 0.9rem;
-    opacity: 0.8;
+/* ===== BODY ===== */
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#fff4e6,#ffd8a8,#ffb703);
+    color:#3a2c1a;
 }
 
-nav a:hover {
-    opacity: 1;
-    text-decoration: underline;
+/* ===== NAV ===== */
+nav{
+    display:flex;
+    justify-content:flex-end;
+    gap:18px;
+    padding:18px 25px;
 }
-        body {
-            height: 100vh;
-            background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #533483);
-            background-size: 400% 400%;
-            animation: gradientBG 12s ease infinite;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            text-align: center;
-        }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .logo {
-            width: 120px;
-            margin-bottom:15px;
-        }
-        .container {
-            padding: 20px;
-            animation: fadeIn 2s ease;
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+nav a{
+    text-decoration:none;
+    font-size:0.9rem;
+    color:#5a3a1a;
+    font-weight:500;
+}
 
-        h1 {
-            font-size: 2.8rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
+nav a:hover{
+    text-decoration:underline;
+}
 
-        .typing {
-            font-size: 1.2rem;
-            font-weight: 300;
-            border-right: 2px solid #fff;
-            display: inline-block;
-            white-space: nowrap;
-            overflow: hidden;
-            animation: typing 4s steps(40, end), blink 0.7s infinite;
-        }
+/* ===== HERO ===== */
+.hero{
+    max-width:900px;
+    margin:40px auto 20px;
+    text-align:center;
+    padding:20px;
+}
 
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
+.logo{
+    width:110px;
+    margin-bottom:15px;
+}
 
-        @keyframes blink {
-            50% { border-color: transparent; }
-        }
+.hero h1{
+    font-size:2.5rem;
+    margin-bottom:8px;
+}
 
-        .btn {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 10px 25px;
-            border: 1px solid #fff;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 30px;
-            transition: 0.3s;
-        }
+.typing{
+    font-size:1.1rem;
+    border-right:2px solid #5a3a1a;
+    white-space:nowrap;
+    overflow:hidden;
+    display:inline-block;
+    animation:typing 4s steps(30,end), blink .7s infinite;
+}
 
-        .btn:hover {
-            background: #fff;
-            color: #000;
-        }
+@keyframes typing{
+    from{width:0}
+    to{width:100%}
+}
+@keyframes blink{
+    50%{border-color:transparent}
+}
 
-        footer {
-            position: absolute;
-            bottom: 15px;
-            font-size: 0.8rem;
-            opacity: 0.7;
-        }
-    </style>
-</head>
-<body>
-    <section style="max-width:900px;margin:40px auto;text-align:left;">
-  <h2>🆕 Latest Poems & Stories</h2>
-  <ul id="latestList"></ul>
-</section>
+.btn{
+    display:inline-block;
+    margin-top:22px;
+    padding:10px 26px;
+    border-radius:25px;
+    background:#ff9f1c;
+    color:#fff;
+    text-decoration:none;
+    transition:.3s;
+}
 
-<script>
-fetch('/writings/latest.json')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('JSON not found');
+.btn:hover{
+    background:#e8890c;
+}
+
+/* ===== FEED ===== */
+.feed{
+    max-width:900px;
+    margin:40px auto;
+    padding:0 20px;
+}
+
+.feed h2{
+    margin-bottom:15px;
+}
+
+.feed ul{
+    list-style:none;
+}
+
+.feed li{
+    background:#fff;
+    padding:14px 16px;
+    border-radius:12px;
+    margin-bottom:12px;
+    box-shadow:0 6px 15px rgba(0,0,0,0.08);
+}
+
+.feed a{
+    text-decoration:none;
+    color:#5a3a1a;
+    font-weight:500;
+}
+
+.feed span{
+    font-size:12px;
+    opacity:.7;
+}
+
+/* ===== FOOTER ===== */
+footer{
+    text-align:center;
+    padding:20px;
+    font-size:.8rem;
+    opacity:.7;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:600px){
+    nav{
+        justify-content:center;
+        flex-wrap:wrap;
     }
-    return response.json();
-  })
-  .then(data => {
-    const list = document.getElementById('latestList');
+    .hero h1{
+        font-size:2rem;
+    }
+}
+</style>
+</head>
 
-    data.items.forEach(item => {
-      const li = document.createElement('li');
-      li.style.marginBottom = "12px";
+<body>
 
-      li.innerHTML = `
-        ${item.type === "Poem" ? "✍️" : "📖"}
-        <a href="${item.url}" style="color:#fff;text-decoration:none;">
-          ${item.title}
-        </a>
-        <span style="font-size:12px;opacity:0.7;"> (${item.date})</span>
-      `;
-
-      list.appendChild(li);
-    });
-  })
-  .catch(error => {
-    console.error(error);
-  });
-</script>
-       <nav>
+<nav>
     <a href="index.html">Home</a>
     <a href="podcast.html">Podcast</a>
     <a href="videos.html">Videos</a>
     <a href="writings/index.html">Writings</a>
     <a href="about.html">About</a>
 </nav>
-<img src="logo.svg" ait="Anbudan Miththiran logo" class="logo">
-    <div class="container">
-        <h1>அன்புடன் மித்திரன்</h1>
-        <div class="typing">Writer • Thinker • Storyteller</div>
 
-         <br>
-        <a href="https://anbusnp.wordpress.com" class="btn">Read My Writings</a>
-    </div>
-    
-    <footer>
-        © 2026 Anbudan Miththiran
-    </footer>
+<section class="hero">
+    <img src="logo.svg" alt="Anbudan Miththiran logo" class="logo">
+    <h1>அன்புடன் மித்திரன்</h1>
+    <div class="typing">Writer • Thinker • Storyteller</div><br>
+    <a href="https://anbusnp.wordpress.com" class="btn">Read My Writings</a>
+</section>
+
+<section class="feed">
+    <h2>🆕 Latest Poems & Stories</h2>
+    <ul id="latestList"></ul>
+</section>
+
+<footer>
+    © 2026 Anbudan Miththiran
+</footer>
+
+<script>
+fetch('/writings/latest.json')
+.then(res=>res.json())
+.then(data=>{
+    const list=document.getElementById('latestList');
+    data.items.forEach(item=>{
+        const li=document.createElement('li');
+        li.innerHTML=`
+        ${item.type==="Poem"?"✍️":"📖"}
+        <a href="${item.url}">${item.title}</a>
+        <br><span>${item.date}</span>`;
+        list.appendChild(li);
+    });
+});
+</script>
 
 </body>
 </html>
