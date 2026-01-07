@@ -1,54 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-      
 <meta charset="UTF-8">
-      <!-- Google tag (gtag.js) -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google tag -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-9RLGNJL2ZQ');
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-9RLGNJL2ZQ');
 </script>
+
 <title>Podcast | Anbudan Miththiran</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-body {
-    background:#0f3460;
-    font-family:'Poppins', sans-serif;
-    color:#fff;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+/* ===== BODY ===== */
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#fff4e6,#ffd8a8,#ffb703);
+    color:#3a2c1a;
+}
+
+/* ===== NAV ===== */
+nav{
+    display:flex;
+    justify-content:flex-end;
+    gap:18px;
+    padding:18px 25px;
+}
+
+nav a{
+    text-decoration:none;
+    font-size:0.9rem;
+    color:#5a3a1a;
+    font-weight:500;
+}
+
+nav a:hover{
+    text-decoration:underline;
+}
+
+/* ===== HEADER ===== */
+.header{
     text-align:center;
-    padding:40px;
-}
-nav {
-    position: fixed;
-    top: 15px;
-    right: 20px;
+    margin:30px auto 10px;
 }
 
-nav a {
-    color: #fff;
-    margin-left: 15px;
-    text-decoration: none;
-    font-size: 0.9rem;
-    opacity: 0.8;
+.header h1{
+    font-size:2.3rem;
 }
 
-nav a:hover {
-    opacity: 1;
-    text-decoration: underline;
+/* ===== PODCAST FEED ===== */
+.podcasts{
+    max-width:1000px;
+    margin:30px auto;
+    padding:0 20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:22px;
 }
+
+.podcast-card{
+    background:#fff;
+    border-radius:16px;
+    padding:14px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.12);
+    transition:.3s;
 }
-iframe {
+
+.podcast-card:hover{
+    transform:translateY(-4px);
+}
+
+.podcast-card iframe{
     width:100%;
-    max-width:800px;
+    height:352px;
+    border:none;
     border-radius:12px;
-    margin-top:20px;
+}
+
+.podcast-info{
+    text-align:left;
+    margin-top:10px;
+}
+
+.podcast-info h3{
+    font-size:1rem;
+    margin-bottom:4px;
+}
+
+.podcast-info span{
+    font-size:12px;
+    opacity:.7;
+}
+
+/* ===== FOOTER ===== */
+footer{
+    text-align:center;
+    padding:25px;
+    font-size:.8rem;
+    opacity:.7;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:600px){
+    nav{
+        justify-content:center;
+        flex-wrap:wrap;
+    }
+    .podcast-card iframe{
+        height:300px;
+    }
 }
 </style>
 </head>
@@ -63,16 +136,39 @@ iframe {
     <a href="about.html">About</a>
 </nav>
 
-<h1>🎙 My Spotify Podcast</h1>
+<section class="header">
+    <h1>🎙 Podcast Episodes</h1>
+</section>
 
-<iframe src="https://open.spotify.com/embed/show/5uMIWUWtjb0jkggHoEG6nl"
-height="352" frameborder="0"
-allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-</iframe>
- 
-    <footer>
-        © 2026 Anbudan Miththiran
-    </footer>
-    
+<section class="podcasts">
+
+    <!-- PODCAST CARD 1 -->
+    <div class="podcast-card">
+        <iframe src="https://open.spotify.com/embed/show/5uMIWUWtjb0jkggHoEG6nl"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+        </iframe>
+        <div class="podcast-info">
+            <h3>Life • Philosophy • Society</h3>
+            <span>Spotify Podcast • Anbudan Miththiran</span>
+        </div>
+    </div>
+
+    <!-- ADD MORE EPISODES / SHOWS HERE -->
+    <!--
+    <div class="podcast-card">
+        <iframe src="SPOTIFY_EPISODE_EMBED_URL"></iframe>
+        <div class="podcast-info">
+            <h3>Episode Title</h3>
+            <span>Released on Jan 2026</span>
+        </div>
+    </div>
+    -->
+
+</section>
+
+<footer>
+    © 2026 Anbudan Miththiran
+</footer>
+
 </body>
 </html>
