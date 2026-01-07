@@ -1,57 +1,166 @@
 <!DOCTYPE html>
-<html>
+<html lang="ta">
 <head>
-      <meta charset="UTF-8">
-<!-- Google tag (gtag.js) -->
+<meta charset="UTF-8">
+
+<!-- Google tag -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-9RLGNJL2ZQ');
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-9RLGNJL2ZQ');
 </script>
+
 <title>Stories | Anbudan Miththiran</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
-body {
-    background:#1a1a2e;
-    color:#fff;
-    font-family:Poppins;
-    padding:40px;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
 }
-a {color:#fff;}
-.story {
+
+/* ===== BODY ===== */
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#1a1a2e,#16213e,#533483);
+    background-size:400% 400%;
+    animation:bgMove 14s ease infinite;
+    color:#ffffff;
+}
+
+@keyframes bgMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+/* ===== NAV ===== */
+nav{
+    display:flex;
+    justify-content:flex-end;
+    gap:18px;
+    padding:18px 25px;
+}
+
+nav a{
+    text-decoration:none;
+    font-size:0.9rem;
+    color:#ffffff;
+    opacity:.85;
+}
+
+nav a:hover{
+    opacity:1;
+    text-decoration:underline;
+}
+
+/* ===== CONTENT ===== */
+.container{
+    max-width:900px;
+    margin:40px auto;
+    padding:0 20px;
+}
+
+.container h1{
+    text-align:center;
+    font-size:2.3rem;
     margin-bottom:30px;
-    border-left:4px solid #533483;
-    padding-left:15px;
+}
+
+/* ===== STORY LIST ===== */
+.story-list{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+.story-item{
+    background:rgba(255,255,255,0.08);
+    padding:18px 20px;
+    border-radius:16px;
+    box-shadow:0 8px 22px rgba(0,0,0,0.25);
+    transition:.3s;
+    border-left:5px solid #ffd369;
+}
+
+.story-item:hover{
+    transform:translateY(-5px);
+    background:rgba(255,255,255,0.12);
+}
+
+.story-item a{
+    text-decoration:none;
+    color:#ffffff;
+    font-size:1.15rem;
+    font-weight:600;
+}
+
+.story-meta{
+    margin-top:6px;
+    font-size:12px;
+    opacity:.7;
+}
+
+/* ===== FOOTER ===== */
+footer{
+    text-align:center;
+    padding:30px;
+    font-size:.8rem;
+    opacity:.65;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:600px){
+    nav{
+        justify-content:center;
+        flex-wrap:wrap;
+    }
+    .container h1{
+        font-size:2rem;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<a href="../index.html">← Back to Writings</a>
+<nav>
+    <a href="../../index.html">Home</a>
+    <a href="../index.html">Writings</a>
+    <a href="../../videos.html">Videos</a>
+    <a href="../../podcast.html">Podcast</a>
+    <a href="../../about.html">About</a>
+</nav>
 
-<h1>📖 Stories</h1>
+<section class="container">
+    <h1>📖 Stories</h1>
 
-<ul>
-  <li>
-    <a href="veriyai-vathaikkathirkal.html">
-      வெறியை விதைக்காதீர்கள்
-    </a>
-  </li>
+    <div class="story-list">
 
-  <li>
-    <a href="vivasayathin-rakasiyam.html">
-      விவசாயத்தின் இரகசியம்
-    </a>
-  </li>
-</ul>
-  
-  <footer>
-        © 2026 Anbudan Miththiran
-    </footer>
+        <!-- STORY 1 -->
+        <div class="story-item">
+            <a href="veriyai-vathaikkathirkal.html">வெறியை விதைக்காதீர்கள்</a>
+            <div class="story-meta">Short Story • Social Reflection</div>
+        </div>
+
+        <!-- STORY 2 -->
+        <div class="story-item">
+            <a href="vivasayathin-rakasiyam.html">விவசாயத்தின் இரகசியம்</a>
+            <div class="story-meta">Short Story • Agriculture • Life</div>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+© 2026 Anbudan Miththiran
+</footer>
 
 </body>
 </html>
