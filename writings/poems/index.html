@@ -1,56 +1,155 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-      <meta charset="UTF-8">
- <!-- Google tag (gtag.js) -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google tag -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-9RLGNJL2ZQ');
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-9RLGNJL2ZQ');
 </script>
+
 <title>Poems | Anbudan Miththiran</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
-body {
-    background:#0f3460;
-    color:#fff;
-    font-family:Poppins;
-    padding:40px;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
 }
-a {color:#fff;}
-.poem {
-    margin-bottom:30px;
-    border-bottom:1px solid rgba(255,255,255,0.2);
-    padding-bottom:20px;
+
+/* ===== BODY ===== */
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#fff4e6,#ffd8a8,#ffb703);
+    color:#3a2c1a;
+}
+
+/* ===== NAV ===== */
+nav{
+    display:flex;
+    justify-content:flex-end;
+    gap:18px;
+    padding:18px 25px;
+}
+
+nav a{
+    text-decoration:none;
+    font-size:0.9rem;
+    color:#5a3a1a;
+    font-weight:500;
+}
+
+nav a:hover{
+    text-decoration:underline;
+}
+
+/* ===== CONTENT ===== */
+.container{
+    max-width:900px;
+    margin:40px auto;
+    padding:0 20px;
+}
+
+.container h1{
+    text-align:center;
+    font-size:2.3rem;
+    margin-bottom:25px;
+}
+
+/* ===== POEM LIST ===== */
+.poem-list{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.poem-item{
+    background:#fff;
+    padding:16px 18px;
+    border-radius:14px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.12);
+    transition:.3s;
+}
+
+.poem-item:hover{
+    transform:translateY(-4px);
+}
+
+.poem-item a{
+    text-decoration:none;
+    color:#5a3a1a;
+    font-size:1.1rem;
+    font-weight:600;
+}
+
+.poem-meta{
+    margin-top:6px;
+    font-size:12px;
+    opacity:.7;
+}
+
+/* ===== FOOTER ===== */
+footer{
+    text-align:center;
+    padding:25px;
+    font-size:.8rem;
+    opacity:.7;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:600px){
+    nav{
+        justify-content:center;
+        flex-wrap:wrap;
+    }
+    .container h1{
+        font-size:2rem;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<a href="../index.html">← Back to Writings</a>
+<nav>
+    <a href="../../index.html">Home</a>
+    <a href="../index.html">Writings</a>
+    <a href="../../videos.html">Videos</a>
+    <a href="../../podcast.html">Podcast</a>
+    <a href="../../about.html">About</a>
+</nav>
 
-<h1>📝 Poems</h1>
+<section class="container">
+    <h1>📝 Poems</h1>
 
-<ul>
-  <li>
-    <a href="thalaivan-oruvane.html">
-      தலைவன் ஒருவனே!
-    </a>
-  </li>
+    <div class="poem-list">
 
-  <li>
-    <a href="chiththam-kalankaathe.html">
-      சித்தம் கலங்காதே!
-    </a>
-  </li>
-</ul>
-  <footer>
-        © 2026 Anbudan Miththiran
-    </footer>
-  
+        <!-- POEM 1 -->
+        <div class="poem-item">
+            <a href="thalaivan-oruvane.html">தலைவன் ஒருவனே!</a>
+            <div class="poem-meta">Poem</div>
+        </div>
+
+        <!-- POEM 2 -->
+        <div class="poem-item">
+            <a href="chiththam-kalankaathe.html">சித்தம் கலங்காதே!</a>
+            <div class="poem-meta">Poem</div>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    © 2026 Anbudan Miththiran
+</footer>
+
 </body>
 </html>
