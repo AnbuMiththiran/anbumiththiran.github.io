@@ -185,6 +185,56 @@ footer{
 
 </section>
 
+     <!-- Share Options -->
+<div class="share-container">
+    <span>📤 Share this:</span>
+    <a href="https://wa.me/?text=Check out this poem!%20https://www.anbumiththiran.in/writings/poems/thalaivan-oruvane.html" target="_blank" class="share-btn whatsapp">WhatsApp</a>
+    <a href="https://twitter.com/intent/tweet?text=Check out this poem!&url=https://www.anbumiththiran.in/writings/poems/thalaivan-oruvane.html" target="_blank" class="share-btn twitter">Twitter</a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.anbumiththiran.in/writings/poems/thalaivan-oruvane.html" target="_blank" class="share-btn facebook">Facebook</a>
+    <button class="share-btn copy-link" onclick="copyLink()">Copy Link</button>
+</div>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href)
+    .then(() => alert('Link copied to clipboard!'))
+    .catch(() => alert('Failed to copy link'));
+}
+</script>
+
+<style>
+.share-container {
+    text-align:center;
+    margin:30px 0;
+    font-size:1rem;
+    color:#fff;
+}
+.share-container span {
+    display:block;
+    margin-bottom:10px;
+    font-weight:600;
+}
+.share-btn {
+    margin:5px;
+    padding:8px 12px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:500;
+    font-size:0.9rem;
+    cursor:pointer;
+    transition:0.3s;
+    display:inline-block;
+}
+.share-btn:hover {
+    opacity:0.8;
+}
+.share-btn.whatsapp { background:#25d366; color:#fff; }
+.share-btn.twitter { background:#1da1f2; color:#fff; }
+.share-btn.facebook { background:#3b5998; color:#fff; }
+.share-btn.copy-link { background:#f0ad4e; color:#fff; border:none; }
+</style>
+    
+
 <footer>
 © 2026 Anbudan Miththiran
 </footer>
