@@ -2,56 +2,151 @@
 <html lang="ta">
 <head>
 <meta charset="UTF-8">
-<!-- Google tag (gtag.js) -->
+
+<!-- Google tag -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-9RLGNJL2ZQ');
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-9RLGNJL2ZQ');
 </script>
+
 <title>விவசாயத்தின் இரகசியம் | Anbudan Miththiran</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-body {
-    background:#0f3460;
-    font-family:'Poppins', sans-serif;
-    color:#fff;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+/* ===== BODY ===== */
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#fff4e6,#ffd8a8,#ffb703);
+    color:#3a2c1a;
+}
+
+/* ===== NAV ===== */
+nav{
+    display:flex;
+    justify-content:flex-end;
+    gap:18px;
+    padding:18px 25px;
+}
+
+nav a{
+    text-decoration:none;
+    font-size:0.9rem;
+    color:#5a3a1a;
+    opacity:.85;
+}
+
+nav a:hover{
+    opacity:1;
+    text-decoration:underline;
+}
+
+/* ===== STORY CONTAINER ===== */
+.story-container{
+    max-width:850px;
+    margin:40px auto;
+    padding:30px 25px;
+    background:rgba(255,255,255,0.12);
+    border-radius:20px;
+    box-shadow:0 10px 28px rgba(0,0,0,0.25);
+}
+
+/* ===== TITLE ===== */
+.story-container h1{
     text-align:center;
-    padding:40px;
+    font-size:2.2rem;
+    margin-bottom:10px;
+}
+
+/* ===== META ===== */
+.story-meta{
+    text-align:center;
+    font-size:0.85rem;
+    opacity:.7;
+    margin-bottom:30px;
+}
+
+/* ===== STORY TEXT ===== */
+.story-container p{
+    text-align:justify;
+    line-height:1.9;
+    margin-bottom:18px;
+    font-size:1.05rem;
+}
+
+/* ===== SIGN ===== */
+.author{
+    text-align:right;
+    margin-top:30px;
+    font-style:italic;
+    opacity:.85;
+}
+
+/* ===== FOOTER ===== */
+footer{
+    text-align:center;
+    padding:30px;
+    font-size:.8rem;
+    opacity:.6;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:600px){
+    nav{
+        justify-content:center;
+        flex-wrap:wrap;
+    }
+    .story-container h1{
+        font-size:1.8rem;
+    }
+    .story-container{
+        padding:22px 18px;
+    }
+}
 </style>
 </head>
+
 <body>
 
-<a href="index.html">← Back to Stories</a>
+<nav>
+    <a href="../../index.html">Home</a>
+    <a href="../index.html">Writings</a>
+    <a href="../../videos.html">Videos</a>
+    <a href="../../podcast.html">Podcast</a>
+    <a href="../../about.html">About</a>
+</nav>
 
-<h1>விவசாயத்தின் இரகசியம்</h1>
+<section class="story-container">
 
-<p>
-ஜார்ஜ் கார்வர் என்ற ஒருவர் அமெரிக்காவில்
-பிரபலமான விவசாயியாவார்.
-அவர் தன்னுடைய பண்ணையில் பயிர்களுடன் பேசும் பழக்கம் கொண்டிருந்தார்.
-அவர் வேர்க்கடலையை பயிர் செய்பவர்..
-பயிரிட்டு உரமிட்டு நீர்பாசனம் செய்வதோடு மட்டுமல்லாமல்,
-வேர்க்கடலை பயிரிடம், " இறைவன் உன்னையும் படைத்திருக்கிறான். நானும் உன்னை நன்கு பாதுகாக்கிறேன். ஆகவே, எந்தவித பருவநிலைகளிலும் என்னுடன் ஒத்துழைக்க வேண்டும். ", என்று அன்பாக
-அவரது தோட்டத்தில் வேர்க்கடலைப் பயிருடன் அடிக்கடி பேசுவார்.
-அதன் விளைவால் விளைச்சலும் அமோகமாகவே இருக்கும்..
-</p>
-<p>
-எண்ணங்கள் அலைகளாக உங்களிடமிருந்து மற்றவர்களுக்குப் போய்க் கொண்டு தான் இருக்கிறது.
-ஆனால், யாரும் அதை உணர்வதில்லை..
-உங்களின் எண்ணங்களை மிக கவனத்துடன் உற்று நோக்கி வந்தால், அது சென்று, ஏற்படுத்தும் விளைவைக் கவனிக்கலாம்...
-</p>
+    <h1>விவசாயத்தின் இரகசியம்</h1>
+    <div class="story-meta">Short Story • Inspiration</div>
 
-<p><em>— அன்புடன் மித்திரன்</em></p>
+    <p>
+        ஜார்ஜ் கார்வர் என்ற ஒருவர் அமெரிக்காவில் பிரபலமான விவசாயியாவார். அவர் தன்னுடைய பண்ணையில் பயிர்களுடன் பேசும் பழக்கம் கொண்டிருந்தார். அவர் வேர்க்கடலையை பயிர் செய்பவர். பயிரிட்டு உரமிட்டு நீர்பாசனம் செய்வதோடு மட்டுமல்லாமல், வேர்க்கடலை பயிரிடம், "இறைவன் உன்னையும் படைத்திருக்கிறான். நானும் உன்னை நன்கு பாதுகாக்கிறேன். ஆகவே, எந்தவித பருவநிலைகளிலும் என்னுடன் ஒத்துழைக்க வேண்டும்.", என்று அன்பாக அவரது தோட்டத்தில் வேர்க்கடலைப் பயிருடன் அடிக்கடி பேசுவார்.
+    </p>
+
+    <p>
+        அதன் விளைவால் விளைச்சலும் அமோகமாகவே இருக்கும். எண்ணங்கள் அலைகளாக உங்களிடமிருந்து மற்றவர்களுக்குப் போய் கொண்டே இருக்கிறது. ஆனால் யாரும் அதை உணர்வதில்லை. உங்கள் எண்ணங்களை மிக கவனத்துடன் உற்று நோக்கி வந்தால், அது சென்று, ஏற்படுத்தும் விளைவைக் கவனிக்கலாம்.
+    </p>
+
+    <div class="author">— அன்புடன் மித்திரன்</div>
+
+</section>
 
 <footer>
-        © 2026 Anbudan Miththiran
-    </footer>
+© 2026 Anbudan Miththiran
+</footer>
 
 </body>
 </html>
