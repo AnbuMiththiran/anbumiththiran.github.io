@@ -294,5 +294,97 @@ function moveSlide(step) {
   
 </script>
 
+    <!-- Book Carousel - Code by ChatGPT -->
+<div class="carousel">
+  <div class="slides">
+    <div class="slide">
+      <div class="book-card">
+        <img src="https://i5.walmartimages.com/seo/Desabakthiyum-Manithaneyamum-2980-3015-2970-2986-2965-3021-2980-3007-2991-3009-2990-3021-2990-2985-3007-2980-2984-3015-2991-2990-3009-2990-3021-Pap-9_92877856-6153-4d75-82d8-9a9b4b8acc79.eb11fc6fc2d5dc927ca965de58ed65cb.jpeg?odnHeight=573&odnWidth=573&odnBg=FFFFFF" alt="Desabakthiyum, Manithaneyamum cover">
+        <!-- Title from Notion Press0 -->
+        <h3>Desabakthiyum, Manithaneyamum / தேசபக்தியும், மனிதநேயமும்: சகோதரத்துவம் – முதல் தொடர்</h3>
+        <!-- Description excerpt from ThriftBooks1 -->
+        <p>Desabakthiyum, Manithaneyamum ondrukondru muranpaddavai. Manithaneyam Naadu, Saathi, Matham, Inam pondra verupaadukalai kadanthathu.</p>
+        <a href="https://www.amazon.in/Desabakthiyum-Manithaneyamum-%E0%AE%A4%E0%AF%87%E0%AE%9A%E0%AE%AA%E0%AE%95%E0%AF%8D%E0%AE%A4%E0%AE%BF%E0%AE%AF%E0%AF%81%E0%AE%AE%E0%AF%8D-%E0%AE%AE%E0%AE%A9%E0%AE%BF%E0%AE%A4%E0%AE%A8%E0%AF%87%E0%AE%AF%E0%AE%AE%E0%AF%81%E0%AE%AE%E0%AF%8D-%E0%AE%9A%E0%AE%95%E0%AF%8B%E0%AE%A4%E0%AE%B0%E0%AE%A4%E0%AF%8D%E0%AE%A4%E0%AF%81%E0%AE%B5%E0%AE%AE%E0%AF%8D/dp/1636338011?tag=anbumiththira-21" target="_blank">
+          Buy on Amazon
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.carousel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin: 20px auto;
+}
+.slides {
+  display: flex;
+  transition: transform 0.6s ease;
+}
+.slide {
+  flex: 0 0 100%;
+  display: flex;
+  justify-content: center;
+}
+.book-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 16px;
+  text-align: center;
+  max-width: 300px;
+  margin: 10px;
+}
+.book-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+.book-card h3 {
+  font-size: 1.1em;
+  margin: 12px 0 8px;
+}
+.book-card p {
+  font-size: 0.95em;
+  color: #555;
+  min-height: 3em;
+}
+.book-card a {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 10px 16px;
+  background: #FF9900;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+}
+.book-card a:hover {
+  background: #e68a00;
+}
+@media (max-width: 600px) {
+  .book-card {
+    max-width: 90%;
+    margin: 10px auto;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  let slideIndex = 0;
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  function showNextSlide() {
+    slideIndex = (slideIndex + 1) % total;
+    const offset = -slideIndex * 100;
+    document.querySelector('.slides').style.transform = 'translateX(' + offset + '%)';
+  }
+  setInterval(showNextSlide, 3000);
+});
+</script>
+    
 </body>
 </html>
