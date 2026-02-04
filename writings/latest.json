@@ -2,6 +2,12 @@
   "items": [
     {
       "type": "Poem",
+      "title": "பசி என்னும் சீவகீதம்!",
+      "url": "writings/poems/pasi-seevageetham.html",
+      "date": "2026-01-05"
+    },
+    {
+      "type": "Poem",
       "title": "சித்தம் கலங்காதே!",
       "url": "writings/poems/chiththam-kalankaathe.html",
       "date": "2026-01-05"
