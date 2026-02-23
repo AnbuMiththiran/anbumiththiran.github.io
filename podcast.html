@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google tag -->
+<!-- Google tag -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
@@ -112,13 +112,6 @@ footer{
     font-size:1rem;
     margin-top:30px;
 }
-
-@media(max-width:600px){
-    nav{
-        justify-content:center;
-        flex-wrap:wrap;
-    }
-}
 </style>
 </head>
 
@@ -145,43 +138,37 @@ footer{
 </footer>
 
 <script>
-const rssFeed = "https://anchor.fm/s/b9b6984c/podcast/rss";
+const rssUrl = "https://anchor.fm/s/b9b6984c/podcast/rss";
+const api = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(rssUrl);
+
 const container = document.getElementById("podcast-container");
 
-// Use CORS proxy
-fetch("https://api.allorigins.win/raw?url=" + encodeURIComponent(rssFeed))
-.then(response => response.text())
-.then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+fetch(api)
+.then(res => res.json())
 .then(data => {
 
-    const items = data.querySelectorAll("item");
     container.innerHTML = "";
 
-    items.forEach((item, index) => {
+    data.items.slice(0,6).forEach(item => {
 
-        if(index >= 6) return; // show only latest 6
-
-        const title = item.querySelector("title").textContent;
-        const pubDate = new Date(item.querySelector("pubDate").textContent);
-        const enclosure = item.querySelector("enclosure");
-        const audioUrl = enclosure ? enclosure.getAttribute("url") : "";
-        const imageTag = item.querySelector("itunes\\:image");
-        const thumb = imageTag ? imageTag.getAttribute("href") : "";
-
-        const formattedDate = pubDate.toLocaleDateString("en-US", {
+        const title = item.title;
+        const date = new Date(item.pubDate).toLocaleDateString("en-US", {
             year: "numeric",
             month: "long",
             day: "numeric"
         });
 
+        const audioUrl = item.enclosure.link;
+        const thumbnail = item.thumbnail || data.feed.image;
+
         const card = document.createElement("div");
         card.className = "podcast-card";
 
         card.innerHTML = `
-            <img class="podcast-thumb" src="${thumb}" alt="Podcast Thumbnail">
+            <img class="podcast-thumb" src="${thumbnail}" alt="Podcast Thumbnail">
             <div class="podcast-info">
                 <h3>${title}</h3>
-                <span>${formattedDate}</span>
+                <span>${date}</span>
             </div>
             <audio controls>
                 <source src="${audioUrl}" type="audio/mpeg">
