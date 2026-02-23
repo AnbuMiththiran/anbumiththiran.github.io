@@ -138,20 +138,17 @@ footer{
 </footer>
 
 <script>
-const rssUrl = "https://anchor.fm/s/b9b6984c/podcast/rss";
-const api = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(rssUrl);
-
-const container = document.getElementById("podcast-container");
-
-fetch(api)
-.then(res => res.json())
+fetch("podcast-data.json")
+.then(response => response.json())
 .then(data => {
 
+    const container = document.getElementById("podcast-container");
     container.innerHTML = "";
 
     data.items.slice(0,6).forEach(item => {
 
         const title = item.title;
+
         const date = new Date(item.pubDate).toLocaleDateString("en-US", {
             year: "numeric",
             month: "long",
@@ -172,16 +169,17 @@ fetch(api)
             </div>
             <audio controls>
                 <source src="${audioUrl}" type="audio/mpeg">
-                Your browser does not support the audio element.
             </audio>
         `;
 
         container.appendChild(card);
     });
+
 })
-.catch(err => {
-    container.innerHTML = "<div class='loading'>Unable to load episodes.</div>";
-    console.error(err);
+.catch(error => {
+    document.getElementById("podcast-container").innerHTML =
+        "<div class='loading'>Unable to load episodes.</div>";
+    console.error(error);
 });
 </script>
 
