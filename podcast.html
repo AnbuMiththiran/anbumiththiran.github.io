@@ -25,14 +25,13 @@ gtag('config', 'G-9RLGNJL2ZQ');
     font-family:'Poppins',sans-serif;
 }
 
-/* ===== BODY ===== */
 body{
     min-height:100vh;
     background:linear-gradient(135deg,#fff4e6,#ffd8a8,#ffb703);
     color:#3a2c1a;
 }
 
-/* ===== NAV ===== */
+/* NAV */
 nav{
     display:flex;
     justify-content:flex-end;
@@ -51,7 +50,7 @@ nav a:hover{
     text-decoration:underline;
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 .header{
     text-align:center;
     margin:30px auto 10px;
@@ -61,7 +60,7 @@ nav a:hover{
     font-size:2.3rem;
 }
 
-/* ===== PODCAST FEED ===== */
+/* PODCAST GRID */
 .podcasts{
     max-width:1000px;
     margin:30px auto;
@@ -74,7 +73,7 @@ nav a:hover{
 .podcast-card{
     background:#fff;
     border-radius:16px;
-    padding:14px;
+    padding:18px;
     box-shadow:0 6px 18px rgba(0,0,0,0.12);
     transition:.3s;
 }
@@ -83,29 +82,40 @@ nav a:hover{
     transform:translateY(-4px);
 }
 
-.podcast-card iframe{
-    width:100%;
-    height:352px;
-    border:none;
-    border-radius:12px;
-}
-
-.podcast-info{
-    text-align:left;
-    margin-top:10px;
-}
-
-.podcast-info h3{
+.podcast-card h3{
     font-size:1rem;
-    margin-bottom:4px;
+    margin-bottom:8px;
 }
 
-.podcast-info span{
+.podcast-card span{
     font-size:12px;
     opacity:.7;
 }
 
-/* ===== FOOTER ===== */
+.podcast-card p{
+    font-size:13px;
+    margin:10px 0;
+    line-height:1.4;
+    opacity:.8;
+}
+
+.listen-btn{
+    display:inline-block;
+    margin-top:10px;
+    padding:8px 14px;
+    background:#1db954;
+    color:#fff;
+    border-radius:8px;
+    text-decoration:none;
+    font-size:13px;
+    transition:.2s;
+}
+
+.listen-btn:hover{
+    opacity:.8;
+}
+
+/* FOOTER */
 footer{
     text-align:center;
     padding:25px;
@@ -113,14 +123,11 @@ footer{
     opacity:.7;
 }
 
-/* ===== MOBILE ===== */
+/* MOBILE */
 @media(max-width:600px){
     nav{
         justify-content:center;
         flex-wrap:wrap;
-    }
-    .podcast-card iframe{
-        height:300px;
     }
 }
 </style>
@@ -141,34 +148,61 @@ footer{
 </section>
 
 <section class="podcasts">
-
-    <!-- PODCAST CARD 1 -->
-    <div class="podcast-card">
-        <iframe src="https://open.spotify.com/embed/show/5uMIWUWtjb0jkggHoEG6nl"
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-        </iframe>
-        <div class="podcast-info">
-            <h3>Life • Philosophy • Society</h3>
-            <span>Spotify Podcast • Anbudan Miththiran</span>
-        </div>
-    </div>
-
-    <!-- ADD MORE EPISODES / SHOWS HERE -->
-    <!--
-    <div class="podcast-card">
-        <iframe src="SPOTIFY_EPISODE_EMBED_URL"></iframe>
-        <div class="podcast-info">
-            <h3>Episode Title</h3>
-            <span>Released on Jan 2026</span>
-        </div>
-    </div>
-    -->
-
+    <div id="podcast-container">Loading episodes...</div>
 </section>
 
 <footer>
     © 2026 Anbudan Miththiran
 </footer>
+
+<script>
+const rssFeed = "https://anchor.fm/s/b9b6984c/podcast/rss";
+const proxy = "https://api.allorigins.win/raw?url=";
+
+fetch(proxy + encodeURIComponent(rssFeed))
+  .then(response => response.text())
+  .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+  .then(data => {
+
+    const items = data.querySelectorAll("item");
+    const container = document.getElementById("podcast-container");
+    container.innerHTML = "";
+
+    let count = 0;
+
+    items.forEach(item => {
+      if(count >= 6) return;
+
+      const title = item.querySelector("title").textContent;
+      const pubDate = new Date(item.querySelector("pubDate").textContent)
+                        .toDateString();
+      const link = item.querySelector("link").textContent;
+      const description = item.querySelector("description").textContent
+                            .replace(/<[^>]*>/g, "")
+                            .substring(0, 150) + "...";
+
+      const card = document.createElement("div");
+      card.className = "podcast-card";
+
+      card.innerHTML = `
+          <h3>${title}</h3>
+          <span>${pubDate}</span>
+          <p>${description}</p>
+          <a class="listen-btn" href="${link}" target="_blank">
+              🎧 Listen on Spotify
+          </a>
+      `;
+
+      container.appendChild(card);
+      count++;
+    });
+  })
+  .catch(err => {
+    document.getElementById("podcast-container").innerHTML =
+      "Unable to load episodes.";
+    console.error(err);
+  });
+</script>
 
 </body>
 </html>
