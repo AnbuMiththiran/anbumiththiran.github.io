@@ -185,5 +185,75 @@ fetch("podcast-data.json")
 });
 </script>
 
+<script>
+function trackAudio(player){
+
+if(player.dataset.tracked) return;
+player.dataset.tracked = "true";
+
+// PLAY
+player.addEventListener("play", function(){
+gtag('event','podcast_play',{
+podcast_src: player.currentSrc
+});
+});
+
+// PAUSE
+player.addEventListener("pause", function(){
+gtag('event','podcast_pause',{
+podcast_src: player.currentSrc
+});
+});
+
+// COMPLETE
+player.addEventListener("ended", function(){
+gtag('event','podcast_complete',{
+podcast_src: player.currentSrc
+});
+});
+
+// PROGRESS TRACKING
+let marks=[25,50,75];
+let done=[];
+
+player.addEventListener("timeupdate",function(){
+
+if(!player.duration) return;
+
+let percent=(player.currentTime/player.duration)*100;
+
+marks.forEach(function(m){
+if(percent>=m && !done.includes(m)){
+done.push(m);
+
+gtag('event','podcast_progress',{
+progress:m,
+podcast_src:player.currentSrc
+});
+}
+});
+
+});
+
+}
+
+
+// Detect dynamically added audio players
+const observer=new MutationObserver(function(){
+
+document.querySelectorAll("audio").forEach(trackAudio);
+
+});
+
+observer.observe(document.body,{
+childList:true,
+subtree:true
+});
+
+// Track already existing players
+document.querySelectorAll("audio").forEach(trackAudio);
+
+</script>
+
 </body>
 </html>
