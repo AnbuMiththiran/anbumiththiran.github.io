@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Anbudan Miththiran Podcast</title>
+<title>Anbudan Miththiran Works | Podcast </title>
 
 <!-- Google tag -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
@@ -18,11 +18,12 @@ gtag('config', 'G-9RLGNJL2ZQ');
 
 <style>
 
+/* WEBSITE BACKGROUND */
 body{
 margin:0;
-font-family:Arial, sans-serif;
-background:#f4f6f8;
-color:#222;
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#fff4e6,#ffd8a8,#ffb703);
+color:#3a2c1a;
 }
 
 /* HERO */
@@ -31,7 +32,7 @@ color:#222;
 text-align:center;
 padding:50px 20px;
 background:white;
-box-shadow:0 3px 10px rgba(0,0,0,.08);
+box-shadow:0 3px 12px rgba(0,0,0,.08);
 }
 
 .hero h1{
@@ -45,28 +46,11 @@ margin:auto;
 opacity:.8;
 }
 
-.listen-btn{
-display:inline-block;
-margin-top:20px;
-padding:12px 25px;
-background:#1DB954;
-color:white;
-border-radius:30px;
-text-decoration:none;
-font-weight:bold;
-transition:.3s;
-}
-
-.listen-btn:hover{
-background:#169944;
-transform:translateY(-2px);
-}
-
 /* SECTION TITLE */
 
 .section-title{
 text-align:center;
-margin:40px 0 20px;
+margin:45px 0 20px;
 }
 
 /* FEATURED */
@@ -98,13 +82,15 @@ grid-template-columns:
 repeat(auto-fit,minmax(280px,1fr));
 gap:20px;
 padding:20px;
+max-width:1100px;
+margin:auto;
 }
 
 .card{
 background:white;
 padding:15px;
 border-radius:15px;
-box-shadow:0 5px 15px rgba(0,0,0,.1);
+box-shadow:0 6px 18px rgba(0,0,0,.1);
 transition:.3s;
 }
 
@@ -122,6 +108,40 @@ font-size:1rem;
 margin:10px 0;
 }
 
+/* LISTEN BUTTON (BOTTOM) */
+
+.listen-section{
+text-align:center;
+margin:40px 0 60px;
+}
+
+.listen-btn{
+display:inline-block;
+padding:14px 30px;
+background:#1DB954;
+color:white;
+border-radius:40px;
+text-decoration:none;
+font-weight:bold;
+transition:.3s;
+box-shadow:0 5px 20px rgba(29,185,84,.4);
+}
+
+.listen-btn:hover{
+background:#169944;
+transform:scale(1.05);
+}
+
+/* FOOTER */
+
+footer{
+text-align:center;
+padding:25px;
+background:white;
+font-size:.9rem;
+opacity:.8;
+}
+
 </style>
 </head>
 
@@ -130,18 +150,12 @@ margin:10px 0;
 <!-- HERO -->
 <section class="hero">
 
-<h1>🎙 Anbudan Miththiran Podcast</h1>
+<h1>🎙 Anbudan Miththiran Works</h1>
 
 <p>
 Life • Philosophy • Society • Self Awakening  
 Tamil podcast exploring deeper human truths.
 </p>
-
-<a href="https://open.spotify.com/show/5uMIWUWtjb0jkggHoEG6nl"
-target="_blank"
-class="listen-btn">
-🎧 Listen More Episodes
-</a>
 
 </section>
 
@@ -150,6 +164,21 @@ class="listen-btn">
 
 <h2 class="section-title">🎙 All Episodes</h2>
 <div class="container" id="podcast-list"></div>
+
+<!-- LISTEN MORE BUTTON MOVED HERE -->
+<div class="listen-section">
+
+<a href="https://open.spotify.com/show/5uMIWUWtjb0jkggHoEG6nl"
+target="_blank"
+class="listen-btn">
+🎧 Listen More Episodes
+</a>
+
+</div>
+
+<footer>
+© 2026 Anbudan Miththiran
+</footer>
 
 <script>
 
