@@ -131,36 +131,52 @@ footer{
 </section>
 
 <!-- 🔥 AUTO VIDEO FEED -->
-<section class="videos" id="videoFeed"></section>
+<section class="videos" id="videoFeed">
+    <p style="text-align:center;">Loading videos...</p>
+</section>
 
 <script>
-const channelId = "UC1VwD1k7gQwZ9p3WwYJr8VQ"; // your channel
+const channelId = "UC1VwD1k7gQwZ9p3WwYJr8VQ";
 
-const rssUrl = `https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
+async function loadVideos() {
+    try {
+        const res = await fetch(
+            "https://api.rss2json.com/v1/api.json?rss_url=" +
+            encodeURIComponent(
+                "https://www.youtube.com/feeds/videos.xml?channel_id=" + channelId
+            )
+        );
 
-fetch(rssUrl)
-.then(res => res.json())
-.then(data => {
-    let html = "";
+        const data = await res.json();
 
-    data.items.slice(0,8).forEach(video => {
-        const videoId = video.link.split("v=")[1];
-        const date = new Date(video.pubDate).toLocaleDateString();
+        let html = "";
 
-        html += `
-        <div class="video-card">
-            <iframe src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>
-            <div class="video-info">
-                <h3>${video.title}</h3>
-                <span>${date} • YouTube • Anbudan Miththiran</span>
+        data.items.slice(0,8).forEach(video => {
+            const videoId = video.link.split("v=")[1];
+            const date = new Date(video.pubDate).toLocaleDateString();
+
+            html += `
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>
+                <div class="video-info">
+                    <h3>${video.title}</h3>
+                    <span>${date} • YouTube • Anbudan Miththiran</span>
+                </div>
             </div>
-        </div>
-        `;
-    });
+            `;
+        });
 
-    document.getElementById("videoFeed").innerHTML = html;
-});
-</script>
+        document.getElementById("videoFeed").innerHTML = html;
+
+    } catch (error) {
+        document.getElementById("videoFeed").innerHTML =
+        "<p style='text-align:center;color:red;'>Failed to load videos</p>";
+        console.error(error);
+    }
+}
+
+loadVideos();
+</script>d
 
 <footer>
     © 2026 Anbudan Miththiran
