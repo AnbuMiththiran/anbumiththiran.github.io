@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google tag -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-9RLGNJL2ZQ');
+</script>
+
+<link rel="icon" type="image/svg+xml" href="logo.jpg">
+<title>Videos | Anbudan Miththiran</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#fff4e6,#ffd8a8,#ffb703);
+    color:#3a2c1a;
+}
+
+nav{
+    display:flex;
+    justify-content:flex-end;
+    gap:18px;
+    padding:18px 25px;
+}
+
+nav a{
+    text-decoration:none;
+    font-size:0.9rem;
+    color:#5a3a1a;
+    font-weight:500;
+}
+
+nav a:hover{
+    text-decoration:underline;
+}
+
+.header{
+    text-align:center;
+    margin:30px auto 10px;
+}
+
+.header h1{
+    font-size:2.3rem;
+}
+
+.videos{
+    max-width:1000px;
+    margin:30px auto;
+    padding:0 20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+.video-card{
+    background:#fff;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 6px 18px rgba(0,0,0,0.12);
+    transition:.3s;
+}
+
+.video-card:hover{
+    transform:translateY(-4px);
+}
+
+.video-card iframe{
+    width:100%;
+    height:200px;
+    border:none;
+}
+
+.video-info{
+    padding:14px;
+}
+
+.video-info h3{
+    font-size:1rem;
+    margin-bottom:6px;
+}
+
+.video-info span{
+    font-size:12px;
+    opacity:.7;
+}
+
+footer{
+    text-align:center;
+    padding:25px;
+    font-size:.8rem;
+    opacity:.7;
+}
+
+@media(max-width:600px){
+    nav{
+        justify-content:center;
+        flex-wrap:wrap;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="podcast.html">Podcast</a>
+    <a href="videos.html">Videos</a>
+    <a href="writings/index.html">Writings</a>
+    <a href="about.html">About</a>
+</nav>
+
+<section class="header">
+    <h1>📺 Videos</h1>
+</section>
+
+<!-- 🔥 AUTO VIDEO FEED -->
+<section class="videos" id="videoFeed"></section>
+
+<script>
+const channelId = "UC1VwD1k7gQwZ9p3WwYJr8VQ";
+
+const rssUrl = `https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
+
+fetch(rssUrl)
+.then(res => res.json())
+.then(data => {
+    let html = "";
+
+    data.items.slice(0,8).forEach(video => {
+        const videoId = video.link.split("v=")[1];
+        const date = new Date(video.pubDate).toLocaleDateString();
+
+        html += `
+        <div class="video-card">
+            <iframe src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>
+            <div class="video-info">
+                <h3>${video.title}</h3>
+                <span>${date} • YouTube • Anbudan Miththiran</span>
+            </div>
+        </div>
+        `;
+    });
+
+    document.getElementById("videoFeed").innerHTML = html;
+});
+</script>
+
+<footer>
+    © 2026 Anbudan Miththiran
+</footer>
+
+</body>
+</html>
