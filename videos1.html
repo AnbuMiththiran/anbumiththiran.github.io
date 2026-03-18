@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-9RLGNJL2ZQ');
+</script>
+
+<link rel="icon" href="logo.jpg">
+<title>Videos | Anbudan Miththiran</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fff4e6, #ffd8a8, #ffb703);
+    color: #3a2c1a;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 18px;
+    padding: 18px 25px;
+}
+
+nav a {
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: #5a3a1a;
+    font-weight: 500;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.header {
+    text-align: center;
+    margin: 30px auto 10px;
+}
+
+.header h1 {
+    font-size: 2.3rem;
+}
+
+.videos {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.video-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    transition: .3s;
+    cursor: pointer;
+}
+
+.video-card:hover {
+    transform: translateY(-4px);
+}
+
+.video-card img {
+    width: 100%;
+    display: block;
+}
+
+.video-info {
+    padding: 14px;
+}
+
+.video-info h3 {
+    font-size: 1rem;
+    margin-bottom: 6px;
+}
+
+.video-info span {
+    font-size: 12px;
+    opacity: .7;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    font-size: .8rem;
+    opacity: .7;
+}
+
+@media(max-width: 600px) {
+    nav {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="podcast.html">Podcast</a>
+    <a href="videos.html">Videos</a>
+    <a href="writings/index.html">Writings</a>
+    <a href="about.html">About</a>
+</nav>
+
+<section class="header">
+    <h1>📺 Videos</h1>
+</section>
+
+<section class="videos" id="videoFeed">
+    <p style="text-align:center;">Loading videos...</p>
+</section>
+
+<script>
+const channelId = "UC1VwD1k7gQwZ9p3WwYJr8VQ";
+const rssUrl = encodeURIComponent("https://www.youtube.com/feeds/videos.xml?channel_id=" + channelId);
+// allorigins proxy to bypass browser CORS restrictions
+const proxyUrl = `https://api.allorigins.win/get?url=${rssUrl}`;
+
+fetch(proxyUrl)
+.then(response => {
+    if (response.ok) return response.json();
+    throw new Error('Network response was not ok.');
+})
+.then(data => {
+    const parser = new DOMParser();
+    // Parse the raw XML string returned by the proxy
+    const xml = parser.parseFromString(data.contents, "text/xml");
+    const entries = xml.getElementsByTagName("entry");
+
+    if (entries.length === 0) {
+        throw new Error("No video entries found in the XML.");
+    }
+
+    let html = "";
+
+    for(let i = 0; i < Math.min(8, entries.length); i++){
+        // Safely extract the video ID. 
+        // We pull from the standard <id> tag to avoid namespace bugs with <yt:videoId>
+        const idTag = entries[i].getElementsByTagName("id")[0].textContent;
+        const videoId = idTag.split(":")[2]; 
+        
+        const title = entries[i].getElementsByTagName("title")[0].textContent;
+
+        html += `
+        <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=${videoId}', '_blank')">
+            <img src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg" alt="${title} Thumbnail">
+            <div class="video-info">
+                <h3>${title}</h3>
+                <span>YouTube • Anbudan Miththiran</span>
+            </div>
+        </div>
+        `;
+    }
+
+    document.getElementById("videoFeed").innerHTML = html;
+})
+.catch(err => {
+    console.error("Video Fetch Error:", err);
+    document.getElementById("videoFeed").innerHTML = 
+    "<p style='text-align:center;color:red;'>Unable to load videos at this time. Please try again later.</p>";
+});
+</script>
+
+<footer>
+    © 2026 Anbudan Miththiran
+</footer>
+
+</body>
+</html>
