@@ -58,45 +58,20 @@ nav a:hover {
     font-size: 2.3rem;
 }
 
-.videos {
+.videos-container {
     max-width: 1000px;
     margin: 30px auto;
     padding: 0 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    text-align: center;
 }
 
-.video-card {
-    background: #fff;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-    transition: .3s;
-    cursor: pointer;
-}
-
-.video-card:hover {
-    transform: translateY(-4px);
-}
-
-.video-card img {
+.videos-container iframe {
     width: 100%;
-    display: block;
-}
-
-.video-info {
-    padding: 14px;
-}
-
-.video-info h3 {
-    font-size: 1rem;
-    margin-bottom: 6px;
-}
-
-.video-info span {
-    font-size: 12px;
-    opacity: .7;
+    max-width: 900px;
+    height: 500px;
+    border-radius: 16px;
+    border: none;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
 }
 
 footer {
@@ -110,6 +85,9 @@ footer {
     nav {
         justify-content: center;
         flex-wrap: wrap;
+    }
+    .videos-container iframe {
+        height: 300px;
     }
 }
 </style>
@@ -129,64 +107,17 @@ footer {
     <h1>📺 Videos</h1>
 </section>
 
-<section class="videos" id="videoFeed">
-    <p style="text-align:center;">Loading videos...</p>
+<section class="videos-container">
+    <iframe 
+        src="https://www.youtube.com/embed/videoseries?list=UU1VwD1k7gQwZ9p3WwYJr8VQ" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+    </iframe>
 </section>
-
-<script>
-const channelId = "UC1VwD1k7gQwZ9p3WwYJr8VQ";
-const rssUrl = encodeURIComponent("https://www.youtube.com/feeds/videos.xml?channel_id=" + channelId);
-// allorigins proxy to bypass browser CORS restrictions
-const proxyUrl = `https://api.allorigins.win/get?url=${rssUrl}`;
-
-fetch(proxyUrl)
-.then(response => {
-    if (response.ok) return response.json();
-    throw new Error('Network response was not ok.');
-})
-.then(data => {
-    const parser = new DOMParser();
-    // Parse the raw XML string returned by the proxy
-    const xml = parser.parseFromString(data.contents, "text/xml");
-    const entries = xml.getElementsByTagName("entry");
-
-    if (entries.length === 0) {
-        throw new Error("No video entries found in the XML.");
-    }
-
-    let html = "";
-
-    for(let i = 0; i < Math.min(8, entries.length); i++){
-        // Safely extract the video ID. 
-        // We pull from the standard <id> tag to avoid namespace bugs with <yt:videoId>
-        const idTag = entries[i].getElementsByTagName("id")[0].textContent;
-        const videoId = idTag.split(":")[2]; 
-        
-        const title = entries[i].getElementsByTagName("title")[0].textContent;
-
-        html += `
-        <div class="video-card" onclick="window.open('https://www.youtube.com/watch?v=${videoId}', '_blank')">
-            <img src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg" alt="${title} Thumbnail">
-            <div class="video-info">
-                <h3>${title}</h3>
-                <span>YouTube • Anbudan Miththiran</span>
-            </div>
-        </div>
-        `;
-    }
-
-    document.getElementById("videoFeed").innerHTML = html;
-})
-.catch(err => {
-    console.error("Video Fetch Error:", err);
-    document.getElementById("videoFeed").innerHTML = 
-    "<p style='text-align:center;color:red;'>Unable to load videos at this time. Please try again later.</p>";
-});
-</script>
 
 <footer>
     © 2026 Anbudan Miththiran
 </footer>
 
 </body>
-</html>
+    </html>
