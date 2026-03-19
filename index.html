@@ -188,33 +188,49 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="about.html">About</a>
 </nav>
 
-<div id="promo-banner" style="display: none; text-align: center; padding: 20px; background-color: #f0f8ff;">
-    <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.books" target="_blank">
-        <img src="images/sale-banner.png" alt="March Partner Book Sale" style="max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0px 4px 15px rgba(0,0,0,0.2);">
-    </a>
-    <p style="margin-top: 10px; font-family: sans-serif; font-weight: bold; color: #d9534f;">
-        Use Code: Z4KE6D0LKF3TN at <a href="https://play.google.com/redeem" target="_blank">play.google.com/redeem</a>
+<div id="promo-banner" style="display: none; text-align: center; padding: 15px; background-color: #ffffff; border-bottom: 2px solid #ddd;">
+    
+    <h3 class="blink-red" style="margin: 0 0 10px 0; font-family: sans-serif; font-weight: bold; color: red;">
+        ** HURRY! ONLY 100 CODES AVAILABLE! **
+    </h3>
+
+    <div class="blink-red">
+        <a href="https://play.google.com/redeem" target="_blank">
+            <img src="sale-banner.png" alt="March Partner Book Sale" style="max-width: 90%; height: auto; border-radius: 8px; border: 3px solid red;">
+        </a>
+    </div>
+
+    <p style="margin-top: 10px; font-family: sans-serif; font-size: 1.1rem;">
+        Use Code: <strong style="color: #000; background: #ffff00; padding: 2px 5px;">Z4KE6D0LKF3TN</strong><br>
+        at <a href="https://play.google.com/redeem" style="color: blue; text-decoration: underline;" target="_blank">play.google.com/redeem</a>
     </p>
 </div>
 
+<style>
+    /* Blinking Animation Logic */
+    @keyframes blinker {
+        50% { opacity: 0.3; }
+    }
+    .blink-red {
+        animation: blinker 1s linear infinite;
+    }
+</style>
+
 <script>
     function checkPromoExpiry() {
-        // Set the expiration date: March 26th, 2026 at 00:00:00
-        const expiryDate = new Date("March 26, 2026 00:00:00").getTime();
+        // Set the expiration date: March 26th, 2026 (Day after the sale ends)
+        const expiryDate = new Date("March 26, 2026 23:59:00").getTime();
         const now = new Date().getTime();
         const banner = document.getElementById("promo-banner");
 
-        // If current date is before expiry, show the banner
         if (now < expiryDate) {
             banner.style.display = "block";
         } else {
             banner.style.display = "none";
         }
     }
-
-    // Run the function when the page loads
     window.onload = checkPromoExpiry;
-      </script>
+</script>
       
 <section class="hero">
     <img src="logo.svg" alt="Anbudan Miththiran logo" class="logo">
