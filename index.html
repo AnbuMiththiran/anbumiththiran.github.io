@@ -188,6 +188,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="about.html">About</a>
 </nav>
 
+<div id="promo-banner" style="display: none; text-align: center; padding: 20px; background-color: #f0f8ff;">
+    <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.books" target="_blank">
+        <img src="images/sale-banner.png" alt="March Partner Book Sale" style="max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0px 4px 15px rgba(0,0,0,0.2);">
+    </a>
+    <p style="margin-top: 10px; font-family: sans-serif; font-weight: bold; color: #d9534f;">
+        Use Code: Z4KE6D0LKF3TN at <a href="https://play.google.com/redeem" target="_blank">play.google.com/redeem</a>
+    </p>
+</div>
+
+<script>
+    function checkPromoExpiry() {
+        // Set the expiration date: March 26th, 2026 at 00:00:00
+        const expiryDate = new Date("March 26, 2026 00:00:00").getTime();
+        const now = new Date().getTime();
+        const banner = document.getElementById("promo-banner");
+
+        // If current date is before expiry, show the banner
+        if (now < expiryDate) {
+            banner.style.display = "block";
+        } else {
+            banner.style.display = "none";
+        }
+    }
+
+    // Run the function when the page loads
+    window.onload = checkPromoExpiry;
+      </script>
+      
 <section class="hero">
     <img src="logo.svg" alt="Anbudan Miththiran logo" class="logo">
     <h1>அன்புடன் மித்திரன்</h1>
