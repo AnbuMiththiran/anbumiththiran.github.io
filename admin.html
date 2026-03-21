@@ -22,7 +22,9 @@ async function login() {
     try {
         const res = await fetch(API + "/admin-login", {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
+            headers: {
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify({ email, password })
         });
 
@@ -30,14 +32,18 @@ async function login() {
 
         if (data.success) {
             localStorage.setItem("token", data.token);
-            window.location = "dashboard.html";
+
+            alert("Login successful 🔥");
+
+            // go to dashboard
+            window.location.href = "dashboard.html";
         } else {
-            alert(data.message || "Wrong login");
+            alert("Login failed ❌");
         }
 
     } catch (err) {
         console.error(err);
-        alert("Server error or CORS issue");
+        alert("Server error or internet issue");
     }
 }
 </script>
