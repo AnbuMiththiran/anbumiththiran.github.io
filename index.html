@@ -238,7 +238,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="typing">Think • Feel • Realise</div><br>
     <a href="https://anbusnp.wordpress.com" class="btn">Read My Writings</a>
 </section>
-
+      
+<section class="feed">
+    <h2>🔥 Latest Posts</h2>
+    <ul id="dynamicList"></ul>
+</section>
+      
 <section class="feed">
     <h2>🆕 Latest Poems & Stories</h2>
     <ul id="latestList"></ul>
@@ -248,6 +253,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     © 2026 Anbudan Miththiran
 </footer>
 
+ <script>
+const API = "https://premium-backend-8plp.onrender.com";
+
+fetch(API + "/content")
+.then(res => res.json())
+.then(data => {
+    const list = document.getElementById("dynamicList");
+
+    data.reverse().forEach(item => {
+        const li = document.createElement("li");
+
+        li.innerHTML = `
+        ${item.isPremium == 1 ? "🔒" : "✨"}
+        <strong>${item.title}</strong><br>
+        ${
+            item.isPremium == 1
+            ? "<span>Premium Content</span>"
+            : `<span>${item.body.substring(0,100)}...</span>`
+        }
+        `;
+
+        list.appendChild(li);
+    });
+});
+      </script>     
+      
 <script>
 fetch('/writings/latest.json')
 .then(res=>res.json())
