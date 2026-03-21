@@ -1,0 +1,30 @@
+<h2>Admin Login</h2>
+
+<input id="email" placeholder="Email"><br>
+<input id="password" type="password" placeholder="Password"><br>
+
+<button onclick="login()">Login</button>
+
+<script>
+const API = "https://premium-backend-8plp.onrender.com";
+
+async function login() {
+    const res = await fetch(API + "/admin-login", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            email: email.value,
+            password: password.value
+        })
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+        localStorage.setItem("admin", "true");
+        window.location = "dashboard.html";
+    } else {
+        alert("Wrong login");
+    }
+}
+  </script>
