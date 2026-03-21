@@ -372,117 +372,46 @@
         </div>
     </div>
 
-    <script>
-        const API = "https://premium-backend-8plp.onrender.com";
-        const token = localStorage.getItem("token");
+<h2>Add Content</h2>
 
-        if (!token) {
-            window.location = "admin.html";
-        }
+<input id="title" placeholder="Title"><br><br>
+<textarea id="body" placeholder="Body"></textarea><br><br>
 
-        function logout() {
-            localStorage.removeItem("token");
-            window.location = "admin.html";
-        }
+<label>
+    Premium:
+    <input type="checkbox" id="premium">
+</label><br><br>
 
-        function refreshContent() {
-            loadContent();
-        }
+<button onclick="addContent()">Add</button>
 
-        async function loadContent() {
-            const contentDiv = document.getElementById("content");
-            const loadingDiv = document.getElementById("loading");
-            const errorContainer = document.getElementById("errorContainer");
+<script>
+const API = "https://premium-backend-8plp.onrender.com";
 
-            // Show loading state
-            loadingDiv.style.display = "block";
-            contentDiv.innerHTML = "";
-            errorContainer.innerHTML = "";
+function getToken() {
+    return localStorage.getItem("token");
+}
 
-            try {
-                const response = await fetch(API + "/content", {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": token
-                    }
-                });
+async function addContent() {
+    const token = getToken();
 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
+    const res = await fetch(API + "/add-content", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+        },
+        body: JSON.stringify({
+            title: document.getElementById("title").value,
+            body: document.getElementById("body").value,
+            isPremium: document.getElementById("premium").checked
+        })
+    });
 
-                const data = await response.json();
-                loadingDiv.style.display = "none";
+    const data = await res.json();
 
-                // Check if data is an array
-                if (!Array.isArray(data)) {
-                    throw new Error("Invalid response format");
-                }
+    alert(data.message || "Done");
+}
+</script>
 
-                if (data.length === 0) {
-                    contentDiv.innerHTML = `
-                        <div class="empty-state">
-                            <div class="empty-state-icon">📝</div>
-                            <h3>No Content Yet</h3>
-                            <p>You haven't uploaded any content yet. Start by creating your first post!</p>
-                            <a href="upload.html" class="btn btn-primary">Upload Your First Content</a>
-                        </div>
-                    `;
-                    return;
-                }
-
-                let html = '<div class="content-grid">';
-                data.forEach(item => {
-                    const isPremium = item.isPremium === 1 || item.isPremium === true || item.isPremium === "1";
-                    const cardClass = isPremium ? "premium" : "free";
-                    const typeLabel = isPremium ? "Premium" : "Free";
-                    
-                    html += `
-                        <div class="content-card ${cardClass}">
-                            <div class="content-title">${escapeHtml(item.title || "Untitled")}</div>
-                            <div class="content-body">${escapeHtml(item.body || "No content")}</div>
-                            <div class="content-meta">
-                                Type: ${typeLabel}
-                            </div>
-                        </div>
-                    `;
-                });
-                html += '</div>';
-                contentDiv.innerHTML = html;
-
-            } catch (error) {
-                loadingDiv.style.display = "none";
-                console.error("Error loading content:", error);
-                errorContainer.innerHTML = `
-                    <div class="error-message">
-                        <strong>Error:</strong> ${error.message || "Failed to load content. Please try again."}
-                    </div>
-                `;
-                contentDiv.innerHTML = `
-                    <div class="empty-state">
-                        <div class="empty-state-icon">⚠️</div>
-                        <h3>Unable to Load Content</h3>
-                        <p>There was an error loading your content. Please try refreshing the page.</p>
-                        <button class="btn btn-secondary" onclick="refreshContent()">Try Again</button>
-                    </div>
-                `;
-            }
-        }
-
-        function escapeHtml(text) {
-            const map = {
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#039;'
-            };
-            return text.replace(/[&<>"']/g, m => map[m]);
-        }
-
-        // Load content when page loads
-        window.addEventListener("load", loadContent);
-    </script>
 </body>
 </html>
