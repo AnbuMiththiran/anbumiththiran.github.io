@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentions of Anbudan Miththiran</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Latest Mentions of Anbudan Miththiran</h1>
+            <p class="subtitle">Tracking my digital presence across the web</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="controls">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search mentions...">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </div>
+            <div class="filters" id="categoryFilters">
+                <button class="filter-btn active" data-category="all">All</button>
+                <button class="filter-btn" data-category="video">Videos</button>
+                <button class="filter-btn" data-category="article">Articles</button>
+                <button class="filter-btn" data-category="social">Social Mentions</button>
+            </div>
+        </section>
+
+        <div id="loading" class="loading-container">
+            <div class="spinner"></div>
+            <p>Fetching latest mentions...</p>
+        </div>
+
+        <div id="mentionsGrid" class="mentions-grid">
+            <!-- Mentions will be injected here -->
+        </div>
+
+        <div id="noResults" class="no-results hidden">
+            <p>No mentions found matching your criteria.</p>
+        </div>
+
+        <div id="pagination" class="pagination hidden">
+            <button id="loadMoreBtn" class="load-more-btn">Load More</button>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Anbudan Miththiran. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
