@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anbudan Miththiran - Books & Audiobooks</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Books & Audiobooks</h1>
+            <p class="subtitle">Discover the literary works of Anbudan Miththiran</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Books Section -->
+        <section id="books-section" class="books-section">
+            <div class="section-header">
+                <h2>📚 Books</h2>
+                <p class="section-description">Explore my published works across various genres and themes.</p>
+            </div>
+            <div class="books-grid" id="booksGrid">
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Loading books...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Audiobooks Section -->
+        <section id="audiobooks-section" class="audiobooks-section">
+            <div class="section-header">
+                <h2>🎧 Audiobooks</h2>
+                <p class="section-description">Listen to my books narrated by professional voice actors.</p>
+            </div>
+            <div class="audiobooks-grid" id="audiobooksGrid">
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Loading audiobooks...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Anbudan Miththiran. All rights reserved.</p>
+            <p class="footer-note">Last updated: <span id="lastUpdated">Just now</span></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
