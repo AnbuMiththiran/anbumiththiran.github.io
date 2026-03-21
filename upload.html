@@ -1,0 +1,35 @@
+<h2>Upload Content</h2>
+
+<form id="form">
+    <input name="title" placeholder="Title"><br>
+    <textarea name="body"></textarea><br>
+
+    <select name="isPremium">
+        <option value="0">Free</option>
+        <option value="1">Premium</option>
+    </select>
+
+    <button>Upload</button>
+</form>
+
+<script>
+const API = "https://premium-backend-8plp.onrender.com";
+
+document.getElementById("form").onsubmit = async (e) => {
+    e.preventDefault();
+
+    const data = {
+        title: e.target.title.value,
+        body: e.target.body.value,
+        isPremium: e.target.isPremium.value
+    };
+
+    await fetch(API + "/add-content", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(data)
+    });
+
+    alert("Uploaded 🔥");
+};
+  </script>
