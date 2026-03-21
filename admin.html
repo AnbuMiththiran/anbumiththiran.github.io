@@ -16,22 +16,28 @@
 const API = "https://premium-backend-8plp.onrender.com";
 
 async function login() {
-    const res = await fetch(API + "/admin-login", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-            email: email.value,
-            password: password.value
-        })
-    });
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
-    const data = await res.json();
+    try {
+        const res = await fetch(API + "/admin-login", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ email, password })
+        });
 
-    if (data.success) {
-        localStorage.setItem("token", data.token);
-        window.location = "dashboard.html";
-    } else {
-        alert("Wrong login");
+        const data = await res.json();
+
+        if (data.success) {
+            localStorage.setItem("token", data.token);
+            window.location = "dashboard.html";
+        } else {
+            alert(data.message || "Wrong login");
+        }
+
+    } catch (err) {
+        console.error(err);
+        alert("Server error or CORS issue");
     }
 }
 </script>
