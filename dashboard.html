@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Anbudan Miththiran</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #F5E6D3 0%, #E8D5C4 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .navbar {
+            background: white;
+            border-bottom: 3px solid #B8D4E0;
+            padding: 16px 0;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 8px rgba(26, 58, 74, 0.08);
+        }
+
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-title {
+            color: #1A3A4A;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .navbar-links a {
+            color: #6BAA3D;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .navbar-links a:hover {
+            color: #5A9230;
+            text-decoration: underline;
+        }
+
+        .logout-btn {
+            background: #D32F2F;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .logout-btn:hover {
+            background: #B71C1C;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-header h1 {
+            color: #1A3A4A;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .page-header p {
+            color: #666;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6BAA3D 0%, #5A9230 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(107, 170, 61, 0.3);
+        }
+
+        .btn-secondary {
+            background: #B8D4E0;
+            color: #1A3A4A;
+        }
+
+        .btn-secondary:hover {
+            background: #A0C4D4;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(26, 58, 74, 0.2);
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(26, 58, 74, 0.1);
+            border: 2px solid #B8D4E0;
+        }
+
+        .section-title {
+            color: #1A3A4A;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #B8D4E0;
+            letter-spacing: -0.5px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .content-card {
+            background: #F9F9F9;
+            border: 2px solid #B8D4E0;
+            border-radius: 10px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .content-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(26, 58, 74, 0.12);
+            border-color: #6BAA3D;
+        }
+
+        .content-card.premium {
+            background: linear-gradient(135deg, #FFF9E6 0%, #FFF3E0 100%);
+            border-color: #FFB74D;
+        }
+
+        .content-card.premium::before {
+            content: "🔒 PREMIUM";
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #FFB74D;
+            color: #1A3A4A;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .content-card.free::before {
+            content: "FREE";
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #6BAA3D;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .content-title {
+            color: #1A3A4A;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            margin-top: 8px;
+            word-break: break-word;
+            letter-spacing: -0.3px;
+        }
+
+        .content-body {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            word-break: break-word;
+        }
+
+        .content-meta {
+            font-size: 12px;
+            color: #999;
+            border-top: 1px solid #E0E0E0;
+            padding-top: 12px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .empty-state h3 {
+            color: #1A3A4A;
+            font-size: 20px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .empty-state p {
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px 20px;
+            color: #1A3A4A;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            border: 3px solid #B8D4E0;
+            border-top-color: #6BAA3D;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 16px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            color: #D32F2F;
+            background: #FFF3E0;
+            border-left: 4px solid #D32F2F;
+            padding: 16px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        @media (max-width: 600px) {
+            .navbar-content {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .navbar-links {
+                flex-direction: column;
+                gap: 12px;
+                width: 100%;
+            }
+
+            .content-section {
+                padding: 24px 16px;
+            }
+
+            .page-header h1 {
+                font-size: 28px;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-content">
+            <div class="navbar-title">Anbudan Miththiran - Admin</div>
+            <div class="navbar-links">
+                <a href="upload.html">+ Upload Content</a>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Dashboard</h1>
+            <p>Manage and view all your published content</p>
+        </div>
+
+        <div class="action-buttons">
+            <a href="upload.html" class="btn btn-primary">+ Upload New Content</a>
+            <button class="btn btn-secondary" onclick="refreshContent()">Refresh</button>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">All Content</h2>
+            <div id="errorContainer"></div>
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>Loading your content...</p>
+            </div>
+            <div id="content"></div>
+        </div>
+    </div>
+
+    <script>
+        const API = "https://premium-backend-8plp.onrender.com";
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            window.location = "admin.html";
+        }
+
+        function logout() {
+            localStorage.removeItem("token");
+            window.location = "admin.html";
+        }
+
+        function refreshContent() {
+            loadContent();
+        }
+
+        async function loadContent() {
+            const contentDiv = document.getElementById("content");
+            const loadingDiv = document.getElementById("loading");
+            const errorContainer = document.getElementById("errorContainer");
+
+            // Show loading state
+            loadingDiv.style.display = "block";
+            contentDiv.innerHTML = "";
+            errorContainer.innerHTML = "";
+
+            try {
+                const response = await fetch(API + "/content", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": token
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                loadingDiv.style.display = "none";
+
+                // Check if data is an array
+                if (!Array.isArray(data)) {
+                    throw new Error("Invalid response format");
+                }
+
+                if (data.length === 0) {
+                    contentDiv.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-state-icon">📝</div>
+                            <h3>No Content Yet</h3>
+                            <p>You haven't uploaded any content yet. Start by creating your first post!</p>
+                            <a href="upload.html" class="btn btn-primary">Upload Your First Content</a>
+                        </div>
+                    `;
+                    return;
+                }
+
+                let html = '<div class="content-grid">';
+                data.forEach(item => {
+                    const isPremium = item.isPremium === 1 || item.isPremium === true || item.isPremium === "1";
+                    const cardClass = isPremium ? "premium" : "free";
+                    const typeLabel = isPremium ? "Premium" : "Free";
+                    
+                    html += `
+                        <div class="content-card ${cardClass}">
+                            <div class="content-title">${escapeHtml(item.title || "Untitled")}</div>
+                            <div class="content-body">${escapeHtml(item.body || "No content")}</div>
+                            <div class="content-meta">
+                                Type: ${typeLabel}
+                            </div>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+                contentDiv.innerHTML = html;
+
+            } catch (error) {
+                loadingDiv.style.display = "none";
+                console.error("Error loading content:", error);
+                errorContainer.innerHTML = `
+                    <div class="error-message">
+                        <strong>Error:</strong> ${error.message || "Failed to load content. Please try again."}
+                    </div>
+                `;
+                contentDiv.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">⚠️</div>
+                        <h3>Unable to Load Content</h3>
+                        <p>There was an error loading your content. Please try refreshing the page.</p>
+                        <button class="btn btn-secondary" onclick="refreshContent()">Try Again</button>
+                    </div>
+                `;
+            }
+        }
+
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+
+        // Load content when page loads
+        window.addEventListener("load", loadContent);
+    </script>
+</body>
+</html>
