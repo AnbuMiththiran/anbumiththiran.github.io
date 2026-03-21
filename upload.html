@@ -1,19 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Content</title>
+</head>
+<body>
+
 <h2>Upload Content</h2>
 
 <form id="form">
-    <input name="title" placeholder="Title"><br>
-    <textarea name="body"></textarea><br>
+    <input name="title" placeholder="Title"><br><br>
+    <textarea name="body" placeholder="Content"></textarea><br><br>
 
+    <label>Type:</label>
     <select name="isPremium">
         <option value="0">Free</option>
         <option value="1">Premium</option>
-    </select>
+    </select><br><br>
 
     <button>Upload</button>
 </form>
 
 <script>
 const API = "https://premium-backend-8plp.onrender.com";
+const token = localStorage.getItem("token");
+
+if (!token) {
+    window.location = "admin.html";
+}
 
 document.getElementById("form").onsubmit = async (e) => {
     e.preventDefault();
@@ -26,10 +39,16 @@ document.getElementById("form").onsubmit = async (e) => {
 
     await fetch(API + "/add-content", {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": token
+        },
         body: JSON.stringify(data)
     });
 
-    alert("Uploaded 🔥");
+    alert("Content uploaded 🔥");
 };
-  </script>
+</script>
+
+</body>
+    </html>
