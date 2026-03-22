@@ -59,72 +59,75 @@
         </form>
     </div>
 
-    <script>
-        const token = localStorage.getItem('adminToken');
-        if (!token) window.location.href = 'admin.html';
+<script>
+    const token = localStorage.getItem('adminToken');
+    if (!token) window.location.href = 'admin.html';
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const postId = urlParams.get('id');
-        const formTitle = document.getElementById('form-title');
-        const submitBtn = document.getElementById('submit-btn');
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get('id');
+    const formTitle = document.getElementById('form-title');
+    const submitBtn = document.getElementById('submit-btn');
 
-        if (postId) {
-            formTitle.innerText = "Edit Post";
-            submitBtn.innerText = "Update Post";
-            loadPostData(postId);
-        }
+    if (postId) {
+        formTitle.innerText = "Edit Post";
+        submitBtn.innerText = "Update Post";
+        loadPostData(postId);
+    }
 
-        async function loadPostData(id) {
-            try {
-                const response = await fetch(`https://premium-backend-8plp.onrender.com/admin/content/${id}`, {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                });
-                const post = await response.json();
-                if (post) {
-                    document.getElementById('title').value = post.title;
-                    document.getElementById('writer').value = post.writer;
-                    document.getElementById('contentType').value = post.contenttype;
-                    document.getElementById('tags').value = post.tags ? post.tags.join(', ') : '';
-                    document.getElementById('isPremium').checked = post.ispremium;
-                    document.getElementById('body').value = post.body;
-                }
-            } catch (err) {
-                console.error("Error loading post:", err);
+    async function loadPostData(id) {
+        try {
+            const response = await fetch(`https://premium-backend-8plp.onrender.com/admin/content/${id}`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            const post = await response.json();
+            if (post) {
+                document.getElementById('title').value = post.title;
+                document.getElementById('writer').value = post.writer;
+                document.getElementById('contentType').value = post.contenttype;
+                document.getElementById('tags').value = post.tags ? post.tags.join(', ') : '';
+                document.getElementById('isPremium').checked = post.ispremium;
+                document.getElementById('body').value = post.body;
             }
+        } catch (err) {
+            console.error("Error loading post:", err);
         }
+    }
 
-        document.getElementById('post-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const title = document.getElementById('title').value;
-            const writer = document.getElementById('writer').value;
-            const contentType = document.getElementById('contentType').value;
-            const tags = document.getElementById('tags').value.split(',').map(t => t.trim()).filter(t => t !== '');
-            const isPremium = document.getElementById('isPremium').checked;
-            const body = document.getElementById('body').value;
+    document.getElementById('post-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const title = document.getElementById('title').value;
+        const writer = document.getElementById('writer').value;
+        const contentType = document.getElementById('contentType').value;
+        const tags = document.getElementById('tags').value.split(',').map(t => t.trim()).filter(t => t !== '');
+        const isPremium = document.getElementById('isPremium').checked;
+        const body = document.getElementById('body').value;
 
-            const url = postId ? `/admin/content/${postId}` : '/admin/content';
-            const method = postId ? 'PUT' : 'POST';
+        // FIXED: Added the base URL so it points to your Render backend
+        const baseUrl = 'https://premium-backend-8plp.onrender.com';
+        const url = postId ? `${baseUrl}/admin/content/${postId}` : `${baseUrl}/admin/content`;
+        const method = postId ? 'PUT' : 'POST';
 
-            try {
-                const response = await fetch(url, {
-                    method: method,
-                    headers: { 
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
-                    body: JSON.stringify({ title, writer, contentType, tags, isPremium, body })
-                });
-                const data = await response.json();
-                if (data.success) {
-                    alert(postId ? "Post updated!" : "Post published!");
-                    window.location.href = 'dashboard.html';
-                } else {
-                    alert(data.message);
-                }
-            } catch (err) {
-                alert("Error saving post");
+        try {
+            const response = await fetch(url, {
+                method: method,
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ title, writer, contentType, tags, isPremium, body })
+            });
+            const data = await response.json();
+            if (data.success || response.ok) { // Added response.ok fallback just in case your API doesn't return a 'success' boolean
+                alert(postId ? "Post updated!" : "Post published!");
+                window.location.href = 'dashboard.html';
+            } else {
+                alert(data.message || "Failed to save post.");
             }
-        });
+        } catch (err) {
+            console.error(err);
+            alert("Error saving post. Check the console for details.");
+        }
+    });
     </script>
 </body>
 </html>
