@@ -256,7 +256,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
  <script>
 const API = "https://premium-backend-8plp.onrender.com";
 
-fetch(API + "/content-all")
+fetch(API + "/content-public")
 .then(res => res.json())
 .then(data => {
     const list = document.getElementById("dynamicList");
