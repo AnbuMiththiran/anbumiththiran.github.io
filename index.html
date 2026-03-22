@@ -253,7 +253,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     © 2026 Anbudan Miththiran
 </footer>
 
- <script>
+<script>
 const API = "https://premium-backend-8plp.onrender.com";
 
 fetch(API + "/content-public")
@@ -262,43 +262,30 @@ fetch(API + "/content-public")
     const list = document.getElementById("dynamicList");
 
     if (!data || data.length === 0) {
-        list.innerHTML = '<li style="text-align: center; color: #999;">No posts yet. Check back soon!</li>';
+        list.innerHTML = "<li>No posts yet</li>";
         return;
     }
 
     data.forEach(item => {
         const li = document.createElement("li");
-        const typeEmoji = item.contentType === 'poem' ? '✍️' : item.contentType === 'story' ? '📖' : '📝';
-        const typeLabel = item.contentType ? item.contentType.charAt(0).toUpperCase() + item.contentType.slice(1) : 'Article';
-        const accessIcon = item.isPremium == 1 ? "🔒" : "✨";
-        const accessLabel = item.isPremium == 1 ? "Premium" : "Free";
+
+        const icon = item.isPremium ? "🔒" : "✨";
+        const type = item.contentType || "article";
 
         li.innerHTML = `
-        <a href="post.html?id=${item.id}" style="text-decoration: none; color: inherit; display: block;">
-            <strong>${typeEmoji} ${item.title}</strong><br>
-            <span style="font-size: 12px; color: #999;">${accessIcon} ${accessLabel} • ${typeLabel}</span>
+        <a href="post.html?id=${item.id}">
+            <strong>${icon} ${item.title}</strong><br>
+            <small>${type}</small>
         </a>
         `;
-        li.style.cursor = 'pointer';
-        li.style.transition = 'all 0.3s ease';
-        li.onmouseover = function() {
-            this.style.background = '#f5f5f5';
-            this.style.transform = 'translateX(4px)';
-        };
-        li.onmouseout = function() {
-            this.style.background = '#fff';
-            this.style.transform = 'translateX(0)';
-        };
 
         list.appendChild(li);
     });
 })
-.catch(err => {
-    console.error('Error loading posts:', err);
-    const list = document.getElementById("dynamicList");
-    list.innerHTML = '<li style="text-align: center; color: #999;">Error loading posts. Please refresh.</li>';
+.catch(() => {
+    document.getElementById("dynamicList").innerHTML = "<li>Error loading posts</li>";
 });
-      </script>     
+          </script> 
       
 <script>
 // Try to load from local JSON first, fallback to API
@@ -328,48 +315,7 @@ Promise.resolve()
     });
 </script>
 
-<script>
-const API = "https://premium-backend-8plp.onrender.com";
 
-async function loadPosts() {
-    const list = document.getElementById("dynamicList");
-
-    try {
-        const res = await fetch(API + "/content");
-
-        if (!res.ok) throw new Error("API error");
-
-        const data = await res.json();
-
-        if (!data || data.length === 0) {
-            list.innerHTML = "<li>No posts yet</li>";
-            return;
-        }
-
-        list.innerHTML = "";
-
-        data.reverse().forEach(item => {
-            const li = document.createElement("li");
-
-            const icon = item.isPremium == 1 ? "🔒" : "✨";
-
-            li.innerHTML = `
-                <a href="post.html?id=${item.id}">
-                    <strong>${icon} ${item.title}</strong>
-                </a>
-            `;
-
-            list.appendChild(li);
-        });
-
-    } catch (err) {
-        console.error(err);
-        list.innerHTML = "<li>Error loading posts</li>";
-    }
-}
-
-loadPosts();
-      </script>
       
 </body>
 </html>
