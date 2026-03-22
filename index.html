@@ -242,7 +242,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="feed">
     <h2>🔥 Latest Posts</h2>
     <ul id="dynamicList"></ul>
-</section>
+      </section>
       
 <section class="feed">
     <h2>🆕 Latest Poems & Stories</h2>
@@ -328,5 +328,48 @@ Promise.resolve()
     });
 </script>
 
+<script>
+const API = "https://premium-backend-8plp.onrender.com";
+
+async function loadPosts() {
+    const list = document.getElementById("dynamicList");
+
+    try {
+        const res = await fetch(API + "/content");
+
+        if (!res.ok) throw new Error("API error");
+
+        const data = await res.json();
+
+        if (!data || data.length === 0) {
+            list.innerHTML = "<li>No posts yet</li>";
+            return;
+        }
+
+        list.innerHTML = "";
+
+        data.reverse().forEach(item => {
+            const li = document.createElement("li");
+
+            const icon = item.isPremium == 1 ? "🔒" : "✨";
+
+            li.innerHTML = `
+                <a href="post.html?id=${item.id}">
+                    <strong>${icon} ${item.title}</strong>
+                </a>
+            `;
+
+            list.appendChild(li);
+        });
+
+    } catch (err) {
+        console.error(err);
+        list.innerHTML = "<li>Error loading posts</li>";
+    }
+}
+
+loadPosts();
+      </script>
+      
 </body>
 </html>
