@@ -3,18 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Loading content...">
-    <meta property="og:title" content="Anbudan Miththiran">
-    <meta property="og:description" content="Loading content...">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="">
-    <meta property="og:image" content="">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Anbudan Miththiran">
-    <meta name="twitter:description" content="Loading content...">
-    <meta name="twitter:image" content="">
-    
-    <title>Loading - Anbudan Miththiran</title>
+    <title>Post - Anbudan Miththiran</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -33,33 +22,24 @@
         /* Navigation */
         nav {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: flex-end;
             gap: 18px;
             padding: 18px 25px;
             background: rgba(255, 255, 255, 0.95);
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
-        nav a, nav button {
+        nav a {
             text-decoration: none;
             font-size: 0.9rem;
             color: #5a3a1a;
             font-weight: 500;
             transition: all 0.3s ease;
-            background: none;
-            border: none;
-            cursor: pointer;
         }
 
-        nav a:hover, nav button:hover {
+        nav a:hover {
             color: #ff9f1c;
-        }
-
-        .nav-right {
-            display: flex;
-            gap: 18px;
-            align-items: center;
+            text-decoration: underline;
         }
 
         .back-link {
@@ -124,9 +104,20 @@
             letter-spacing: 0.5px;
         }
 
-        .badge-type { background: #E3F2FD; color: #1976D2; }
-        .badge-free { background: #E8F5E9; color: #2E7D32; }
-        .badge-premium { background: #FFF3E0; color: #E65100; }
+        .badge-type {
+            background: #E3F2FD;
+            color: #1976D2;
+        }
+
+        .badge-free {
+            background: #E8F5E9;
+            color: #2E7D32;
+        }
+
+        .badge-premium {
+            background: #FFF3E0;
+            color: #E65100;
+        }
 
         /* Post Content */
         .post-content {
@@ -140,58 +131,38 @@
             margin-bottom: 40px;
         }
 
-        .post-content p { margin-bottom: 16px; }
-        .post-content h2 { font-size: 1.8rem; margin: 32px 0 16px 0; color: #3a2c1a; }
-        .post-content h3 { font-size: 1.4rem; margin: 24px 0 12px 0; color: #3a2c1a; }
-        .post-content ul, .post-content ol { margin-left: 24px; margin-bottom: 16px; }
-        .post-content li { margin-bottom: 8px; }
+        .post-content p {
+            margin-bottom: 16px;
+        }
+
+        .post-content h2 {
+            font-size: 1.8rem;
+            margin: 32px 0 16px 0;
+            color: #3a2c1a;
+        }
+
+        .post-content h3 {
+            font-size: 1.4rem;
+            margin: 24px 0 12px 0;
+            color: #3a2c1a;
+        }
+
+        .post-content ul,
+        .post-content ol {
+            margin-left: 24px;
+            margin-bottom: 16px;
+        }
+
+        .post-content li {
+            margin-bottom: 8px;
+        }
+
         .post-content blockquote {
             border-left: 4px solid #ff9f1c;
             padding-left: 20px;
             margin: 24px 0;
             font-style: italic;
             color: #666;
-        }
-
-        /* Share Container */
-        .share-container {
-            text-align: center;
-            margin: 30px 0 40px 0;
-            font-size: 1rem;
-        }
-        
-        .share-container span {
-            display: block;
-            margin-bottom: 15px;
-            font-weight: 600;
-            color: #3a2c1a;
-        }
-
-        .share-btn {
-            margin: 5px;
-            padding: 10px 18px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: 0.3s;
-            display: inline-block;
-            border: none;
-        }
-
-        .share-btn:hover { opacity: 0.8; transform: translateY(-2px); }
-        .share-btn.whatsapp { background: #25d366; color: #fff; }
-        .share-btn.twitter { background: #1da1f2; color: #fff; }
-        .share-btn.facebook { background: #3b5998; color: #fff; }
-        .share-btn.copy-link { background: #f0ad4e; color: #fff; }
-
-        /* Comments Container */
-        .comments-container {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
         }
 
         /* Premium Content Lock */
@@ -204,9 +175,22 @@
             margin: 40px 0;
         }
 
-        .lock-icon { font-size: 3rem; margin-bottom: 16px; }
-        .premium-lock h3 { color: #E65100; font-size: 1.5rem; margin-bottom: 12px; }
-        .premium-lock p { color: #666; margin-bottom: 24px; font-size: 1rem; }
+        .lock-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .premium-lock h3 {
+            color: #E65100;
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .premium-lock p {
+            color: #666;
+            margin-bottom: 24px;
+            font-size: 1rem;
+        }
 
         .btn {
             display: inline-block;
@@ -220,7 +204,6 @@
             border: none;
             cursor: pointer;
             font-size: 1rem;
-            margin: 0 8px;
         }
 
         .btn:hover {
@@ -229,11 +212,22 @@
             box-shadow: 0 6px 20px rgba(255, 159, 28, 0.3);
         }
 
-        .btn-secondary { background: #B8D4E0; color: #1A3A4A; }
-        .btn-secondary:hover { background: #A0C4D4; }
+        .btn-secondary {
+            background: #B8D4E0;
+            color: #1A3A4A;
+        }
+
+        .btn-secondary:hover {
+            background: #A0C4D4;
+        }
 
         /* Loading State */
-        .loading { text-align: center; padding: 60px 20px; color: #666; }
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+
         .spinner {
             display: inline-block;
             width: 40px;
@@ -245,7 +239,9 @@
             margin-bottom: 16px;
         }
 
-        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
 
         /* Error State */
         .error-state {
@@ -256,12 +252,54 @@
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .error-icon { font-size: 3rem; margin-bottom: 16px; }
-        .error-state h2 { color: #D32F2F; margin-bottom: 12px; }
-        .error-state p { color: #666; margin-bottom: 24px; }
+        .error-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .error-state h2 {
+            color: #D32F2F;
+            margin-bottom: 12px;
+        }
+
+        .error-state p {
+            color: #666;
+            margin-bottom: 24px;
+        }
 
         /* Footer */
-        footer { text-align: center; padding: 20px; font-size: 0.8rem; opacity: 0.7; margin-top: 40px; }
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 40px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .post-title {
+                font-size: 1.8rem;
+            }
+
+            .post-content {
+                padding: 24px;
+            }
+
+            .post-meta {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .container {
+                padding: 20px 16px;
+            }
+        }
 
         /* Authentication Modal */
         .modal {
@@ -276,7 +314,10 @@
             animation: fadeIn 0.3s ease;
         }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
         .modal-content {
             background-color: white;
@@ -289,34 +330,63 @@
             animation: slideIn 0.3s ease;
         }
 
-        @keyframes slideIn { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
 
-        .modal-header { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 2px solid #B8D4E0; }
-        .modal-header h2 { color: #1A3A4A; font-size: 20px; margin: 0; }
-        .modal-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px; }
+        .modal-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #B8D4E0;
+        }
 
-        @media (max-width: 600px) {
-            .post-title { font-size: 1.8rem; }
-            .post-content { padding: 24px; }
-            .post-meta { flex-direction: column; gap: 12px; }
-            nav { justify-content: center; flex-wrap: wrap; }
-            .container { padding: 20px 16px; }
+        .modal-header h2 {
+            color: #1A3A4A;
+            font-size: 20px;
+            margin: 0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #1A3A4A;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #B8D4E0;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #1A3A4A;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #ff9f1c;
+            box-shadow: 0 0 0 3px rgba(255, 159, 28, 0.1);
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-top: 24px;
         }
     </style>
 </head>
 <body>
     <nav>
         <a href="index.html">Home</a>
-        <div class="nav-right">
-            <a href="index.html#latest">Latest Posts</a>
-            <div id="guestNav">
-                <a href="member-login.html">Login</a>
-            </div>
-            <div id="userNav" style="display: none;">
-                <span id="memberName" style="font-weight: bold; margin-right: 10px;"></span>
-                <button onclick="logout()">Logout</button>
-            </div>
-       </div>
+        <a href="index.html#latest">Latest Posts</a>
     </nav>
 
     <div class="container">
@@ -329,36 +399,6 @@
 
         <div id="content"></div>
 
-        <div id="post-interactions" style="display: none;">
-            
-            <div class="share-container">
-                <span>📤 Share this post:</span>
-                <a id="share-wa" href="#" target="_blank" class="share-btn whatsapp">WhatsApp</a>
-                <a id="share-tw" href="#" target="_blank" class="share-btn twitter">Twitter</a>
-                <a id="share-fb" href="#" target="_blank" class="share-btn facebook">Facebook</a>
-                <button class="share-btn copy-link" onclick="copyLink()">Copy Link</button>
-            </div>
-
-            <div class="comments-container">
-                <script src="https://giscus.app/client.js"
-                    data-repo="anbumiththiran/anbumiththiran.github.io"
-                    data-repo-id="R_kgDOQyoS3g"
-                    data-category="General"
-                    data-category-id="DIC_kwDOQyoS3s4C06vB"
-                    data-mapping="url"
-                    data-strict="0"
-                    data-reactions-enabled="1"
-                    data-emit-metadata="0"
-                    data-input-position="top"
-                    data-theme="noborder_light"
-                    data-lang="en"
-                    data-loading="lazy"
-                    crossorigin="anonymous"
-                    async>
-                </script>
-            </div>
-        </div>
-
         <div id="error" class="error-state" style="display: none;">
             <div class="error-icon">⚠️</div>
             <h2>Content Not Found</h2>
@@ -370,14 +410,23 @@
     <div id="authModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>🔒 Premium Content</h2>
+                <h2>Premium Content</h2>
             </div>
-            <p style="margin-bottom: 20px; color: #666;">This is premium content. Please log in or subscribe to access it.</p>
-            <div class="modal-actions">
-                <button class="btn btn-secondary" onclick="closeAuthModal()">Cancel</button>
-                <a href="member-login.html" class="btn">Login</a>
-                <a href="member-register.html" class="btn">Subscribe</a>
-            </div>
+            <p style="margin-bottom: 20px; color: #666;">This is premium content. Please log in to access it.</p>
+            <form id="authForm">
+                <div class="form-group">
+                    <label for="authEmail">Email</label>
+                    <input type="email" id="authEmail" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="authPassword">Password</label>
+                    <input type="password" id="authPassword" placeholder="Enter your password" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeAuthModal()">Cancel</button>
+                    <button type="submit" class="btn">Login</button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -389,76 +438,10 @@
         const API = "https://premium-backend-8plp.onrender.com";
         let contentData = null;
 
-        // Check if user is logged in
-        function checkLogin() {
-            const token = localStorage.getItem("memberToken");
-            const userNav = document.getElementById("userNav");
-            const guestNav = document.getElementById("guestNav");
-            const memberName = document.getElementById("memberName");
-
-            // Null checks added to prevent errors if elements aren't rendered
-            if (userNav && guestNav && memberName) {
-                if (token) {
-                    userNav.style.display = "flex";
-                    guestNav.style.display = "none";
-                    const name = localStorage.getItem("memberName");
-                    if (name) {
-                        memberName.textContent = `${name}`;
-                    }
-                } else {
-                    userNav.style.display = "none";
-                    guestNav.style.display = "block";
-                }
-            }
-        }
-
-        function logout() {
-            localStorage.removeItem("memberToken");
-            localStorage.removeItem("memberRole");
-            localStorage.removeItem("memberName");
-            localStorage.removeItem("isPremium");
-            window.location.reload();
-        }
-
         // Get post ID from URL
         function getPostId() {
             const params = new URLSearchParams(window.location.search);
             return params.get('id');
-        }
-
-        // Update meta tags dynamically
-        function updateMetaTags(data) {
-            const title = data.title || "Anbudan Miththiran";
-            const description = data.description || (data.body ? data.body.substring(0, 160) : "Loading content...");
-            const url = window.location.href;
-            const image = "https://www.anbumiththiran.in/logo.svg";
-
-            document.title = title + " - Anbudan Miththiran";
-            document.querySelector('meta[name="description"]').setAttribute("content", description);
-            document.querySelector('meta[property="og:title"]').setAttribute("content", title);
-            document.querySelector('meta[property="og:description"]').setAttribute("content", description);
-            document.querySelector('meta[property="og:url"]').setAttribute("content", url);
-            document.querySelector('meta[property="og:image"]').setAttribute("content", image);
-            document.querySelector('meta[name="twitter:title"]').setAttribute("content", title);
-            document.querySelector('meta[name="twitter:description"]').setAttribute("content", description);
-            document.querySelector('meta[name="twitter:image"]').setAttribute("content", image);
-        }
-
-        // Update Share Links based on current data
-        function configureShareButtons(title, url) {
-            const encTitle = encodeURIComponent("Check out this post: " + title);
-            const encUrl = encodeURIComponent(url);
-
-            document.getElementById('share-wa').href = `https://wa.me/?text=${encTitle}%20${encUrl}`;
-            document.getElementById('share-tw').href = `https://twitter.com/intent/tweet?text=${encTitle}&url=${encUrl}`;
-            document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${encUrl}`;
-        }
-
-        // Copy link handler
-        function copyLink() {
-            navigator.clipboard.writeText(window.location.href)
-            .then(() => alert('Link copied to clipboard!'))
-            .catch(() => alert('Failed to copy link.'));
         }
 
         // Load content
@@ -467,7 +450,6 @@
             const loadingDiv = document.getElementById("loading");
             const contentDiv = document.getElementById("content");
             const errorDiv = document.getElementById("error");
-            const interactionsDiv = document.getElementById("post-interactions");
 
             if (!postId) {
                 loadingDiv.style.display = "none";
@@ -477,7 +459,7 @@
 
             try {
                 const response = await fetch(API + "/content/" + postId);
-
+                
                 if (!response.ok) {
                     throw new Error("Content not found");
                 }
@@ -485,12 +467,9 @@
                 contentData = await response.json();
                 loadingDiv.style.display = "none";
 
-                updateMetaTags(contentData);
-                configureShareButtons(contentData.title, window.location.href);
-
-                // Check premium authorization
+                // Check if premium and user is authenticated
                 if (contentData.isPremium === 1) {
-                    const token = localStorage.getItem("memberToken");
+                    const token = localStorage.getItem("token");
                     if (!token) {
                         showPremiumLock();
                         return;
@@ -498,9 +477,6 @@
                 }
 
                 displayContent(contentData);
-                
-                // Show comments & share container only if content is successfully displayed
-                interactionsDiv.style.display = "block";
 
             } catch (error) {
                 loadingDiv.style.display = "none";
@@ -510,6 +486,9 @@
         }
 
         function displayContent(data) {
+            // Update the page title dynamically
+            document.title = data.title + " - Anbudan Miththiran";
+            
             const contentDiv = document.getElementById("content");
             const typeLabel = data.contentType ? data.contentType.charAt(0).toUpperCase() + data.contentType.slice(1) : "Article";
             const isPremium = data.isPremium === 1;
@@ -537,3 +516,88 @@
                 </div>
                 <div class="post-content">
                     ${formatContent(data.body)}
+                </div>
+            `;
+        }
+
+        function showPremiumLock() {
+            const contentDiv = document.getElementById("content");
+            contentDiv.innerHTML = `
+                <div class="premium-lock">
+                    <div class="lock-icon">🔒</div>
+                    <h3>Premium Content</h3>
+                    <p>This content is exclusive to premium members. Please log in to access it.</p>
+                    <button class="btn" onclick="openAuthModal()">Login to View</button>
+                </div>
+            `;
+        }
+
+        function formatContent(text) {
+            // Convert line breaks to paragraphs
+            return text
+                .split('\n\n')
+                .map(para => `<p>${escapeHtml(para).replace(/\n/g, '<br>')}</p>`)
+                .join('');
+        }
+
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+
+        function openAuthModal() {
+            document.getElementById("authModal").style.display = "block";
+        }
+
+        function closeAuthModal() {
+            document.getElementById("authModal").style.display = "none";
+        }
+
+        document.getElementById("authForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById("authEmail").value;
+            const password = document.getElementById("authPassword").value;
+
+            try {
+                const response = await fetch(API + "/admin-login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    localStorage.setItem("token", data.token);
+                    closeAuthModal();
+                    displayContent(contentData);
+                } else {
+                    alert("Invalid email or password");
+                }
+            } catch (error) {
+                alert("Login failed. Please try again.");
+            }
+        });
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById("authModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Load content on page load
+        window.addEventListener("load", loadContent);
+    </script>
+</body>
+        </html>
