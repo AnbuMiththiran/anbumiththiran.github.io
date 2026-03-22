@@ -630,13 +630,23 @@
             };
 
             try {
-                const response = await fetch(API + "/content/" + currentEditId, {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`
-                    },
-                    body: JSON.stringify(data)
+                const token = localStorage.getItem("token");
+
+fetch(API + "/content/" + id, {
+    method: "PUT",
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + token
+    },
+    body: JSON.stringify({
+        title: "New title",
+        body: "Updated content",
+        contentType: "article",
+        isPremium: false
+    })
+})
+.then(res => res.json())
+.then(data => console.log(data));
                 });
 
                 if (response.ok) {
@@ -657,12 +667,16 @@
             }
 
             try {
-                const response = await fetch(API + "/content/" + id, {
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`
-                    }
+                const token = localStorage.getItem("token");
+
+fetch(API + "/content/" + id, {
+    method: "DELETE",
+    headers: {
+        "Authorization": "Bearer " + token
+    }
+})
+.then(res => res.json())
+.then(data => console.log(data));
                 });
 
                 if (response.ok) {
