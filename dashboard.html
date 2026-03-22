@@ -321,7 +321,7 @@
             text-align: center;
             padding: 40px 20px;
             color: #1A3A4A;
-            display: none; /* Hidden by default */
+            display: none;
         }
 
         .spinner {
@@ -589,16 +589,17 @@
 
     <script>
         const API = "https://premium-backend-8plp.onrender.com";
-        const token = localStorage.getItem("token");
+        let token = localStorage.getItem("token");
         let currentEditId = null;
 
-        if (!token) {
-            window.location = "admin.html";
+        // AUTHENTICATION FIX #1: Strict Initial Check
+        if (!token || token === "undefined" || token === "null") {
+            window.location.href = "admin.html"; // Redirect to login page immediately
         }
 
         function logout() {
             localStorage.removeItem("token");
-            window.location = "admin.html";
+            window.location.href = "admin.html";
         }
 
         function refreshContent() {
@@ -619,7 +620,6 @@
             currentEditId = null;
         }
 
-        // 1. Fixed the Edit Submission Logic
         document.getElementById("editForm").addEventListener("submit", async (e) => {
             e.preventDefault();
 
@@ -631,17 +631,19 @@
             };
 
             try {
-                const token = localStorage.getItem("token");
-
-                // Corrected fetch logic using async/await and dynamic data payload
                 const response = await fetch(`${API}/content/${currentEditId}`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "Bearer " + token
+                        "Authorization": `Bearer ${token}`
                     },
                     body: JSON.stringify(data)
                 });
+
+                if (response.status === 401 || response.status === 403) {
+                    logout(); // Force logout if token expired during edit
+                    return;
+                }
 
                 if (response.ok) {
                     closeEditModal();
@@ -656,22 +658,23 @@
             }
         });
 
-        // 2. Fixed the Delete Logic
         async function deleteContent(id) {
             if (!confirm("Are you sure you want to delete this content? This action cannot be undone.")) {
                 return;
             }
 
             try {
-                const token = localStorage.getItem("token");
-
-                // Corrected fetch logic using async/await
                 const response = await fetch(`${API}/content/${id}`, {
                     method: "DELETE",
                     headers: {
-                        "Authorization": "Bearer " + token
+                        "Authorization": `Bearer ${token}`
                     }
                 });
+
+                if (response.status === 401 || response.status === 403) {
+                    logout(); // Force logout if token expired
+                    return;
+                }
 
                 if (response.ok) {
                     showSuccessMessage("Content deleted successfully!");
@@ -696,9 +699,4 @@
         function showSuccessMessage(message) {
             const successContainer = document.getElementById("successContainer");
             successContainer.innerHTML = `<div class="success-message">${message}</div>`;
-            setTimeout(() => {
-                successContainer.innerHTML = "";
-            }, 5000);
-        }
-
-        // 3. Completed the loadContent 
+ 
