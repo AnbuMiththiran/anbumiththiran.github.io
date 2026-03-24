@@ -182,23 +182,20 @@
         const CHANNEL_ID = 'UCF4J9RTNoyk0zKYeJ87tslQ';
         const RSS_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
         
-        // Using corsproxy.io as a more reliable proxy
-        const PROXY_URL = 'https://corsproxy.io/?' + encodeURIComponent(RSS_URL);
+        // Using rss2json which is much more reliable for live domains than standard CORS proxies
+        const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}`;
 
         async function loadYouTubeContent() {
             const videosContainer = document.getElementById('videos-container');
             const shortsContainer = document.getElementById('shorts-container');
 
             try {
-                const response = await fetch(PROXY_URL);
+                const response = await fetch(API_URL);
                 if (!response.ok) throw new Error('Network response was not ok');
                 
-                const xmlText = await response.text();
-                const parser = new DOMParser();
-                const xmlDoc = parser.parseFromString(xmlText, "text/xml");
-                const entries = xmlDoc.getElementsByTagName("entry");
+                const data = await response.json();
 
-                if (entries.length === 0) {
+                if (data.status !== "ok" || !data.items || data.items.length === 0) {
                     videosContainer.innerHTML = '<div class="status-msg">No videos found.</div>';
                     shortsContainer.innerHTML = '<div class="status-msg">No shorts found.</div>';
                     return;
@@ -210,30 +207,19 @@
                 let videoCount = 0;
                 let shortsCount = 0;
 
-                for (let i = 0; i < entries.length; i++) {
-                    const entry = entries[i];
+                for (let i = 0; i < data.items.length; i++) {
+                    const item = data.items[i];
+                    const title = item.title;
                     
-                    // Helper to get element text even with namespaces
-                    const getTagText = (tagName) => {
-                        const el = entry.getElementsByTagName(tagName)[0] || 
-                                   entry.getElementsByTagNameNS("*", tagName.split(':').pop())[0];
-                        return el ? el.textContent : '';
-                    };
-
-                    const title = getTagText("title");
-                    const videoId = getTagText("yt:videoId");
+                    // Extract the video ID from the link (e.g., https://www.youtube.com/watch?v=ID)
+                    const videoId = item.link.split('v=')[1];
                     
-                    const linkEl = entry.getElementsByTagName("link")[0];
-                    const link = linkEl ? linkEl.getAttribute("href") : '';
-                    
-                    const publishedText = getTagText("published");
-                    const published = publishedText ? new Date(publishedText).toLocaleDateString(undefined, {
+                    const published = new Date(item.pubDate).toLocaleDateString(undefined, {
                         year: 'numeric', month: 'long', day: 'numeric'
-                    }) : 'Recently';
+                    });
 
-                    // Logic to distinguish between regular videos and shorts
-                    const isShort = link.includes('/shorts/') || 
-                                    title.toLowerCase().includes('#shorts') || 
+                    // Logic to distinguish between regular videos and shorts based on title tags
+                    const isShort = title.toLowerCase().includes('#shorts') || 
                                     title.toLowerCase().includes('#short');
 
                     if (isShort && shortsCount < 8) {
@@ -249,8 +235,8 @@
                 if (shortsCount === 0) shortsContainer.innerHTML = '<div class="status-msg">No recent shorts found.</div>';
 
             } catch (error) {
-                console.error('Error:', error);
-                const errorMsg = '<div class="status-msg">Unable to load content. Please check back later.</div>';
+                console.error('Error fetching videos:', error);
+                const errorMsg = '<div class="status-msg">Unable to load content right now. Please check back later.</div>';
                 videosContainer.innerHTML = errorMsg;
                 shortsContainer.innerHTML = errorMsg;
             }
@@ -283,4 +269,3 @@
     </footer>
 </body>
     </html>
-    
