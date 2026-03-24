@@ -14,8 +14,12 @@
         .podcast-card { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 20px; }
         .podcast-info { flex: 1; }
         .podcast-info h3 { margin-top: 0; color: #2c3e50; }
+        .podcast-info p { color: #7f8c8d; font-size: 0.9rem; margin-bottom: 10px; }
         .podcast-player { width: 100%; margin-top: 10px; }
-        .podcast-image { width: 100px; height: 100px; background: #eee; border-radius: 8px; flex-shrink: 0; }
+        .podcast-image { width: 100px; height: 100px; background: #eee; border-radius: 8px; flex-shrink: 0; object-fit: cover; }
+        .badge { padding: 4px 8px; border-radius: 12px; font-size: 10px; font-weight: bold; text-transform: uppercase; margin-bottom: 5px; display: inline-block; }
+        .badge-episode { background-color: #e3f2fd; color: #0d47a1; }
+        .badge-trailer { background-color: #f3e5f5; color: #4a148c; }
     </style>
 </head>
 <body>
@@ -32,19 +36,46 @@
         <a href="books.html">Books</a>
     </nav>
     <div class="container" id="podcast-container">
-        <!-- Podcasts will be loaded here -->
-        <div class="podcast-card">
-            <div class="podcast-image"></div>
-            <div class="podcast-info">
-                <h3>Episode 1: Introduction to Anbudan Miththiran</h3>
-                <p>A brief introduction to the world of Anbudan Miththiran.</p>
-                <audio controls class="podcast-player">
-                    <source src="sample-audio.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-            </div>
-        </div>
+        <p>Loading podcasts...</p>
     </div>
+
+    <script>
+        async function fetchPodcasts() {
+            try {
+                const response = await fetch('podcast-data.json');
+                const data = await response.json();
+                const container = document.getElementById('podcast-container');
+                container.innerHTML = '';
+
+                if (!data.podcasts || data.podcasts.length === 0) {
+                    container.innerHTML = '<p>No podcasts found.</p>';
+                    return;
+                }
+
+                data.podcasts.forEach(podcast => {
+                    const card = document.createElement('div');
+                    card.className = 'podcast-card';
+                    card.innerHTML = `
+                        <img src="${podcast.imageUrl || 'https://via.placeholder.com/150'}" class="podcast-image" alt="Podcast Cover">
+                        <div class="podcast-info">
+                            <span class="badge badge-${podcast.type || 'episode'}">${podcast.type || 'episode'}</span>
+                            <h3>${podcast.title}</h3>
+                            <p>${podcast.description || ''}</p>
+                            <audio controls class="podcast-player">
+                                <source src="${podcast.audioUrl}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            } catch (err) {
+                console.error("Error fetching podcasts:", err);
+                document.getElementById('podcast-container').innerHTML = '<p>Error loading podcasts.</p>';
+            }
+        }
+        fetchPodcasts();
+    </script>
 
     <footer style="text-align: center; padding: 20px; margin-top: 40px; border-top: 1px solid rgba(0,0,0,0.1); color: #2c3e50; font-weight: bold;">
         &copy; 2026 Anbudan Miththiran
