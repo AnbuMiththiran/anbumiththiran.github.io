@@ -10,7 +10,8 @@
         nav { background-color: #2c3e50; padding: 0.7rem; text-align: center; }
         nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; }
         nav a:hover { color: #ffb703; }
-               /* Header */
+        
+        /* Header */
         .header {
             text-align: center;
             padding: 60px 20px 40px;
@@ -155,120 +156,119 @@
         <a href="books.html">Books</a>
     </nav>
     <header class="header">
-    <h1>📺 Anbudan Miththiran Works</h1>
-    <p>Latest updates from where Love & Wisdom find words</p>
-</header>
+        <h1>📺 Anbudan Miththiran Works</h1>
+        <p>Latest updates from where Love & Wisdom find words</p>
+    </header>
 
-<main class="container">
-    <h2 class="section-title">Latest Videos</h2>
-    <div id="videos-container" class="video-grid">
-        <div class="status-msg">
-            <div class="loader"></div>
-            Fetching latest videos...
+    <main class="container">
+        <h2 class="section-title">Latest Videos</h2>
+        <div id="videos-container" class="video-grid">
+            <div class="status-msg">
+                <div class="loader"></div>
+                Fetching latest videos...
+            </div>
         </div>
-    </div>
 
-    <h2 class="section-title">Latest Shorts</h2>
-    <div id="shorts-container" class="shorts-grid">
-        <div class="status-msg">
-            <div class="loader"></div>
-            Fetching latest shorts...
+        <h2 class="section-title">Latest Shorts</h2>
+        <div id="shorts-container" class="shorts-grid">
+            <div class="status-msg">
+                <div class="loader"></div>
+                Fetching latest shorts...
+            </div>
         </div>
-    </div>
-            </main>
+    </main>
 
     <script>
         // For now, we can manually add some video IDs or fetch from a specific category if needed
-<script>
-    const CHANNEL_ID = 'UCF4J9RTNoyk0zKYeJ87tslQ';
-    const RSS_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
-    
-    // Using codetabs as a reliable CORS proxy
-    const PROXY_URL = 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(RSS_URL);
+        const CHANNEL_ID = 'UCF4J9RTNoyk0zKYeJ87tslQ';
+        const RSS_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
+        
+        // Using codetabs as a reliable CORS proxy
+        const PROXY_URL = 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(RSS_URL);
 
-    async function loadYouTubeContent() {
-        const videosContainer = document.getElementById('videos-container');
-        const shortsContainer = document.getElementById('shorts-container');
+        async function loadYouTubeContent() {
+            const videosContainer = document.getElementById('videos-container');
+            const shortsContainer = document.getElementById('shorts-container');
 
-        try {
-            const response = await fetch(PROXY_URL);
-            if (!response.ok) throw new Error('Network response was not ok');
-            
-            const xmlText = await response.text();
-            const parser = new DOMParser();
-            const xmlDoc = parser.parseFromString(xmlText, "text/xml");
-            const entries = xmlDoc.getElementsByTagName("entry");
+            try {
+                const response = await fetch(PROXY_URL);
+                if (!response.ok) throw new Error('Network response was not ok');
+                
+                const xmlText = await response.text();
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+                const entries = xmlDoc.getElementsByTagName("entry");
 
-            if (entries.length === 0) {
-                videosContainer.innerHTML = '<div class="status-msg">No videos found.</div>';
-                shortsContainer.innerHTML = '<div class="status-msg">No shorts found.</div>';
-                return;
-            }
-
-            videosContainer.innerHTML = '';
-            shortsContainer.innerHTML = '';
-
-            let videoCount = 0;
-            let shortsCount = 0;
-
-            for (let i = 0; i < entries.length; i++) {
-                const entry = entries[i];
-                const title = entry.getElementsByTagName("title")[0].textContent;
-                const videoId = entry.getElementsByTagName("yt:videoId")[0].textContent;
-                const link = entry.getElementsByTagName("link")[0].getAttribute("href");
-                const published = new Date(entry.getElementsByTagName("published")[0].textContent).toLocaleDateString(undefined, {
-                    year: 'numeric', month: 'long', day: 'numeric'
-                });
-
-                // Logic to distinguish between regular videos and shorts
-                const isShort = link.includes('/shorts/') || 
-                                title.toLowerCase().includes('#shorts') || 
-                                title.toLowerCase().includes('#short');
-
-                if (isShort && shortsCount < 8) {
-                    shortsContainer.appendChild(createCard(videoId, title, published, true));
-                    shortsCount++;
-                } else if (!isShort && videoCount < 6) {
-                    videosContainer.appendChild(createCard(videoId, title, published, false));
-                    videoCount++;
+                if (entries.length === 0) {
+                    videosContainer.innerHTML = '<div class="status-msg">No videos found.</div>';
+                    shortsContainer.innerHTML = '<div class="status-msg">No shorts found.</div>';
+                    return;
                 }
+
+                videosContainer.innerHTML = '';
+                shortsContainer.innerHTML = '';
+
+                let videoCount = 0;
+                let shortsCount = 0;
+
+                for (let i = 0; i < entries.length; i++) {
+                    const entry = entries[i];
+                    const title = entry.getElementsByTagName("title")[0].textContent;
+                    const videoId = entry.getElementsByTagName("yt:videoId")[0].textContent;
+                    const link = entry.getElementsByTagName("link")[0].getAttribute("href");
+                    const published = new Date(entry.getElementsByTagName("published")[0].textContent).toLocaleDateString(undefined, {
+                        year: 'numeric', month: 'long', day: 'numeric'
+                    });
+
+                    // Logic to distinguish between regular videos and shorts
+                    const isShort = link.includes('/shorts/') || 
+                                    title.toLowerCase().includes('#shorts') || 
+                                    title.toLowerCase().includes('#short');
+
+                    if (isShort && shortsCount < 8) {
+                        shortsContainer.appendChild(createCard(videoId, title, published, true));
+                        shortsCount++;
+                    } else if (!isShort && videoCount < 6) {
+                        videosContainer.appendChild(createCard(videoId, title, published, false));
+                        videoCount++;
+                    }
+                }
+
+                if (videoCount === 0) videosContainer.innerHTML = '<div class="status-msg">No recent videos found.</div>';
+                if (shortsCount === 0) shortsContainer.innerHTML = '<div class="status-msg">No recent shorts found.</div>';
+
+            } catch (error) {
+                console.error('Error:', error);
+                const errorMsg = '<div class="status-msg">Unable to load content. Please check back later.</div>';
+                videosContainer.innerHTML = errorMsg;
+                shortsContainer.innerHTML = errorMsg;
             }
-
-            if (videoCount === 0) videosContainer.innerHTML = '<div class="status-msg">No recent videos found.</div>';
-            if (shortsCount === 0) shortsContainer.innerHTML = '<div class="status-msg">No recent shorts found.</div>';
-
-        } catch (error) {
-            console.error('Error:', error);
-            const errorMsg = '<div class="status-msg">Unable to load content. Please check back later.</div>';
-            videosContainer.innerHTML = errorMsg;
-            shortsContainer.innerHTML = errorMsg;
         }
-    }
 
-    function createCard(videoId, title, date, isShort) {
-        const card = document.createElement('div');
-        card.className = `card ${isShort ? 'shorts-card' : 'video-card'}`;
-        
-        const embedUrl = `https://www.youtube.com/embed/${videoId}`;
-        
-        card.innerHTML = `
-            <iframe src="${embedUrl}" allowfullscreen loading="lazy"></iframe>
-            <div class="card-info">
-                <h3>${title}</h3>
-                <div class="meta">
-                    <span>${date}</span>
+        function createCard(videoId, title, date, isShort) {
+            const card = document.createElement('div');
+            card.className = `card ${isShort ? 'shorts-card' : 'video-card'}`;
+            
+            const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+            
+            card.innerHTML = `
+                <iframe src="${embedUrl}" allowfullscreen loading="lazy"></iframe>
+                <div class="card-info">
+                    <h3>${title}</h3>
+                    <div class="meta">
+                        <span>${date}</span>
+                    </div>
                 </div>
-            </div>
-        `;
-        return card;
-    }
+            `;
+            return card;
+        }
 
-    // Initialize
-    document.addEventListener('DOMContentLoaded', loadYouTubeContent);
-</script>
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadYouTubeContent);
+    </script>
 
     <footer style="text-align: center; padding: 20px; margin-top: 40px; border-top: 1px solid rgba(0,0,0,0.1); color: #2c3e50; font-weight: bold;">
         &copy; 2026 Anbudan Miththiran
     </footer>
 </body>
-</html>
+    </html>
