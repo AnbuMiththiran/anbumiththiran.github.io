@@ -179,12 +179,11 @@
     </main>
 
     <script>
-        // For now, we can manually add some video IDs or fetch from a specific category if needed
         const CHANNEL_ID = 'UCF4J9RTNoyk0zKYeJ87tslQ';
         const RSS_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
         
-        // Using codetabs as a reliable CORS proxy
-        const PROXY_URL = 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(RSS_URL);
+        // Using corsproxy.io as a more reliable proxy
+        const PROXY_URL = 'https://corsproxy.io/?' + encodeURIComponent(RSS_URL);
 
         async function loadYouTubeContent() {
             const videosContainer = document.getElementById('videos-container');
@@ -213,12 +212,24 @@
 
                 for (let i = 0; i < entries.length; i++) {
                     const entry = entries[i];
-                    const title = entry.getElementsByTagName("title")[0].textContent;
-                    const videoId = entry.getElementsByTagName("yt:videoId")[0].textContent;
-                    const link = entry.getElementsByTagName("link")[0].getAttribute("href");
-                    const published = new Date(entry.getElementsByTagName("published")[0].textContent).toLocaleDateString(undefined, {
+                    
+                    // Helper to get element text even with namespaces
+                    const getTagText = (tagName) => {
+                        const el = entry.getElementsByTagName(tagName)[0] || 
+                                   entry.getElementsByTagNameNS("*", tagName.split(':').pop())[0];
+                        return el ? el.textContent : '';
+                    };
+
+                    const title = getTagText("title");
+                    const videoId = getTagText("yt:videoId");
+                    
+                    const linkEl = entry.getElementsByTagName("link")[0];
+                    const link = linkEl ? linkEl.getAttribute("href") : '';
+                    
+                    const publishedText = getTagText("published");
+                    const published = publishedText ? new Date(publishedText).toLocaleDateString(undefined, {
                         year: 'numeric', month: 'long', day: 'numeric'
-                    });
+                    }) : 'Recently';
 
                     // Logic to distinguish between regular videos and shorts
                     const isShort = link.includes('/shorts/') || 
@@ -272,3 +283,4 @@
     </footer>
 </body>
     </html>
+    
