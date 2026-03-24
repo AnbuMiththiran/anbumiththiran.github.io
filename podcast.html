@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Podcast - Anbudan Miththiran</title>
+    <style>
+        body { background: linear-gradient(135deg, #fff4e6, #ffd8a8, #ffb703); min-height: 100vh; margin: 0; font-family: sans-serif; }
+        header { background-color: #ffb703; color: #2c3e50; padding: 1.5rem; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        nav { background-color: #2c3e50; padding: 0.7rem; text-align: center; }
+        nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; }
+        nav a:hover { color: #ffb703; }
+        .container { max-width: 800px; margin: 20px auto; padding: 0 20px; }
+        .podcast-card { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 20px; }
+        .podcast-info { flex: 1; }
+        .podcast-info h3 { margin-top: 0; color: #2c3e50; }
+        .podcast-player { width: 100%; margin-top: 10px; }
+        .podcast-image { width: 100px; height: 100px; background: #eee; border-radius: 8px; flex-shrink: 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Anbudan Miththiran - Podcast</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="category.html?type=article">Articles</a>
+        <a href="category.html?type=poem">Poems</a>
+        <a href="category.html?type=story">Stories</a>
+        <a href="videos.html">Videos</a>
+        <a href="podcast.html">Podcast</a>
+        <a href="books.html">Books</a>
+    </nav>
+    <div class="container" id="podcast-container">
+        <!-- Podcasts will be loaded here -->
+        <div class="podcast-card">
+            <div class="podcast-image"></div>
+            <div class="podcast-info">
+                <h3>Episode 1: Introduction to Anbudan Miththiran</h3>
+                <p>A brief introduction to the world of Anbudan Miththiran.</p>
+                <audio controls class="podcast-player">
+                    <source src="sample-audio.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
+    </div>
+
+    <footer style="text-align: center; padding: 20px; margin-top: 40px; border-top: 1px solid rgba(0,0,0,0.1); color: #2c3e50; font-weight: bold;">
+        &copy; 2026 Anbudan Miththiran
+    </footer>
+</body>
+</html>

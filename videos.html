@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videos - Anbudan Miththiran</title>
+    <style>
+        body { background: linear-gradient(135deg, #fff4e6, #ffd8a8, #ffb703); min-height: 100vh; margin: 0; font-family: sans-serif; }
+        header { background-color: #ffb703; color: #2c3e50; padding: 1.5rem; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        nav { background-color: #2c3e50; padding: 0.7rem; text-align: center; }
+        nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; }
+        nav a:hover { color: #ffb703; }
+        .container { max-width: 1000px; margin: 20px auto; padding: 0 20px; }
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .video-card { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .video-card h3 { margin-top: 10px; color: #2c3e50; }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 4px; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Anbudan Miththiran - Videos</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="category.html?type=article">Articles</a>
+        <a href="category.html?type=poem">Poems</a>
+        <a href="category.html?type=story">Stories</a>
+        <a href="videos.html">Videos</a>
+        <a href="podcast.html">Podcast</a>
+        <a href="books.html">Books</a>
+    </nav>
+    <div class="container">
+        <div class="video-grid" id="video-container">
+            <!-- Videos will be loaded here -->
+            <p>Loading videos...</p>
+        </div>
+    </div>
+
+    <script>
+        // For now, we can manually add some video IDs or fetch from a specific category if needed
+        // Since the user didn't specify a video source, I'll provide a placeholder structure
+        const videos = [
+            { title: "Sample Video 1", id: "dQw4w9WgXcQ" },
+            { title: "Sample Video 2", id: "dQw4w9WgXcQ" }
+        ];
+
+        const container = document.getElementById('video-container');
+        container.innerHTML = '';
+        videos.forEach(video => {
+            const card = document.createElement('div');
+            card.className = 'video-card';
+            card.innerHTML = `
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/${video.id}" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <h3>${video.title}</h3>
+            `;
+            container.appendChild(card);
+        });
+    </script>
+
+    <footer style="text-align: center; padding: 20px; margin-top: 40px; border-top: 1px solid rgba(0,0,0,0.1); color: #2c3e50; font-weight: bold;">
+        &copy; 2026 Anbudan Miththiran
+    </footer>
+</body>
+</html>
