@@ -93,12 +93,15 @@ gtag('config', 'G-9RLGNJL2ZQ');
                     card.className = 'post-card';
 
                     // Use book_cover_url for books, image_url for others
-                    const displayImage = (post.contenttype === 'book' && post.book_cover_url) 
-                        ? post.book_cover_url 
-                        : post.image_url;
+                    let displayImage = '';
+                    if (post.contenttype === 'book') {
+                        displayImage = post.book_cover_url || post.image_url;
+                    } else {
+                        displayImage = post.image_url;
+                    }
 
                     const imageHtml = displayImage 
-                        ? `<img src="${displayImage}" style="width:100%; max-height:300px; object-fit:cover; border-radius:4px; margin-bottom:15px;" alt="${post.title}">`
+                        ? `<img src="${displayImage}" style="width:100%; max-height:300px; object-fit:cover; border-radius:4px; margin-bottom:15px;" alt="${post.title}" onerror="this.style.display='none'">`
                         : '';
 
                     card.innerHTML = `
