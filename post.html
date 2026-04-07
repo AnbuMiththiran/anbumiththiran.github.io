@@ -79,6 +79,50 @@ gtag('config', 'G-9RLGNJL2ZQ');
             color: #2c3e50;
         }
 
+        .post-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .book-links-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 5px solid #ffb703;
+        }
+
+        .book-links-section h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+
+        .purchase-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .buy-btn {
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            transition: opacity 0.2s;
+        }
+
+        .buy-btn:hover { opacity: 0.9; }
+        .btn-amazon { background-color: #ff9900; color: #000; }
+        .btn-flipkart { background-color: #2874f0; }
+        .btn-notion { background-color: #2c3e50; }
+
         /* ✅ MULTI PARAGRAPH SUPPORT */
         .post-body p {
             margin-bottom: 16px;
@@ -161,8 +205,14 @@ gtag('config', 'G-9RLGNJL2ZQ');
     </div>
 </div>
 
-<script>
-    const urlParams = new URLSearchParams(window.location.search);
+    <script>
+        function trackEvent(eventName, params) {
+            if (typeof gtag === 'function') {
+                gtag('event', eventName, params);
+            }
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('id');
 
     async function fetchPost() {
@@ -188,6 +238,31 @@ gtag('config', 'G-9RLGNJL2ZQ');
                 ? post.body.split('\n').map(p => `<p>${p}</p>`).join('')
                 : '';
 
+            let imageHtml = '';
+            if (post.image_url) {
+                imageHtml = `<img src="${post.image_url}" class="post-image" alt="${post.title}">`;
+            }
+
+            let bookLinksHtml = '';
+            if (post.contenttype === 'book' && post.links) {
+                let linksButtons = '';
+                const bookTitleEscaped = post.title.replace(/'/g, "\\'");
+                if (post.links.amazon) linksButtons += `<a href="${post.links.amazon}" target="_blank" class="buy-btn btn-amazon" onclick="trackEvent('purchase_click', { platform: 'Amazon', book_title: '${bookTitleEscaped}' })">Buy on Amazon</a>`;
+                if (post.links.flipkart) linksButtons += `<a href="${post.links.flipkart}" target="_blank" class="buy-btn btn-flipkart" onclick="trackEvent('purchase_click', { platform: 'Flipkart', book_title: '${bookTitleEscaped}' })">Buy on Flipkart</a>`;
+                if (post.links.notion) linksButtons += `<a href="${post.links.notion}" target="_blank" class="buy-btn btn-notion" onclick="trackEvent('purchase_click', { platform: 'NotionPress', book_title: '${bookTitleEscaped}' })">Buy on Notion Press</a>`;
+                
+                if (linksButtons) {
+                    bookLinksHtml = `
+                        <div class="book-links-section">
+                            <h3>Purchase this Book</h3>
+                            <div class="purchase-links">
+                                ${linksButtons}
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+
             container.innerHTML = `
                 <span class="badge badge-${post.contenttype}">${post.contenttype}</span>
                 <h1 class="post-title">${post.title}</h1>
@@ -195,9 +270,13 @@ gtag('config', 'G-9RLGNJL2ZQ');
                     By ${post.writer} | Published on ${new Date(post.createdat).toLocaleDateString()}
                 </div>
 
+                ${imageHtml}
+
                 <div class="post-body">
                     ${formattedBody}
                 </div>
+
+                ${bookLinksHtml}
 
                 <div class="post-tags">
                     ${post.tags ? post.tags.map(tag => `<span class="tag">#${tag}</span>`).join('') : ''}
