@@ -54,6 +54,12 @@ gtag('config', 'G-9RLGNJL2ZQ');
     </div>
 
     <script>
+        function trackEvent(eventName, params) {
+            if (typeof gtag === 'function') {
+                gtag('event', eventName, params);
+            }
+        }
+
         async function fetchBooks() {
             try {
                 const response = await fetch('https://premium-backend-8plp.onrender.com/content/public/category/book');
@@ -72,13 +78,18 @@ gtag('config', 'G-9RLGNJL2ZQ');
                     
                     let linksHtml = '';
                     if (book.links) {
-                        if (book.links.amazon) linksHtml += `<a href="${book.links.amazon}" target="_blank" class="buy-btn btn-amazon">Buy on Amazon</a>`;
-                        if (book.links.flipkart) linksHtml += `<a href="${book.links.flipkart}" target="_blank" class="buy-btn btn-flipkart">Buy on Flipkart</a>`;
-                        if (book.links.notion) linksHtml += `<a href="${book.links.notion}" target="_blank" class="buy-btn btn-notion">Buy on Notion Press</a>`;
+                        const bookTitleEscaped = book.title.replace(/'/g, "\\'");
+                        if (book.links.amazon) linksHtml += `<a href="${book.links.amazon}" target="_blank" class="buy-btn btn-amazon" onclick="trackEvent('purchase_click', { platform: 'Amazon', book_title: '${bookTitleEscaped}' })">Buy on Amazon</a>`;
+                        if (book.links.flipkart) linksHtml += `<a href="${book.links.flipkart}" target="_blank" class="buy-btn btn-flipkart" onclick="trackEvent('purchase_click', { platform: 'Flipkart', book_title: '${bookTitleEscaped}' })">Buy on Flipkart</a>`;
+                        if (book.links.notion) linksHtml += `<a href="${book.links.notion}" target="_blank" class="buy-btn btn-notion" onclick="trackEvent('purchase_click', { platform: 'NotionPress', book_title: '${bookTitleEscaped}' })">Buy on Notion Press</a>`;
                     }
                     
+                    const coverHtml = book.image_url 
+                        ? `<img src="${book.image_url}" class="book-cover" style="object-fit: cover;" alt="${book.title}">`
+                        : `<div class="book-cover">BOOK COVER</div>`;
+
                     card.innerHTML = `
-                        <div class="book-cover">BOOK COVER</div>
+                        ${coverHtml}
                         <div class="book-title">${book.title}</div>
                         <div class="book-author">By ${book.writer}</div>
                         <div class="purchase-links">
