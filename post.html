@@ -244,9 +244,13 @@ gtag('config', 'G-9RLGNJL2ZQ');
             document.getElementById('og-title').content = post.title;
             document.getElementById('og-description').content = description;
             
-            const displayImage = (post.contenttype === 'book' && post.book_cover_url) 
-                ? post.book_cover_url 
-                : post.image_url;
+            // Prioritize book_cover_url for books, then image_url (Pinterest)
+            let displayImage = '';
+            if (post.contenttype === 'book') {
+                displayImage = post.book_cover_url || post.image_url;
+            } else {
+                displayImage = post.image_url;
+            }
             
             if (displayImage) {
                 document.getElementById('og-image').content = displayImage;
@@ -259,7 +263,7 @@ gtag('config', 'G-9RLGNJL2ZQ');
 
             let imageHtml = '';
             if (displayImage) {
-                imageHtml = `<img src="${displayImage}" class="post-image" alt="${post.title}">`;
+                imageHtml = `<img src="${displayImage}" class="post-image" alt="${post.title}" onerror="this.style.display='none'">`;
             }
 
             let bookLinksHtml = '';
