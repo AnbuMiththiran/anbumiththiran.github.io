@@ -12,6 +12,11 @@ gtag('js', new Date());
 gtag('config', 'G-9RLGNJL2ZQ');
 </script>
     <title>Post - Anbudan Miththiran</title>
+    <meta name="description" id="meta-description" content="Read this post on Anbudan Miththiran.">
+    <meta property="og:title" id="og-title" content="Post - Anbudan Miththiran">
+    <meta property="og:description" id="og-description" content="Read this post on Anbudan Miththiran.">
+    <meta property="og:image" id="og-image" content="logo.jpg">
+    <meta property="og:type" content="article">
 
     <style>
         body {
@@ -232,6 +237,20 @@ gtag('config', 'G-9RLGNJL2ZQ');
             }
 
             document.title = `${post.title} - Anbudan Miththiran`;
+            
+            // Update SEO Meta Tags
+            const description = post.body ? post.body.substring(0, 160).replace(/<[^>]*>/g, '') : '';
+            document.getElementById('meta-description').content = description;
+            document.getElementById('og-title').content = post.title;
+            document.getElementById('og-description').content = description;
+            
+            const displayImage = (post.contenttype === 'book' && post.book_cover_url) 
+                ? post.book_cover_url 
+                : post.image_url;
+            
+            if (displayImage) {
+                document.getElementById('og-image').content = displayImage;
+            }
 
             // ✅ MULTI PARAGRAPH FIX
             const formattedBody = post.body
@@ -239,8 +258,8 @@ gtag('config', 'G-9RLGNJL2ZQ');
                 : '';
 
             let imageHtml = '';
-            if (post.image_url) {
-                imageHtml = `<img src="${post.image_url}" class="post-image" alt="${post.title}">`;
+            if (displayImage) {
+                imageHtml = `<img src="${displayImage}" class="post-image" alt="${post.title}">`;
             }
 
             let bookLinksHtml = '';
