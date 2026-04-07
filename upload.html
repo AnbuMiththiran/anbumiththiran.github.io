@@ -75,6 +75,16 @@ gtag('config', 'G-9RLGNJL2ZQ');
             </div>
 
             <div class="form-group">
+                <label for="pinterest_link">Pinterest Pin Link (for image)</label>
+                <input type="text" id="pinterest_link" placeholder="https://www.pinterest.com/pin/...">
+            </div>
+
+            <div class="form-group" id="book-cover-group" style="display:none;">
+                <label for="book_cover_url">Book Cover Image URL</label>
+                <input type="text" id="book_cover_url" placeholder="https://example.com/cover.jpg">
+            </div>
+
+            <div class="form-group">
                 <label for="tags">Tags (comma separated)</label>
                 <input type="text" id="tags" placeholder="e.g., nature, life, inspiration">
             </div>
@@ -118,6 +128,7 @@ gtag('config', 'G-9RLGNJL2ZQ');
         function toggleBookLinks() {
             const type = document.getElementById('contentType').value;
             document.getElementById('book-links-container').style.display = (type === 'book') ? 'block' : 'none';
+            document.getElementById('book-cover-group').style.display = (type === 'book') ? 'block' : 'none';
         }
 
         if (postId) {
@@ -138,6 +149,8 @@ gtag('config', 'G-9RLGNJL2ZQ');
                     document.getElementById('contentType').value = post.contenttype;
                     document.getElementById('tags').value = post.tags ? post.tags.join(', ') : '';
                     document.getElementById('isPremium').checked = post.ispremium;
+                    document.getElementById('pinterest_link').value = post.pinterest_link || '';
+                    document.getElementById('book_cover_url').value = post.book_cover_url || '';
                     quill.root.innerHTML = post.body;
                     
                     if (post.contenttype === 'book' && post.links) {
@@ -157,6 +170,8 @@ gtag('config', 'G-9RLGNJL2ZQ');
             const title = document.getElementById('title').value;
             const writer = document.getElementById('writer').value;
             const contentType = document.getElementById('contentType').value;
+            const pinterest_link = document.getElementById('pinterest_link').value;
+            const book_cover_url = document.getElementById('book_cover_url').value;
             const tags = document.getElementById('tags').value.split(',').map(t => t.trim()).filter(t => t !== '');
             const isPremium = document.getElementById('isPremium').checked;
             const body = quill.root.innerHTML;
@@ -178,7 +193,7 @@ gtag('config', 'G-9RLGNJL2ZQ');
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${token}`
                     },
-                    body: JSON.stringify({ title, writer, contentType, tags, isPremium, body, links })
+                    body: JSON.stringify({ title, writer, contentType, tags, isPremium, body, links, pinterest_link, book_cover_url })
                 });
                 const data = await response.json();
                 if (data.success) {
