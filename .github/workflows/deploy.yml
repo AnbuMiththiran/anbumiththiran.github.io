@@ -13,22 +13,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Build site
+      - name: Build
         run: |
           mkdir dist
-          echo "<h1>Hello GitHub Pages</h1>" > dist/index.html
+          echo "<h1>Hello</h1>" > dist/index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist   # 👈 THIS becomes the github-pages artifact
+          path: ./dist
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages   # 🔥 THIS fixes your error
 
     steps:
       - name: Deploy
