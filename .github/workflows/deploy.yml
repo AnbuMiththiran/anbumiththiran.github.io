@@ -12,20 +12,26 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    # ✅ ADD THIS BLOCK (IMPORTANT)
+    env:
+      # ✅ Opt into Node.js 24 runtime for GitHub Actions
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
+      # ✅ Updated to latest version
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
+      # Upload static site files
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./
+          path: ./   # change to ./dist or ./build if needed
 
+      # Deploy to GitHub Pages
       - name: Deploy
-        id: deployment   # ✅ required for url
+        id: deployment
         uses: actions/deploy-pages@v4
