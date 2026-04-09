@@ -56,15 +56,139 @@ gtag('config', 'G-9RLGNJL2ZQ');
         <a href="books.html">Books</a>
     </nav>
 
-    <div class="search-container">
-        <input type="text" id="search-input" class="search-input" placeholder="தேடுக... (Search in Tamil or English)">
-        <button onclick="handleSearch()" class="search-btn">Search</button>
-    </div>
+  <!-- Replace lines 59-66 with this structure -->
+<div class="search-container">
+    <input 
+        type="text" 
+        id="search-input" 
+        class="search-input" 
+        placeholder="தேடுக... (Search in Tamil or English)"
+        aria-label="Search posts"
+    >
+    <button id="search-btn" class="search-btn">Search</button>
+</div>
 
-    <div class="container" id="posts-container">
-        <!-- Posts will be loaded here -->
-    </div>
+<!-- Replace the script section (lines 68-134) with proper event delegation -->
+<script>
+    function escapeHtml(text) {
+        const map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;'
+        };
+        return text.replace(/[&<>"']/g, m => map[m]);
+    }
 
+    function trackEvent(eventName, params) {
+        if (typeof gtag === 'function') {
+            gtag('event', eventName, params);
+        }
+    }
+
+    async function fetchPublicPosts(query = '') {
+        try {
+            const url = query 
+                ? `https://premium-backend-8plp.onrender.com/content/public?q=${encodeURIComponent(query)}`
+                : 'https://premium-backend-8plp.onrender.com/content/public';
+            
+            const response = await fetch(url, { 
+                signal: AbortSignal.timeout(10000) // 10s timeout
+            });
+            
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            
+            const posts = await response.json();
+            const container = document.getElementById('posts-container');
+            container.innerHTML = '';
+
+            if (!Array.isArray(posts) || posts.length === 0) {
+                container.innerHTML = '<p>No posts found matching your search.</p>';
+                return;
+            }
+
+            posts.forEach(post => {
+                const card = document.createElement('div');
+                card.className = 'post-card';
+
+                let displayImage = '';
+                if (post.contenttype === 'book') {
+                    displayImage = post.book_cover_url || post.image_url;
+                } else {
+                    displayImage = post.image_url;
+                }
+
+                if (displayImage) {
+                    const img = document.createElement('img');
+                    img.src = displayImage;
+                    img.alt = escapeHtml(post.title);
+                    img.style.cssText = 'width:100%; max-height:300px; object-fit:cover; border-radius:4px; margin-bottom:15px;';
+                    img.onerror = function() { this.style.display = 'none'; };
+                    card.appendChild(img);
+                }
+
+                const badge = document.createElement('span');
+                badge.className = `badge badge-${post.contenttype}`;
+                badge.textContent = post.contenttype;
+                card.appendChild(badge);
+
+                const title = document.createElement('h2');
+                title.textContent = post.title;
+                card.appendChild(title);
+
+                const meta = document.createElement('div');
+                meta.className = 'post-meta';
+                meta.textContent = `By ${escapeHtml(post.writer)} | ${new Date(post.createdat).toLocaleDateString()}`;
+                card.appendChild(meta);
+
+                const tagsDiv = document.createElement('div');
+                tagsDiv.className = 'post-tags';
+                if (post.tags && Array.isArray(post.tags)) {
+                    post.tags.forEach(tag => {
+                        const tagSpan = document.createElement('span');
+                        tagSpan.className = 'tag';
+                        tagSpan.textContent = `#${escapeHtml(tag)}`;
+                        tagsDiv.appendChild(tagSpan);
+                    });
+                }
+                card.appendChild(tagsDiv);
+
+                const link = document.createElement('a');
+                link.href = `post.html?id=${encodeURIComponent(post.id)}`;
+                link.className = 'read-more';
+                link.textContent = 'Read Full Post';
+                link.addEventListener('click', () => {
+                    trackEvent('view_post', { 
+                        post_title: post.title, 
+                        post_id: post.id 
+                    });
+                });
+                card.appendChild(link);
+
+                container.appendChild(card);
+            });
+        } catch (err) {
+            console.error("Error fetching posts:", err);
+            document.getElementById('posts-container').innerHTML = 
+                '<p>Error loading content. Please try again later.</p>';
+        }
+    }
+
+    function handleSearch() {
+        const query = document.getElementById('search-input').value.trim();
+        fetchPublicPosts(query);
+    }
+
+    // Event listeners
+    document.getElementById('search-btn').addEventListener('click', handleSearch);
+    document.getElementById('search-input').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleSearch();
+    });
+
+    fetchPublicPosts();
+</script>
+    
     <script>
         function trackEvent(eventName, params) {
             if (typeof gtag === 'function') {
