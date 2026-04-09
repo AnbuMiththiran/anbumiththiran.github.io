@@ -3,77 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Modern Website</title>
-    <link rel="stylesheet" href="styles.css">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GOOGLE_ANALYTICS_ID"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'YOUR_GOOGLE_ANALYTICS_ID');
-    </script>
+    <!-- Google tag -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-9RLGNJL2ZQ');
+</script>
+    <title>Anbudan Miththiran - Articles, Poems, Stories</title>
+    <meta name="description" content="Anbudan Miththiran - A collection of Tamil articles, poems, stories, and books. Explore the world of Tamil literature.">
+    <meta name="keywords" content="Tamil, Poems, Stories, Articles, Anbudan Miththiran, Tamil Literature">
+    <meta property="og:title" content="Anbudan Miththiran - Articles, Poems, Stories">
+    <meta property="og:description" content="Explore Tamil articles, poems, and stories by Anbudan Miththiran.">
+    <meta property="og:image" content="logo.jpg">
+    <meta property="og:type" content="website">
+    <style>
+        body { background: linear-gradient(135deg, #fff4e6, #ffd8a8, #ffb703); min-height: 100vh; margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .search-container { max-width: 1000px; margin: 20px auto; padding: 0 20px; display: flex; gap: 10px; }
+        .search-input { flex: 1; padding: 12px; border: 2px solid #ffb703; border-radius: 8px; font-size: 16px; outline: none; }
+        .search-btn { padding: 12px 24px; background: #2c3e50; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        .search-btn:hover { background: #34495e; }
+        header { background-color: #ffb703; color: #2c3e50; padding: 1.5rem; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        nav { background-color: #2c3e50; padding: 0.7rem; text-align: center; }
+        nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; }
+        nav a:hover { color: #3498db; }
+        .container { max-width: 1000px; margin: 20px auto; padding: 0 20px; }
+        .post-card { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .post-card h2 { margin-top: 0; color: #2c3e50; }
+        .post-meta { font-size: 0.9rem; color: #7f8c8d; margin-bottom: 10px; }
+        .post-tags { margin-top: 10px; }
+        .tag { background: #ecf0f1; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-right: 5px; color: #7f8c8d; }
+        .read-more { display: inline-block; margin-top: 15px; color: #3498db; text-decoration: none; font-weight: bold; }
+        .read-more:hover { text-decoration: underline; }
+        .badge { padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; text-transform: uppercase; }
+        .badge-article { background-color: #e3f2fd; color: #0d47a1; }
+        .badge-poem { background-color: #f3e5f5; color: #4a148c; }
+        .badge-story { background-color: #e8f5e9; color: #1b5e20; }
+    </style>
 </head>
-<body>
-    <header>
-        <h1>Welcome to My Modern Website</h1>
-    </header>
-    <main>
-        <div class="posts-grid">
-            <!-- Posts will be dynamically injected here -->
-        </div>
-        <div class="search-container">
-            <input type="text" placeholder="Search..." aria-label="Search">
-            <button aria-label="Search"><i class="search-icon"></i></button>
-        </div>
-    </main>
-    <footer>
-        <p>&copy; 2026 My Modern Website</p>
-    </footer>
-    <script src="scripts.js"></script>
-</body>
-</html>
-
-<style>
-body {
-    background-color: #121212;
-    color: #ffffff;
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-}
-header, footer {
-    text-align: center;
-    padding: 20px;
-}
-.posts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-}
-.search-container {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-}
-input[type="text"] {
-    padding: 10px;
-    border: none;
-    border-radius: 25px;
-    margin-right: 10px;
-}
-button {
-    background-color: #6200ea;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    padding: 10px;
-    cursor: pointer;
-}
-button:hover { /* Smooth animation */
-    transform: scale(1.1);
-}
-</style>
-
 <body>
     <header>
         <h1>Anbudan Miththiran</h1>
@@ -88,37 +56,16 @@ button:hover { /* Smooth animation */
         <a href="books.html">Books</a>
     </nav>
 
-    <main>
-        <div class="search-container">
-            <input 
-                type="text" 
-                id="search-input" 
-                class="search-input" 
-                placeholder="தேடுக... (Search in Tamil or English)"
-                aria-label="Search posts"
-            >
-            <button id="search-btn" class="search-btn">Search</button>
-        </div>
+    <div class="search-container">
+        <input type="text" id="search-input" class="search-input" placeholder="தேடுக... (Search in Tamil or English)">
+        <button onclick="handleSearch()" class="search-btn">Search</button>
+    </div>
 
-        <div id="posts-container"></div>
-    </main>
-
-    <footer style="text-align: center; padding: 20px; margin-top: 40px; border-top: 1px solid rgba(0,0,0,0.1); color: #2c3e50; font-weight: bold;">
-        &copy; 2026 Anbudan Miththiran
-    </footer>
+    <div class="container" id="posts-container">
+        <!-- Posts will be loaded here -->
+    </div>
 
     <script>
-        function escapeHtml(text) {
-            const map = {
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#039;'
-            };
-            return text.replace(/[&<>"']/g, m => map[m]);
-        }
-
         function trackEvent(eventName, params) {
             if (typeof gtag === 'function') {
                 gtag('event', eventName, params);
@@ -131,17 +78,12 @@ button:hover { /* Smooth animation */
                     ? `https://premium-backend-8plp.onrender.com/content/public?q=${encodeURIComponent(query)}`
                     : 'https://premium-backend-8plp.onrender.com/content/public';
                 
-                const response = await fetch(url, { 
-                    signal: AbortSignal.timeout(10000) // 10s timeout
-                });
-                
-                if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                
+                const response = await fetch(url);
                 const posts = await response.json();
                 const container = document.getElementById('posts-container');
                 container.innerHTML = '';
 
-                if (!Array.isArray(posts) || posts.length === 0) {
+                if (posts.length === 0) {
                     container.innerHTML = '<p>No posts found matching your search.</p>';
                     return;
                 }
@@ -150,6 +92,7 @@ button:hover { /* Smooth animation */
                     const card = document.createElement('div');
                     card.className = 'post-card';
 
+                    // Use book_cover_url for books, image_url for others
                     let displayImage = '';
                     if (post.contenttype === 'book') {
                         displayImage = post.book_cover_url || post.image_url;
@@ -157,75 +100,43 @@ button:hover { /* Smooth animation */
                         displayImage = post.image_url;
                     }
 
-                    if (displayImage) {
-                        const img = document.createElement('img');
-                        img.src = displayImage;
-                        img.alt = escapeHtml(post.title);
-                        img.style.cssText = 'width:100%; max-height:300px; object-fit:cover; border-radius:4px; margin-bottom:15px;';
-                        img.onerror = function() { this.style.display = 'none'; };
-                        card.appendChild(img);
-                    }
+                    const imageHtml = displayImage 
+                        ? `<img src="${displayImage}" style="width:100%; max-height:300px; object-fit:cover; border-radius:4px; margin-bottom:15px;" alt="${post.title}" onerror="this.style.display='none'">`
+                        : '';
 
-                    const badge = document.createElement('span');
-                    badge.className = `badge badge-${post.contenttype}`;
-                    badge.textContent = post.contenttype;
-                    card.appendChild(badge);
-
-                    const title = document.createElement('h2');
-                    title.textContent = post.title;
-                    card.appendChild(title);
-
-                    const meta = document.createElement('div');
-                    meta.className = 'post-meta';
-                    meta.textContent = `By ${escapeHtml(post.writer)} | ${new Date(post.createdat).toLocaleDateString()}`;
-                    card.appendChild(meta);
-
-                    const tagsDiv = document.createElement('div');
-                    tagsDiv.className = 'post-tags';
-                    if (post.tags && Array.isArray(post.tags)) {
-                        post.tags.forEach(tag => {
-                            const tagSpan = document.createElement('span');
-                            tagSpan.className = 'tag';
-                            tagSpan.textContent = `#${escapeHtml(tag)}`;
-                            tagsDiv.appendChild(tagSpan);
-                        });
-                    }
-                    card.appendChild(tagsDiv);
-
-                    const link = document.createElement('a');
-                    link.href = `post.html?id=${encodeURIComponent(post.id)}`;
-                    link.className = 'read-more';
-                    link.textContent = 'Read Full Post';
-                    link.addEventListener('click', () => {
-                        trackEvent('view_post', { 
-                            post_title: post.title, 
-                            post_id: post.id 
-                        });
-                    });
-                    card.appendChild(link);
-
+                    card.innerHTML = `
+                        ${imageHtml}
+                        <span class="badge badge-${post.contenttype}">${post.contenttype}</span>
+                        <h2>${post.title}</h2>
+                        <div class="post-meta">By ${post.writer} | ${new Date(post.createdat).toLocaleDateString()}</div>
+                        <div class="post-tags">
+                            ${post.tags ? post.tags.map(tag => `<span class="tag">#${tag}</span>`).join('') : ''}
+                        </div>
+                        <a href="post.html?id=${post.id}" class="read-more" onclick="trackEvent('view_post', { post_title: '${post.title.replace(/'/g, "\\'")}', post_id: '${post.id}' })">Read Full Post →</a>
+                    `;
                     container.appendChild(card);
                 });
             } catch (err) {
                 console.error("Error fetching posts:", err);
-                document.getElementById('posts-container').innerHTML = 
-                    '<p>Error loading content. Please try again later.</p>';
+                document.getElementById('posts-container').innerHTML = '<p>Error loading content. Please try again later.</p>';
             }
         }
 
         function handleSearch() {
-            const query = document.getElementById('search-input').value.trim();
+            const query = document.getElementById('search-input').value;
             fetchPublicPosts(query);
         }
 
-        // Event listeners
-        document.getElementById('search-btn').addEventListener('click', handleSearch);
         document.getElementById('search-input').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') handleSearch();
         });
 
-        // Load posts on page load
         fetchPublicPosts();
     </script>
+
+    <footer style="text-align: center; padding: 20px; margin-top: 40px; border-top: 1px solid rgba(0,0,0,0.1); color: #2c3e50; font-weight: bold;">
+        &copy; 2026 Anbudan Miththiran
+    </footer>
+
 </body>
 </html>
