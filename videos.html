@@ -3,280 +3,383 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Google tag -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-9RLGNJL2ZQ');
-</script>
-    <title>Videos - Anbudan Miththiran</title>
+    <meta name="description" content="Watch videos by Anbudan Miththiran - Tamil content creator exploring literature, spirituality, and philosophy.">
+    <meta name="keywords" content="Tamil videos, YouTube, Anbudan Miththiran, Tamil literature">
+    <meta property="og:title" content="Videos | Anbudan Miththiran">
+    <meta property="og:description" content="Explore video content by Anbudan Miththiran on YouTube.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#b45309">
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' fill='%23b45309'>📺</text></svg>">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'tamil': ['Noto Sans Tamil', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'amber-custom': '#b45309',
+                        'slate-custom': '#2c3e50',
+                        'cream': '#fffaf3',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-9RLGNJL2ZQ');
+    </script>
+    
+    <title>Videos | Anbudan Miththiran</title>
+    
     <style>
-      /* Base Styles */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5e6d3 0%, #f9d5a7 100%);
-            margin: 0;
-            padding: 0;
-            color: #333;
-            min-height: 100vh;
+        html { scroll-behavior: smooth; }
+        .dark { color-scheme: dark; }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        header { background-color: #ffb703; color: #2c3e50; padding: 1.5rem; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        nav { background-color: #2c3e50; padding: 0.7rem; text-align: center; }
-        nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; }
-        nav a:hover { color: #ffb703; }
-         /* Header */
-        .header {
-            text-align: center;
-            padding: 60px 20px 40px;
+        
+        .dark .glass {
+            background: rgba(30, 27, 75, 0.4);
+            border: 1px solid rgba(139, 92, 246, 0.2);
         }
-        .header h1 {
-            font-size: 2.5em;
-            color: #5d4037;
-            margin-bottom: 10px;
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #b45309 0%, #ffb703 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .header p {
-            font-size: 1.1em;
-            color: #795548;
+        
+        .dark .gradient-text {
+            background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-
-        /* Content Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px 60px;
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        /* Section Titles */
-        .section-title {
-            margin: 50px 0 30px;
-            font-size: 2em;
-            color: #5d4037;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .section-title::after {
-            content: "";
-            flex: 1;
-            height: 2px;
-            background: #d7ccc8;
-        }
-
-        /* Grids */
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
-        }
-        .shorts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        /* Cards */
-        .card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-        .card:hover {
+        
+        .card-hover:hover {
             transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+            box-shadow: 0 20px 40px rgba(180, 83, 9, 0.15);
         }
-        .card iframe {
+        
+        .dark .card-hover:hover {
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.25);
+        }
+        
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        .dark .skeleton {
+            background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: currentColor;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+        }
+        
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .masonry-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .video-container {
+            position: relative;
             width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             border: none;
         }
-        .video-card iframe {
-            aspect-ratio: 16 / 9;
+        
+        *:focus-visible {
+            outline: 2px solid #b45309;
+            outline-offset: 2px;
         }
-        .shorts-card iframe {
-            aspect-ratio: 9 / 16;
-        }
-
-        .card-info {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .card-info h3 {
-            margin: 0 0 12px;
-            font-size: 1.1em;
-            line-height: 1.5;
-            color: #3e2723;
-            height: 3em;
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-        }
-        .card-info .meta {
-            font-size: 0.85em;
-            color: #8d6e63;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* Loading & Errors */
-        .status-msg {
-            text-align: center;
-            padding: 60px;
-            font-size: 1.2em;
-            color: #795548;
-            grid-column: 1 / -1;
-        }
-        .loader {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #8d6e63;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-         /* Responsive */
-        @media (max-width: 768px) {
-            .header h1 { font-size: 2em; }
-            .section-title { font-size: 1.6em; }
-            .video-grid { grid-template-columns: 1fr; }
+        
+        .dark *:focus-visible {
+            outline: 2px solid #a78bfa;
         }
     </style>
 </head>
-<body>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="category.html?type=article">Articles</a>
-        <a href="category.html?type=poem">Poems</a>
-        <a href="category.html?type=story">Stories</a>
-        <a href="videos.html">Videos</a>
-        <a href="podcast.html">Podcast</a>
-        <a href="books.html">Books</a>
-    </nav>
-    <header class="header">
-    <h1>📺 Anbudan Miththiran Works</h1>
-    <p>Latest updates from where Love & Wisdom find words</p>
-</header>
-
-<main class="container">
-    <h2 class="section-title">Latest Videos</h2>
-    <div id="videos-container" class="video-grid">
-        <div class="status-msg">
-            <div class="loader"></div>
-            Fetching latest videos...
-        </div>
-    </div>
-
-    <h2 class="section-title">Latest Shorts</h2>
-    <div id="shorts-container" class="shorts-grid">
-        <div class="status-msg">
-            <div class="loader"></div>
-            Fetching latest shorts...
-        </div>
-    </div>
-</main>
-  <script>
-    const CHANNEL_ID = 'UCF4J9RTNoyk0zKYeJ87tslQ';
-    const RSS_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
+<body class="bg-cream text-slate-custom font-inter" x-data="{ darkMode: localStorage.getItem('darkMode') === 'true', mobileMenuOpen: false, videos: [], loading: true }" :class="{ 'dark': darkMode }" @keydown.escape="mobileMenuOpen = false">
     
-    // Using codetabs as a reliable CORS proxy
-    const PROXY_URL = 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(RSS_URL);
-
-    async function loadYouTubeContent() {
-        const videosContainer = document.getElementById('videos-container');
-        const shortsContainer = document.getElementById('shorts-container');
-
-        try {
-            const response = await fetch(PROXY_URL);
-            if (!response.ok) throw new Error('Network response was not ok');
-            
-            const xmlText = await response.text();
-            const parser = new DOMParser();
-            const xmlDoc = parser.parseFromString(xmlText, "text/xml");
-            const entries = xmlDoc.getElementsByTagName("entry");
-
-            if (entries.length === 0) {
-                videosContainer.innerHTML = '<div class="status-msg">No videos found.</div>';
-                shortsContainer.innerHTML = '<div class="status-msg">No shorts found.</div>';
-                return;
-            }
-
-            videosContainer.innerHTML = '';
-            shortsContainer.innerHTML = '';
-
-            let videoCount = 0;
-            let shortsCount = 0;
-
-            for (let i = 0; i < entries.length; i++) {
-                const entry = entries[i];
-                const title = entry.getElementsByTagName("title")[0].textContent;
-                const videoId = entry.getElementsByTagName("yt:videoId")[0].textContent;
-                const link = entry.getElementsByTagName("link")[0].getAttribute("href");
-                const published = new Date(entry.getElementsByTagName("published")[0].textContent).toLocaleDateString(undefined, {
-                    year: 'numeric', month: 'long', day: 'numeric'
-                });
-
-                // Logic to distinguish between regular videos and shorts
-                const isShort = link.includes('/shorts/') || 
-                                title.toLowerCase().includes('#shorts') || 
-                                title.toLowerCase().includes('#short');
-
-                if (isShort && shortsCount < 8) {
-                    shortsContainer.appendChild(createCard(videoId, title, published, true));
-                    shortsCount++;
-                } else if (!isShort && videoCount < 6) {
-                    videosContainer.appendChild(createCard(videoId, title, published, false));
-                    videoCount++;
-                }
-            }
-
-            if (videoCount === 0) videosContainer.innerHTML = '<div class="status-msg">No recent videos found.</div>';
-            if (shortsCount === 0) shortsContainer.innerHTML = '<div class="status-msg">No recent shorts found.</div>';
-
-        } catch (error) {
-            console.error('Error:', error);
-            const errorMsg = '<div class="status-msg">Unable to load content. Please check back later.</div>';
-            videosContainer.innerHTML = errorMsg;
-            shortsContainer.innerHTML = errorMsg;
-        }
-    }
-
-    function createCard(videoId, title, date, isShort) {
-        const card = document.createElement('div');
-        card.className = `card ${isShort ? 'shorts-card' : 'video-card'}`;
-        
-        const embedUrl = `https://www.youtube.com/embed/${videoId}`;
-        
-        card.innerHTML = `
-            <iframe src="${embedUrl}" allowfullscreen loading="lazy"></iframe>
-            <div class="card-info">
-                <h3>${title}</h3>
-                <div class="meta">
-                    <span>${date}</span>
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white dark:bg-slate-950 shadow-sm dark:shadow-lg transition-colors duration-300" role="navigation" aria-label="Main navigation">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex items-center gap-2 font-bold text-xl gradient-text hover:opacity-80 transition-opacity" aria-label="Anbudan Miththiran Home">
+                    <span class="text-2xl">📚</span>
+                    <span class="hidden sm:inline">Anbudan</span>
+                </a>
+                
+                <div class="hidden md:flex gap-8 items-center">
+                    <a href="index.html" class="text-sm font-medium hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Home</a>
+                    <a href="category.html?type=article" class="text-sm font-medium hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Articles</a>
+                    <a href="category.html?type=poem" class="text-sm font-medium hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Poems</a>
+                    <a href="category.html?type=story" class="text-sm font-medium hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Stories</a>
+                    <a href="videos.html" class="text-sm font-medium text-amber-custom dark:text-purple-400 font-bold">Videos</a>
+                    <a href="podcast.html" class="text-sm font-medium hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Podcast</a>
+                    <a href="books.html" class="text-sm font-medium hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Books</a>
+                    
+                    <button @click="darkMode = !darkMode; localStorage.setItem('darkMode', darkMode)" 
+                            class="p-2 rounded-lg bg-gray-100 dark:bg-slate-800 hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors"
+                            :aria-label="darkMode ? 'Switch to light mode' : 'Switch to dark mode'"
+                            role="switch"
+                            :aria-checked="darkMode">
+                        <span x-show="!darkMode" class="text-xl">🌙</span>
+                        <span x-show="darkMode" class="text-xl">☀️</span>
+                    </button>
+                </div>
+                
+                <div class="md:hidden flex items-center gap-3">
+                    <button @click="darkMode = !darkMode; localStorage.setItem('darkMode', darkMode)" 
+                            class="p-2 rounded-lg bg-gray-100 dark:bg-slate-800"
+                            :aria-label="darkMode ? 'Switch to light mode' : 'Switch to dark mode'"
+                            role="switch"
+                            :aria-checked="darkMode">
+                        <span x-show="!darkMode" class="text-lg">🌙</span>
+                        <span x-show="darkMode" class="text-lg">☀️</span>
+                    </button>
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" 
+                            class="hamburger text-slate-custom dark:text-white"
+                            :aria-expanded="mobileMenuOpen"
+                            aria-controls="mobile-menu"
+                            aria-label="Toggle menu">
+                        <span :class="{ 'rotate-45 translate-y-2': mobileMenuOpen }"></span>
+                        <span :class="{ 'opacity-0': mobileMenuOpen }"></span>
+                        <span :class="{ '-rotate-45 -translate-y-2': mobileMenuOpen }"></span>
+                    </button>
                 </div>
             </div>
-        `;
-        return card;
-    }
-
-    // Initialize
-    document.addEventListener('DOMContentLoaded', loadYouTubeContent);
-</script>
-    <footer style="text-align: center; padding: 20px; margin-top: 40px; border-top: 1px solid rgba(0,0,0,0.1); color: #2c3e50; font-weight: bold;">
-        &copy; 2026 Anbudan Miththiran
+            
+            <div id="mobile-menu" x-show="mobileMenuOpen" @click.away="mobileMenuOpen = false" 
+                 class="md:hidden pb-4 space-y-2 animate-in fade-in duration-200">
+                <a href="index.html" class="block px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors" @click="mobileMenuOpen = false">Home</a>
+                <a href="category.html?type=article" class="block px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors" @click="mobileMenuOpen = false">Articles</a>
+                <a href="category.html?type=poem" class="block px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors" @click="mobileMenuOpen = false">Poems</a>
+                <a href="category.html?type=story" class="block px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors" @click="mobileMenuOpen = false">Stories</a>
+                <a href="videos.html" class="block px-4 py-2 rounded-lg bg-amber-50 dark:bg-slate-700 transition-colors" @click="mobileMenuOpen = false">Videos</a>
+                <a href="podcast.html" class="block px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors" @click="mobileMenuOpen = false">Podcast</a>
+                <a href="books.html" class="block px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors" @click="mobileMenuOpen = false">Books</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-red-50 to-pink-50 dark:from-slate-800 dark:to-purple-900 transition-colors duration-300 px-4 sm:px-6 lg:px-8 py-16 relative overflow-hidden">
+        <div class="absolute top-10 left-10 w-72 h-72 bg-red-200 dark:bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
+        <div class="absolute bottom-10 right-10 w-72 h-72 bg-pink-200 dark:bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style="animation-delay: 2s;"></div>
+        
+        <div class="max-w-6xl mx-auto relative z-10 text-center">
+            <h1 class="text-4xl sm:text-5xl font-bold gradient-text mb-4">📺 Video Content</h1>
+            <p class="text-lg text-slate-custom dark:text-gray-300 max-w-2xl mx-auto">
+                Explore video content from Anbudan Miththiran's YouTube channel. Subscribe for more Tamil literature, philosophy, and storytelling.
+            </p>
+        </div>
+    </section>
+    
+    <!-- Subscribe Section -->
+    <section class="bg-white dark:bg-slate-900 px-4 sm:px-6 lg:px-8 py-12 border-b border-gray-200 dark:border-slate-700">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-2xl font-bold text-slate-custom dark:text-white mb-6">Subscribe on YouTube</h2>
+            <a href="https://www.youtube.com/@anbumiththiran" target="_blank" rel="noopener noreferrer"
+               class="inline-block px-8 py-3 bg-red-600 text-white rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition-all">
+                📺 Subscribe Now
+            </a>
+        </div>
+    </section>
+    
+    <!-- Main Content -->
+    <main class="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold gradient-text mb-12 text-center">Latest Videos</h2>
+            
+            <!-- Videos Grid -->
+            <div x-show="loading" class="masonry-grid">
+                <div class="skeleton rounded-xl h-64"></div>
+                <div class="skeleton rounded-xl h-64"></div>
+                <div class="skeleton rounded-xl h-64"></div>
+            </div>
+            
+            <div x-show="!loading && videos.length > 0" class="masonry-grid">
+                <template x-for="video in videos" :key="video.videoId">
+                    <div class="glass rounded-xl overflow-hidden card-hover">
+                        <!-- Video Thumbnail -->
+                        <div class="video-container">
+                            <iframe :src="'https://www.youtube.com/embed/' + video.videoId" 
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        
+                        <!-- Video Info -->
+                        <div class="p-6">
+                            <h3 class="font-bold text-lg text-slate-custom dark:text-white mb-2 line-clamp-2" x-text="video.title"></h3>
+                            <p class="text-sm text-slate-custom dark:text-gray-400 mb-4" x-text="video.published ? new Date(video.published).toLocaleDateString() : ''"></p>
+                            <p class="text-sm text-slate-custom dark:text-gray-300 line-clamp-3" x-text="video.description"></p>
+                        </div>
+                    </div>
+                </template>
+            </div>
+            
+            <!-- No Videos Found -->
+            <div x-show="!loading && videos.length === 0" class="text-center py-20">
+                <p class="text-xl text-slate-custom dark:text-gray-300 mb-4">No videos available at the moment.</p>
+                <a href="https://www.youtube.com/@anbumiththiran" target="_blank" rel="noopener noreferrer"
+                   class="inline-block px-6 py-2 bg-red-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all">
+                    Visit YouTube Channel
+                </a>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-slate-custom dark:bg-slate-950 text-white py-8 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Anbudan Miththiran</h3>
+                    <p class="text-sm text-gray-300">Tamil writer, podcaster, and storyteller exploring love, wisdom, and transformation.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="category.html?type=article" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Articles</a></li>
+                        <li><a href="category.html?type=poem" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Poems</a></li>
+                        <li><a href="category.html?type=story" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Stories</a></li>
+                        <li><a href="books.html" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Books</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="mailto:miththiran@yandex.com" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Email</a></li>
+                        <li><a href="podcast.html" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Podcast</a></li>
+                        <li><a href="https://www.youtube.com/@anbumiththiran" target="_blank" rel="noopener noreferrer" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8 text-center text-sm text-gray-400">
+                <p>&copy; 2026 Anbudan Miththiran. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
+    
+    <script>
+        async function loadVideos() {
+            const rootEl = document.querySelector('[x-data]');
+            rootEl.loading = true;
+            try {
+                const channelId = 'UCF4J9RTNoyk0zKYeJ87tslQ';
+                const response = await fetch(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`);
+                const text = await response.text();
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(text, 'text/xml');
+                
+                const entries = xmlDoc.querySelectorAll('entry');
+                const videos = [];
+                
+                entries.forEach(entry => {
+                    const videoId = entry.querySelector('yt\\:videoId')?.textContent || 
+                                   entry.querySelector('videoId')?.textContent;
+                    const title = entry.querySelector('title')?.textContent;
+                    const description = entry.querySelector('summary')?.textContent;
+                    const published = entry.querySelector('published')?.textContent;
+                    
+                    if (videoId && title) {
+                        videos.push({ videoId, title, description, published });
+                    }
+                });
+                
+                rootEl.videos = videos.slice(0, 12);
+            } catch (error) {
+                console.error('Error loading videos:', error);
+                rootEl.videos = [];
+            } finally {
+                rootEl.loading = false;
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            loadVideos();
+        });
+    </script>
 </body>
 </html>
