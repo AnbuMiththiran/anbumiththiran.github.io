@@ -3,281 +3,367 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Google tag -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-9RLGNJL2ZQ');
-</script>
-    <title>Podcast - Anbudan Miththiran</title>
+    <meta name="description" content="Listen to Anbudan Miththiran's podcast - Tamil podcast exploring philosophy, society, and self-awakening.">
+    <meta name="keywords" content="Tamil podcast, philosophy, spirituality, Anbudan Miththiran">
+    <meta property="og:title" content="Podcast | Anbudan Miththiran">
+    <meta property="og:description" content="Explore Tamil podcast episodes by Anbudan Miththiran.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#b45309">
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' fill='%23b45309'>🎙️</text></svg>">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'tamil': ['Noto Sans Tamil', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'amber-custom': '#b45309',
+                        'slate-custom': '#2c3e50',
+                        'cream': '#fffaf3',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-9RLGNJL2ZQ');
+    </script>
+    
+    <title>Podcast | Anbudan Miththiran</title>
+    
     <style>
-       /* ======================
-GLOBAL
-====================== */
-
-body{
-margin:0;
-font-family:Arial,sans-serif;
-background:linear-gradient(135deg,#fff4e6,#ffd8a8,#ffb703);
-color:#3a2c1a;
-line-height:1.6;
-}
-        header { background-color: #ffb703; color: #2c3e50; padding: 1.5rem; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        nav { background-color: #2c3e50; padding: 0.7rem; text-align: center; }
-        nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; }
-        nav a:hover { color: #ffb703; }
-        /* ======================
-HERO
-====================== */
-
-.hero{
-text-align:center;
-padding:60px 20px;
-background:white;
-box-shadow:0 3px 12px rgba(0,0,0,.08);
-}
-
-.hero h1{
-font-size:clamp(1.8rem,4vw,2.6rem);
-margin-bottom:10px;
-}
-
-.hero p{
-max-width:650px;
-margin:auto;
-opacity:.8;
-font-size:clamp(.9rem,2vw,1.1rem);
-}
-
-/* ======================
-SECTION TITLE
-====================== */
-
-.section-title{
-text-align:center;
-margin:45px 0 25px;
-font-size:clamp(1.2rem,3vw,1.6rem);
-}
-
-/* ======================
-FEATURED
-====================== */
-
-.featured-card{
-max-width:750px;
-margin:auto;
-background:white;
-padding:20px;
-border-radius:18px;
-box-shadow:0 10px 25px rgba(0,0,0,.12);
-}
-
-.featured-card img{
-width:100%;
-border-radius:12px;
-}
-
-audio{
-width:100%;
-margin-top:12px;
-}
-
-/* ======================
-EPISODE GRID
-====================== */
-
-.container{
-display:grid;
-grid-template-columns:
-repeat(auto-fit,minmax(260px,1fr));
-gap:22px;
-padding:20px;
-max-width:1200px;
-margin:auto;
-}
-
-.card{
-background:white;
-padding:15px;
-border-radius:15px;
-box-shadow:0 6px 18px rgba(0,0,0,.1);
-transition:.3s;
-}
-
-.card:hover{
-transform:translateY(-6px);
-}
-
-.card img{
-width:100%;
-border-radius:10px;
-}
-
-.card h3{
-font-size:1rem;
-margin:10px 0;
-}
-
-/* ======================
-LISTEN BUTTON
-====================== */
-
-.listen-section{
-text-align:center;
-margin:50px 0 70px;
-}
-
-.listen-btn{
-display:inline-block;
-padding:15px 32px;
-background:#1DB954;
-color:white;
-border-radius:40px;
-text-decoration:none;
-font-weight:bold;
-transition:.3s;
-box-shadow:0 5px 20px rgba(29,185,84,.4);
-}
-
-.listen-btn:hover{
-background:#169944;
-transform:scale(1.05);
-}
-
-/* ======================
-FOOTER
-====================== */
-
-footer{
-text-align:center;
-padding:25px;
-background:white;
-font-size:.9rem;
-}
-
-/* ======================
-MOBILE OPTIMIZATION
-====================== */
-
-@media(max-width:600px){
-
-.hero{
-padding:45px 15px;
-}
-
-.container{
-padding:15px;
-gap:18px;
-}
-
-.card{
-padding:12px;
-}
-
-}
+        html { scroll-behavior: smooth; }
+        .dark { color-scheme: dark; }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .dark .glass {
+            background: rgba(30, 27, 75, 0.4);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #b45309 0%, #ffb703 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .dark .gradient-text {
+            background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(180, 83, 9, 0.15);
+        }
+        
+        .dark .card-hover:hover {
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.25);
+        }
+        
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        .dark .skeleton {
+            background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: currentColor;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+        }
+        
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .masonry-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        audio {
+            width: 100%;
+            margin-top: 12px;
+        }
+        
+        *:focus-visible {
+            outline: 2px solid #b45309;
+            outline-offset: 2px;
+        }
+        
+        .dark *:focus-visible {
+            outline: 2px solid #a78bfa;
+        }
     </style>
 </head>
-<body>
-    <header>
-        <h1>Anbudan Miththiran - Podcast</h1>
-    </header>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="category.html?type=article">Articles</a>
-        <a href="category.html?type=poem">Poems</a>
-        <a href="category.html?type=story">Stories</a>
-        <a href="videos.html">Videos</a>
-        <a href="podcast.html">Podcast</a>
-        <a href="books.html">Books</a>
+<body class="bg-cream text-slate-custom font-inter" x-data="{ darkMode: localStorage.getItem('darkMode') === 'true', mobileMenuOpen: false, episodes: [], loading: true }" :class="{ 'dark': darkMode }" @keydown.escape="mobileMenuOpen = false">
+    
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white dark:bg-slate-950 shadow-sm dark:shadow-lg transition-colors duration-300" role="navigation" aria-label="Main navigation">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex items-center gap-2 font-bold text-xl gradient-text hover:opacity-80 transition-opacity" aria-label="Anbudan Miththiran Home">
+                    <span class="text-2xl">📚</span>
+                    <span class="hidden sm:inline">Anbudan</span>
+                </a>
+                
+                <div class="hidden md:flex gap-8 items-center">
+                    <a href="index.html" class="text-sm font-medium hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Home</a>
+                    <a href="category.html?type=article" class="text-sm font-medium hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Articles</a>
+                    <a href="category.html?type=poem" class="text-sm font-medium hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Poems</a>
+                    <a href="category.html?type=story" class="text-sm font-medium hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Stories</a>
+                    <a href="videos.html" class="text-sm font-medium hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Videos</a>
+                    <a href="podcast.html" class="text-sm font-medium text-amber-custom dark:text-purple-400 font-bold">Podcast</a>
+                    <a href="books.html" class="text-sm font-medium hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Books</a>
+                    
+                    <button @click="darkMode = !darkMode; localStorage.setItem('darkMode', darkMode)" 
+                            class="p-2 rounded-lg bg-gray-100 dark:bg-slate-800 hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors"
+                            :aria-label="darkMode ? 'Switch to light mode' : 'Switch to dark mode'"
+                            role="switch"
+                            :aria-checked="darkMode">
+                        <span x-show="!darkMode" class="text-xl">🌙</span>
+                        <span x-show="darkMode" class="text-xl">☀️</span>
+                    </button>
+                </div>
+                
+                <div class="md:hidden flex items-center gap-3">
+                    <button @click="darkMode = !darkMode; localStorage.setItem('darkMode', darkMode)" 
+                            class="p-2 rounded-lg bg-gray-100 dark:bg-slate-800"
+                            :aria-label="darkMode ? 'Switch to light mode' : 'Switch to dark mode'"
+                            role="switch"
+                            :aria-checked="darkMode">
+                        <span x-show="!darkMode" class="text-lg">🌙</span>
+                        <span x-show="darkMode" class="text-lg">☀️</span>
+                    </button>
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" 
+                            class="hamburger text-slate-custom dark:text-white"
+                            :aria-expanded="mobileMenuOpen"
+                            aria-controls="mobile-menu"
+                            aria-label="Toggle menu">
+                        <span :class="{ 'rotate-45 translate-y-2': mobileMenuOpen }"></span>
+                        <span :class="{ 'opacity-0': mobileMenuOpen }"></span>
+                        <span :class="{ '-rotate-45 -translate-y-2': mobileMenuOpen }"></span>
+                    </button>
+                </div>
+            </div>
+            
+            <div id="mobile-menu" x-show="mobileMenuOpen" @click.away="mobileMenuOpen = false" 
+                 class="md:hidden pb-4 space-y-2 animate-in fade-in duration-200">
+                <a href="index.html" class="block px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors" @click="mobileMenuOpen = false">Home</a>
+                <a href="category.html?type=article" class="block px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors" @click="mobileMenuOpen = false">Articles</a>
+                <a href="category.html?type=poem" class="block px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors" @click="mobileMenuOpen = false">Poems</a>
+                <a href="category.html?type=story" class="block px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors" @click="mobileMenuOpen = false">Stories</a>
+                <a href="videos.html" class="block px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors" @click="mobileMenuOpen = false">Videos</a>
+                <a href="podcast.html" class="block px-4 py-2 rounded-lg bg-amber-50 dark:bg-slate-700 transition-colors" @click="mobileMenuOpen = false">Podcast</a>
+                <a href="books.html" class="block px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors" @click="mobileMenuOpen = false">Books</a>
+            </div>
+        </div>
     </nav>
-    <div class="container" id="podcast-container">
-        <p>Loading podcasts...</p>
-    </div>
-
-   <!-- HERO -->
-<section class="hero">
-
-<h1>🎙 Anbudan Miththiran Works</h1>
-
-<p>
-Life • Philosophy • Society • Self Awakening  
-Tamil podcast exploring deeper human truths.
-</p>
-
-</section>
-
-<h2 class="section-title">🔥 Latest Episode</h2>
-<div id="featured-episode"></div>
-
-<h2 class="section-title">🎙 All Episodes</h2>
-<div class="container" id="podcast-list"></div>
-
-<div class="listen-section">
-<a href="https://open.spotify.com/show/5uMIWUWtjb0jkggHoEG6nl"
-target="_blank"
-class="listen-btn">
-🎧 Listen More Episodes
-</a>
-</div>
-
-<footer>
-© 2026 Anbudan Miththiran
-</footer>
-
-<script>
-
-/* LOAD LOCAL RSS JSON */
-fetch("podcast-data.json")
-.then(response => response.json())
-.then(data => {
-
-const container =
-document.getElementById("podcast-list");
-
-const featured =
-document.getElementById("featured-episode");
-
-/* FEATURED */
-const latest = data.items[0];
-
-featured.innerHTML = `
-<div class="featured-card">
-<img src="${latest.thumbnail || data.feed.image}">
-<h2>${latest.title}</h2>
-<audio controls>
-<source src="${latest.enclosure.link}" type="audio/mpeg">
-</audio>
-</div>
-`;
-
-/* EPISODES */
-data.items.slice(1,7).forEach(item => {
-
-const div=document.createElement("div");
-div.className="card";
-
-div.innerHTML=`
-<img src="${item.thumbnail || data.feed.image}">
-<h3>${item.title}</h3>
-<audio controls>
-<source src="${item.enclosure.link}" type="audio/mpeg">
-</audio>
-`;
-
-container.appendChild(div);
-
-});
-
-})
-.catch(error =>
-console.log("RSS Load Error:",error));
-
-</script>
-
-    <footer style="text-align: center; padding: 20px; margin-top: 40px; border-top: 1px solid rgba(0,0,0,0.1); color: #2c3e50; font-weight: bold;">
-        &copy; 2026 Anbudan Miththiran
+    
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-slate-800 dark:to-purple-900 transition-colors duration-300 px-4 sm:px-6 lg:px-8 py-16 relative overflow-hidden">
+        <div class="absolute top-10 left-10 w-72 h-72 bg-green-200 dark:bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
+        <div class="absolute bottom-10 right-10 w-72 h-72 bg-emerald-200 dark:bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style="animation-delay: 2s;"></div>
+        
+        <div class="max-w-6xl mx-auto relative z-10 text-center">
+            <h1 class="text-4xl sm:text-5xl font-bold gradient-text mb-4">🎙️ Anbudan Miththiran Works</h1>
+            <p class="text-lg text-slate-custom dark:text-gray-300 max-w-2xl mx-auto">
+                Life • Philosophy • Society • Self Awakening<br>
+                Tamil podcast exploring deeper human truths.
+            </p>
+        </div>
+    </section>
+    
+    <!-- Subscribe Section -->
+    <section class="bg-white dark:bg-slate-900 px-4 sm:px-6 lg:px-8 py-12 border-b border-gray-200 dark:border-slate-700">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-2xl font-bold text-slate-custom dark:text-white mb-6">Subscribe to the Podcast</h2>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://open.spotify.com/show/5uMIWUWtjb0jkggHoEG6nl" target="_blank" rel="noopener noreferrer"
+                   class="px-6 py-3 bg-green-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all">
+                    🎧 Spotify
+                </a>
+                <a href="https://podcasts.apple.com/podcast/" target="_blank" rel="noopener noreferrer"
+                   class="px-6 py-3 bg-gray-800 dark:bg-gray-700 text-white rounded-lg font-semibold hover:shadow-lg transition-all">
+                    🎵 Apple Podcasts
+                </a>
+                <a href="https://www.youtube.com/@anbumiththiran" target="_blank" rel="noopener noreferrer"
+                   class="px-6 py-3 bg-red-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all">
+                    📺 YouTube
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Main Content -->
+    <main class="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold gradient-text mb-12 text-center">🔥 Latest Episodes</h2>
+            
+            <!-- Episodes Grid -->
+            <div x-show="loading" class="masonry-grid">
+                <div class="skeleton rounded-xl h-96"></div>
+                <div class="skeleton rounded-xl h-96"></div>
+                <div class="skeleton rounded-xl h-96"></div>
+            </div>
+            
+            <div x-show="!loading && episodes.length > 0" class="masonry-grid">
+                <template x-for="episode in episodes" :key="episode.guid">
+                    <div class="glass rounded-xl overflow-hidden card-hover">
+                        <!-- Episode Thumbnail -->
+                        <div class="aspect-video bg-gradient-to-br from-gray-200 to-gray-300 dark:from-slate-700 dark:to-slate-600 flex items-center justify-center text-6xl overflow-hidden">
+                            <template x-if="episode.thumbnail">
+                                <img :src="episode.thumbnail" :alt="episode.title" class="w-full h-full object-cover">
+                            </template>
+                            <template x-if="!episode.thumbnail">
+                                <span>🎙️</span>
+                            </template>
+                        </div>
+                        
+                        <!-- Episode Info -->
+                        <div class="p-6">
+                            <h3 class="font-bold text-lg text-slate-custom dark:text-white mb-2 line-clamp-2" x-text="episode.title"></h3>
+                            <p class="text-sm text-slate-custom dark:text-gray-400 mb-4" x-text="episode.pubDate ? new Date(episode.pubDate).toLocaleDateString() : ''"></p>
+                            
+                            <!-- Audio Player -->
+                            <audio controls class="w-full mb-4">
+                                <source :src="episode.enclosure?.link" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                            
+                            <!-- Description -->
+                            <p class="text-sm text-slate-custom dark:text-gray-300 line-clamp-3 mb-4" x-text="episode.description?.replace(/<[^>]*>/g, '')"></p>
+                        </div>
+                    </div>
+                </template>
+            </div>
+            
+            <!-- No Episodes Found -->
+            <div x-show="!loading && episodes.length === 0" class="text-center py-20">
+                <p class="text-xl text-slate-custom dark:text-gray-300 mb-4">No episodes available at the moment.</p>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-slate-custom dark:bg-slate-950 text-white py-8 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Anbudan Miththiran</h3>
+                    <p class="text-sm text-gray-300">Tamil writer, podcaster, and storyteller exploring love, wisdom, and transformation.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="category.html?type=article" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Articles</a></li>
+                        <li><a href="category.html?type=poem" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Poems</a></li>
+                        <li><a href="category.html?type=story" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Stories</a></li>
+                        <li><a href="books.html" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Books</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="mailto:miththiran@yandex.com" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Email</a></li>
+                        <li><a href="podcast.html" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Podcast</a></li>
+                        <li><a href="videos.html" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Videos</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8 text-center text-sm text-gray-400">
+                <p>&copy; 2026 Anbudan Miththiran. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
+    
+    <script>
+        async function loadPodcasts() {
+            const rootEl = document.querySelector('[x-data]');
+            rootEl.loading = true;
+            try {
+                const response = await fetch('podcast-data.json');
+                const data = await response.json();
+                rootEl.episodes = data.items || [];
+            } catch (error) {
+                console.error('Error loading podcasts:', error);
+                rootEl.episodes = [];
+            } finally {
+                rootEl.loading = false;
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPodcasts();
+        });
+    </script>
 </body>
 </html>
