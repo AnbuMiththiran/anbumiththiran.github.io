@@ -1,191 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Google tag -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-9RLGNJL2ZQ');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9RLGNJL2ZQ');
+    </script>
 
-<link rel="icon" type="image/svg+xml" href="logo.jpg">
-    
-<title>About | Anbudan Miththiran</title>
+    <link rel="icon" type="image/svg+xml" href="logo.jpg">
+    <title>About | Anbudan Miththiran</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #2c3e50;
+            --accent-yellow: #ffb703;
+            --text-dark: #3a2c1a;
+            --bg-gradient: linear-gradient(135deg, #fff4e6, #ffd8a8, #ffb703);
+        }
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
 
-/* ===== BODY ===== */
-body{
-    min-height:100vh;
-    background:linear-gradient(135deg,#fff4e6,#ffd8a8,#ffb703);
-    color:#3a2c1a;
-}
+        body {
+            min-height: 100vh;
+            background: var(--bg-gradient);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+        }
 
-/* ===== NAV ===== */
-nav{
-    display:flex;
-    justify-content:flex-end;
-    gap:18px;
-    padding:18px 25px;
-}
+        /* --- Unified Navbar --- */
+        .navbar {
+            background: var(--primary-dark);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-brand {
+            color: var(--accent-yellow);
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+        .nav-links { display: flex; gap: 20px; flex-wrap: wrap; }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 5px 0;
+        }
+        .nav-links a:hover { color: var(--accent-yellow); }
 
-nav a{
-    text-decoration:none;
-    font-size:0.9rem;
-    color:#5a3a1a;
-    font-weight:500;
-}
+        /* --- Content Layout --- */
+        .about-section {
+            flex: 1;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+            width: 100%;
+        }
 
-nav a:hover{
-    text-decoration:underline;
-}
+        .about-section h1 {
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-dark);
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.4);
+        }
 
-/* ===== CONTENT ===== */
-.about{
-    max-width:900px;
-    margin:40px auto;
-    padding:0 20px;
-}
+        .about-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.6);
+        }
 
-.about h1{
-    font-size:2.4rem;
-    text-align:center;
-    margin-bottom:20px;
-}
+        .about-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary-dark);
+            border-bottom: 3px solid var(--accent-yellow);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
 
-.about-card{
-    background:#fff;
-    padding:28px;
-    border-radius:18px;
-    box-shadow:0 6px 18px rgba(0,0,0,0.12);
-}
+        .about-card p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            color: #4a4a4a;
+        }
+        
+        .about-card strong { color: var(--primary-dark); }
 
-.about-card h2{
-    font-size:1.4rem;
-    margin-bottom:12px;
-}
+        /* --- Books Grid UI --- */
+        .books-container { margin-top: 40px; }
+        .books-container h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-dark);
+        }
+        
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
 
-.about-card p{
-    line-height:1.7;
-    margin-bottom:15px;
-    font-size:0.95rem;
-}
+        .book-link {
+            background: #fff;
+            padding: 15px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #b45309;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 1px solid #ffe8cc;
+            transition: all 0.3s ease;
+        }
 
-/* ===== BOOKS ===== */
-.books{
-    margin-top:25px;
-}
+        .book-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            background: #fff7eb;
+            color: #d97706;
+        }
 
-.books h3{
-    margin-bottom:10px;
-}
+        .book-link::before { content: '📚'; font-size: 1.2rem; }
 
-.books ul{
-    list-style:none;
-}
+        footer {
+            background: var(--primary-dark);
+            color: #fff;
+            text-align: center;
+            padding: 25px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-top: 40px;
+        }
 
-.books li{
-    background:#fff7eb;
-    padding:10px 14px;
-    border-radius:10px;
-    margin-bottom:10px;
-}
-
-.books a{
-    text-decoration:none;
-    color:#b45309;
-    font-weight:500;
-}
-
-.books a:hover{
-    text-decoration:underline;
-}
-
-/* ===== FOOTER ===== */
-footer{
-    text-align:center;
-    padding:25px;
-    font-size:.8rem;
-    opacity:.7;
-}
-
-/* ===== MOBILE ===== */
-@media(max-width:600px){
-    nav{
-        justify-content:center;
-        flex-wrap:wrap;
-    }
-    .about h1{
-        font-size:2rem;
-    }
-}
-</style>
+        /* --- Mobile --- */
+        @media(max-width: 768px) {
+            .navbar { flex-direction: column; gap: 15px; padding: 15px; }
+            .nav-links { justify-content: center; gap: 15px; }
+            .about-section h1 { font-size: 2.2rem; }
+            .about-card { padding: 25px; }
+            .books-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
-
 <body>
 
-<nav>
-    <a href="index.html">Home</a>
-    <a href="podcast.html">Podcast</a>
-    <a href="videos.html">Videos</a>
-    <a href="writings/index.html">Writings</a>
-    <a href="about.html">About</a>
-</nav>
-
-<section class="about">
-    <h1>About Me</h1>
-
-    <div class="about-card">
-        <h2>## About Me</h2>
-
-        <p>
-            I am <strong>Anbudan Miththiran</strong> — a writer, thinker, podcaster, and storyteller.
-            A devotee of <strong>Lord Krishna</strong> and <strong>Lord Shiva</strong>, I walk the path
-            of wisdom, love, and social reform.
-        </p>
-
-        <p>
-            Born into an economically poorest family, my native village lies near
-            <strong>Puliangudi, Tamil Nadu</strong>. From childhood, my heart searched for the
-            purest form of love — a search that eventually shaped me into a writer.
-        </p>
-
-        <p>
-            I believe words can heal, awaken, and transform society.
-        </p>
-
-        <div class="books">
-            <h3>📚 Books</h3>
-            <ul>
-                <li><a href="https://amzn.to/4rLDJ9A" target="_blank">அன்பை நீங்கள் ஏன் நாடவில்லை – புத்தகம்</a></li>
-                <li><a href="https://amzn.to/4rcZ3F7" target="_blank">சிந்தனை வேள்வி – புத்தகம்</a></li>
-                <li><a href="https://amzn.to/4rkkmEQ" target="_blank">அன்பான புரிதல் – புத்தகம்</a></li>
-                <li><a href="https://amzn.to/4kBzB9S" target="_blank">தேசபக்தியும், மனிதநேயமும் – புத்தகம்</a></li>
-                <li><a href="https://amzn.to/4adFeYc" target="_blank">True Love Doesn’t Split – Book</a></li>
-                <li><a href="https://amzn.to/3Mr2jxd" target="_blank">உண்மையான காதல் பிரிவதில்லை – புத்தகம்</a></li>
-                <li><a href="https://amzn.to/4qBNLZV" target="_blank">My Mind Feels as Butterfly – Book</a></li>
-                <li><a href="https://amzn.to/4aeCHwM" target="_blank">மென்மையானவள் – புத்தகம்</a></li>
-            </ul>
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">Anbudan Miththiran</a>
+        <div class="nav-links">
+           
+            <a href="index.html">Home</a>
+            <a href="category.html?type=article">Articles</a>
+            <a href="category.html?type=poem">Poems</a>
+            <a href="category.html?type=story">Stories</a>
+            <a href="videos.html">Videos</a>
+            <a href="podcast.html">Podcast</a>
+            <a href="books.html">Books</a>
+            <a href="about.html">About</a>
         </div>
-    </div>
-</section>
+    </nav>
 
-<footer>
-    © 2026 Anbudan Miththiran
-</footer>
+    <section class="about-section">
+        <h1>About Me</h1>
+
+        <div class="about-card">
+            <h2>Who I Am</h2>
+
+            <p>
+                I am <strong>Anbudan Miththiran</strong> — a writer, thinker, podcaster, and storyteller.
+                A devotee of <strong>Lord Krishna</strong> and <strong>Lord Shiva</strong>, I walk the path
+                of wisdom, love, and social reform.
+            </p>
+
+            <p>
+                Born into an economically poorest family, my native village lies near
+                <strong>Puliangudi, Tamil Nadu</strong>. From childhood, my heart searched for the
+                purest form of love — a search that eventually shaped me into a writer.
+            </p>
+
+            <p>
+                I believe words can heal, awaken, and transform society.
+            </p>
+
+            <div class="books-container">
+                <h3>My Publications</h3>
+                <div class="books-grid">
+                    <a href="https://amzn.to/4rLDJ9A" target="_blank" class="book-link">அன்பை நீங்கள் ஏன் நாடவில்லை</a>
+                    <a href="https://amzn.to/4rcZ3F7" target="_blank" class="book-link">சிந்தனை வேள்வி</a>
+                    <a href="https://amzn.to/4rkkmEQ" target="_blank" class="book-link">அன்பான புரிதல்</a>
+                    <a href="https://amzn.to/4kBzB9S" target="_blank" class="book-link">தேசபக்தியும், மனிதநேயமும்</a>
+                    <a href="https://amzn.to/4adFeYc" target="_blank" class="book-link">True Love Doesn’t Split</a>
+                    <a href="https://amzn.to/3Mr2jxd" target="_blank" class="book-link">உண்மையான காதல் பிரிவதில்லை</a>
+                    <a href="https://amzn.to/4qBNLZV" target="_blank" class="book-link">My Mind Feels as Butterfly</a>
+                    <a href="https://amzn.to/4aeCHwM" target="_blank" class="book-link">மென்மையானவள்</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 Anbudan Miththiran | Tamil Literature & Thoughts
+    </footer>
 
 </body>
 </html>
