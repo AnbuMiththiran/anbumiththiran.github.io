@@ -3,138 +3,387 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Google tag -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-9RLGNJL2ZQ');
-</script>
-    <title>Books - Anbudan Miththiran</title>
-    <meta name="description" content="Explore Tamil books by Anbudan Miththiran. Purchase links for Amazon, Flipkart, and Notion Press.">
-    <style>
-        body { background: linear-gradient(135deg, #fff4e6, #ffd8a8, #ffb703); min-height: 100vh; margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        .search-container { max-width: 1000px; margin: 20px auto; padding: 0 20px; display: flex; gap: 10px; }
-        .search-input { flex: 1; padding: 12px; border: 2px solid #ffb703; border-radius: 8px; font-size: 16px; outline: none; }
-        .search-btn { padding: 12px 24px; background: #2c3e50; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
-        .search-btn:hover { background: #34495e; }
-        header { background-color: #ffb703; color: #2c3e50; padding: 1.5rem; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        nav { background-color: #2c3e50; padding: 0.7rem; text-align: center; }
-        nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; }
-        nav a:hover { color: #ffb703; }
-        .container { max-width: 1000px; margin: 20px auto; padding: 0 20px; }
-        .book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
-        .book-card { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; transition: transform 0.3s ease; }
-        .book-card:hover { transform: translateY(-5px); }
-        .book-cover { width: 100%; height: 350px; background: #f0f0f0; border-radius: 4px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #999; border: 1px solid #eee; }
-        .book-title { font-size: 1.4rem; color: #2c3e50; margin-bottom: 10px; font-weight: bold; }
-        .book-author { color: #7f8c8d; font-size: 1rem; margin-bottom: 20px; }
-        .purchase-links { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
-        .buy-btn { display: block; padding: 10px; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 14px; transition: opacity 0.2s; }
-        .buy-btn:hover { opacity: 0.9; }
-        .btn-amazon { background-color: #ff9900; color: #000; }
-        .btn-flipkart { background-color: #2874f0; }
-        .btn-notion { background-color: #2c3e50; }
-        .btn-details { background-color: #ffb703; color: #2c3e50; margin-top: 5px; }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Anbudan Miththiran - Books</h1>
-    </header>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="category.html?type=article">Articles</a>
-        <a href="category.html?type=poem">Poems</a>
-        <a href="category.html?type=story">Stories</a>
-        <a href="videos.html">Videos</a>
-        <a href="podcast.html">Podcast</a>
-        <a href="books.html">Books</a>
-    </nav>
-
-    <div class="search-container">
-        <input type="text" id="search-input" class="search-input" placeholder="தேடுக... (Search books in Tamil or English)">
-        <button onclick="handleSearch()" class="search-btn">Search</button>
-    </div>
-
-    <div class="container">
-        <div class="book-grid" id="book-container">
-            <p>Loading books...</p>
-        </div>
-    </div>
-
+    <meta name="description" content="Explore all books by Anbudan Miththiran - Tamil writer and author. Available on Amazon, Flipkart, and Notion Press.">
+    <meta name="keywords" content="Tamil books, poetry, stories, Anbudan Miththiran, author">
+    <meta property="og:title" content="Books | Anbudan Miththiran">
+    <meta property="og:description" content="Discover the complete collection of books by Anbudan Miththiran.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#b45309">
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' fill='%23b45309'>📚</text></svg>">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        function trackEvent(eventName, params) {
-            if (typeof gtag === 'function') {
-                gtag('event', eventName, params);
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'tamil': ['Noto Sans Tamil', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'amber-custom': '#b45309',
+                        'slate-custom': '#2c3e50',
+                        'cream': '#fffaf3',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                    },
+                }
             }
         }
-
-        async function fetchBooks(query = '') {
+    </script>
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-9RLGNJL2ZQ');
+    </script>
+    
+    <title>Books | Anbudan Miththiran</title>
+    
+    <style>
+        html { scroll-behavior: smooth; }
+        .dark { color-scheme: dark; }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .dark .glass {
+            background: rgba(30, 27, 75, 0.4);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #b45309 0%, #ffb703 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .dark .gradient-text {
+            background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(180, 83, 9, 0.15);
+        }
+        
+        .dark .card-hover:hover {
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.25);
+        }
+        
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        .dark .skeleton {
+            background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: currentColor;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+        }
+        
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .masonry-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        *:focus-visible {
+            outline: 2px solid #b45309;
+            outline-offset: 2px;
+        }
+        
+        .dark *:focus-visible {
+            outline: 2px solid #a78bfa;
+        }
+    </style>
+</head>
+<body class="bg-cream text-slate-custom font-inter" x-data="{ darkMode: localStorage.getItem('darkMode') === 'true', mobileMenuOpen: false, books: [], loading: true, searchQuery: '' }" :class="{ 'dark': darkMode }" @keydown.escape="mobileMenuOpen = false">
+    
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white dark:bg-slate-950 shadow-sm dark:shadow-lg transition-colors duration-300" role="navigation" aria-label="Main navigation">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex items-center gap-2 font-bold text-xl gradient-text hover:opacity-80 transition-opacity" aria-label="Anbudan Miththiran Home">
+                    <span class="text-2xl">📚</span>
+                    <span class="hidden sm:inline">Anbudan</span>
+                </a>
+                
+                <div class="hidden md:flex gap-8 items-center">
+                    <a href="index.html" class="text-sm font-medium hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Home</a>
+                    <a href="category.html?type=article" class="text-sm font-medium hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Articles</a>
+                    <a href="category.html?type=poem" class="text-sm font-medium hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Poems</a>
+                    <a href="category.html?type=story" class="text-sm font-medium hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Stories</a>
+                    <a href="videos.html" class="text-sm font-medium hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Videos</a>
+                    <a href="podcast.html" class="text-sm font-medium hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Podcast</a>
+                    <a href="books.html" class="text-sm font-medium text-amber-custom dark:text-purple-400 font-bold">Books</a>
+                    
+                    <button @click="darkMode = !darkMode; localStorage.setItem('darkMode', darkMode)" 
+                            class="p-2 rounded-lg bg-gray-100 dark:bg-slate-800 hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors"
+                            :aria-label="darkMode ? 'Switch to light mode' : 'Switch to dark mode'"
+                            role="switch"
+                            :aria-checked="darkMode">
+                        <span x-show="!darkMode" class="text-xl">🌙</span>
+                        <span x-show="darkMode" class="text-xl">☀️</span>
+                    </button>
+                </div>
+                
+                <div class="md:hidden flex items-center gap-3">
+                    <button @click="darkMode = !darkMode; localStorage.setItem('darkMode', darkMode)" 
+                            class="p-2 rounded-lg bg-gray-100 dark:bg-slate-800"
+                            :aria-label="darkMode ? 'Switch to light mode' : 'Switch to dark mode'"
+                            role="switch"
+                            :aria-checked="darkMode">
+                        <span x-show="!darkMode" class="text-lg">🌙</span>
+                        <span x-show="darkMode" class="text-lg">☀️</span>
+                    </button>
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" 
+                            class="hamburger text-slate-custom dark:text-white"
+                            :aria-expanded="mobileMenuOpen"
+                            aria-controls="mobile-menu"
+                            aria-label="Toggle menu">
+                        <span :class="{ 'rotate-45 translate-y-2': mobileMenuOpen }"></span>
+                        <span :class="{ 'opacity-0': mobileMenuOpen }"></span>
+                        <span :class="{ '-rotate-45 -translate-y-2': mobileMenuOpen }"></span>
+                    </button>
+                </div>
+            </div>
+            
+            <div id="mobile-menu" x-show="mobileMenuOpen" @click.away="mobileMenuOpen = false" 
+                 class="md:hidden pb-4 space-y-2 animate-in fade-in duration-200">
+                <a href="index.html" class="block px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors" @click="mobileMenuOpen = false">Home</a>
+                <a href="category.html?type=article" class="block px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors" @click="mobileMenuOpen = false">Articles</a>
+                <a href="category.html?type=poem" class="block px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors" @click="mobileMenuOpen = false">Poems</a>
+                <a href="category.html?type=story" class="block px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors" @click="mobileMenuOpen = false">Stories</a>
+                <a href="videos.html" class="block px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors" @click="mobileMenuOpen = false">Videos</a>
+                <a href="podcast.html" class="block px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors" @click="mobileMenuOpen = false">Podcast</a>
+                <a href="books.html" class="block px-4 py-2 rounded-lg bg-amber-50 dark:bg-slate-700 transition-colors" @click="mobileMenuOpen = false">Books</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-slate-800 dark:to-purple-900 transition-colors duration-300 px-4 sm:px-6 lg:px-8 py-16 relative overflow-hidden">
+        <div class="absolute top-10 left-10 w-72 h-72 bg-amber-200 dark:bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
+        <div class="absolute bottom-10 right-10 w-72 h-72 bg-yellow-200 dark:bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style="animation-delay: 2s;"></div>
+        
+        <div class="max-w-6xl mx-auto relative z-10 text-center">
+            <h1 class="text-4xl sm:text-5xl font-bold gradient-text mb-4">📚 Books by Anbudan Miththiran</h1>
+            <p class="text-lg text-slate-custom dark:text-gray-300 max-w-2xl mx-auto">
+                Explore a collection of Tamil literature exploring love, wisdom, spirituality, and social consciousness.
+            </p>
+        </div>
+    </section>
+    
+    <!-- Main Content -->
+    <main class="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto">
+            <!-- Search Bar -->
+            <div class="mb-12">
+                <div class="flex gap-3">
+                    <input type="text" 
+                           x-model="searchQuery" 
+                           @input="filterBooks()" 
+                           placeholder="Search books..." 
+                           class="flex-1 px-4 py-3 rounded-lg border-2 border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-custom dark:text-white focus:border-amber-custom dark:focus:border-purple-400 outline-none transition-colors"
+                           aria-label="Search books">
+                    <button @click="filterBooks()" 
+                            class="px-6 py-3 bg-amber-custom dark:bg-purple-500 text-white rounded-lg font-semibold hover:shadow-lg transition-all">
+                        🔍 Search
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Books Grid -->
+            <div x-show="loading" class="masonry-grid">
+                <div class="skeleton rounded-xl h-96"></div>
+                <div class="skeleton rounded-xl h-96"></div>
+                <div class="skeleton rounded-xl h-96"></div>
+                <div class="skeleton rounded-xl h-96"></div>
+            </div>
+            
+            <div x-show="!loading && books.length > 0" class="masonry-grid">
+                <template x-for="book in books" :key="book.id">
+                    <div class="glass rounded-xl overflow-hidden card-hover group">
+                        <!-- Book Cover -->
+                        <div class="aspect-[3/4] bg-gradient-to-br from-gray-200 to-gray-300 dark:from-slate-700 dark:to-slate-600 flex items-center justify-center text-6xl overflow-hidden relative">
+                            <template x-if="book.book_cover_url || book.image_url">
+                                <img :src="book.book_cover_url || book.image_url" :alt="book.title" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                            </template>
+                            <template x-if="!book.book_cover_url && !book.image_url">
+                                <span class="group-hover:scale-110 transition-transform duration-300">📖</span>
+                            </template>
+                        </div>
+                        
+                        <!-- Book Info -->
+                        <div class="p-6">
+                            <h3 class="font-bold text-lg text-slate-custom dark:text-white mb-2 line-clamp-2 font-tamil" x-text="book.title"></h3>
+                            <p class="text-sm text-slate-custom dark:text-gray-400 mb-4">By <span x-text="book.writer"></span></p>
+                            
+                            <!-- Purchase Links -->
+                            <div class="space-y-2 mb-4">
+                                <template x-if="book.links?.amazon">
+                                    <a :href="book.links.amazon" target="_blank" rel="noopener noreferrer" 
+                                       class="block w-full px-3 py-2 bg-amber-600 dark:bg-amber-500 text-white text-sm rounded font-semibold hover:shadow-md transition-all text-center">
+                                        📘 Amazon
+                                    </a>
+                                </template>
+                                <template x-if="book.links?.flipkart">
+                                    <a :href="book.links.flipkart" target="_blank" rel="noopener noreferrer" 
+                                       class="block w-full px-3 py-2 bg-blue-600 dark:bg-blue-500 text-white text-sm rounded font-semibold hover:shadow-md transition-all text-center">
+                                        📗 Flipkart
+                                    </a>
+                                </template>
+                                <template x-if="book.links?.notion">
+                                    <a :href="book.links.notion" target="_blank" rel="noopener noreferrer" 
+                                       class="block w-full px-3 py-2 bg-slate-600 dark:bg-slate-500 text-white text-sm rounded font-semibold hover:shadow-md transition-all text-center">
+                                        📕 Notion Press
+                                    </a>
+                                </template>
+                            </div>
+                            
+                            <!-- Details Link -->
+                            <a :href="'post.html?id=' + book.id" 
+                               class="block w-full px-3 py-2 border-2 border-amber-custom dark:border-purple-400 text-amber-custom dark:text-purple-400 text-sm rounded font-semibold hover:bg-amber-50 dark:hover:bg-slate-800 transition-all text-center">
+                                📖 View Details
+                            </a>
+                        </div>
+                    </div>
+                </template>
+            </div>
+            
+            <!-- No Books Found -->
+            <div x-show="!loading && books.length === 0" class="text-center py-20">
+                <p class="text-xl text-slate-custom dark:text-gray-300 mb-4">No books found matching your search.</p>
+                <button @click="searchQuery = ''; filterBooks()" class="px-6 py-2 bg-amber-custom dark:bg-purple-500 text-white rounded-lg font-semibold hover:shadow-lg transition-all">
+                    Clear Search
+                </button>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-slate-custom dark:bg-slate-950 text-white py-8 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Anbudan Miththiran</h3>
+                    <p class="text-sm text-gray-300">Tamil writer, podcaster, and storyteller exploring love, wisdom, and transformation.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="category.html?type=article" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Articles</a></li>
+                        <li><a href="category.html?type=poem" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Poems</a></li>
+                        <li><a href="category.html?type=story" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Stories</a></li>
+                        <li><a href="books.html" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Books</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="mailto:miththiran@yandex.com" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Email</a></li>
+                        <li><a href="podcast.html" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Podcast</a></li>
+                        <li><a href="videos.html" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Videos</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8 text-center text-sm text-gray-400">
+                <p>&copy; 2026 Anbudan Miththiran. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        async function loadBooks(query = '') {
+            const rootEl = document.querySelector('[x-data]');
+            rootEl.loading = true;
             try {
                 const url = query 
                     ? `https://premium-backend-8plp.onrender.com/content/public/category/book?q=${encodeURIComponent(query)}`
                     : 'https://premium-backend-8plp.onrender.com/content/public/category/book';
                 
                 const response = await fetch(url);
-                const books = await response.json();
-                const container = document.getElementById('book-container');
-                container.innerHTML = '';
-
-                if (books.length === 0) {
-                    container.innerHTML = '<p>No books found matching your search.</p>';
-                    return;
-                }
-
-                books.forEach(book => {
-                    const card = document.createElement('div');
-                    card.className = 'book-card';
-                    
-                    let linksHtml = '';
-                    if (book.links) {
-                        const bookTitleEscaped = book.title.replace(/'/g, "\\'");
-                        if (book.links.amazon) linksHtml += `<a href="${book.links.amazon}" target="_blank" class="buy-btn btn-amazon" onclick="trackEvent('purchase_click', { platform: 'Amazon', book_title: '${bookTitleEscaped}' })">Buy on Amazon</a>`;
-                        if (book.links.flipkart) linksHtml += `<a href="${book.links.flipkart}" target="_blank" class="buy-btn btn-flipkart" onclick="trackEvent('purchase_click', { platform: 'Flipkart', book_title: '${bookTitleEscaped}' })">Buy on Flipkart</a>`;
-                        if (book.links.notion) linksHtml += `<a href="${book.links.notion}" target="_blank" class="buy-btn btn-notion" onclick="trackEvent('purchase_click', { platform: 'NotionPress', book_title: '${bookTitleEscaped}' })">Buy on Notion Press</a>`;
-                    }
-                    
-                    const displayImage = book.book_cover_url || book.image_url;
-                    const coverHtml = displayImage 
-                        ? `<img src="${displayImage}" class="book-cover" style="object-fit: cover;" alt="${book.title}">`
-                        : `<div class="book-cover">BOOK COVER</div>`;
-
-                    card.innerHTML = `
-                        ${coverHtml}
-                        <div class="book-title">${book.title}</div>
-                        <div class="book-author">By ${book.writer}</div>
-                        <div class="purchase-links">
-                            ${linksHtml}
-                            <a href="post.html?id=${book.id}" class="buy-btn btn-details">View Details</a>
-                        </div>
-                    `;
-                    container.appendChild(card);
-                });
-            } catch (err) {
-                console.error("Error fetching books:", err);
-                document.getElementById('book-container').innerHTML = '<p>Error loading books.</p>';
+                const data = await response.json();
+                
+                rootEl.books = data || [];
+            } catch (error) {
+                console.error('Error loading books:', error);
+                rootEl.books = [];
+            } finally {
+                rootEl.loading = false;
             }
         }
-
-        function handleSearch() {
-            const query = document.getElementById('search-input').value;
-            fetchBooks(query);
+        
+        function filterBooks() {
+            const rootEl = document.querySelector('[x-data]');
+            loadBooks(rootEl.searchQuery);
         }
-
-        document.getElementById('search-input').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') handleSearch();
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            loadBooks();
         });
-
-        fetchBooks();
     </script>
-
-    <footer style="text-align: center; padding: 20px; margin-top: 40px; border-top: 1px solid rgba(0,0,0,0.1); color: #2c3e50; font-weight: bold;">
-        &copy; 2026 Anbudan Miththiran
-    </footer>
 </body>
 </html>
