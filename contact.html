@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
@@ -11,116 +10,204 @@
     gtag('js', new Date());
     gtag('config', 'G-9RLGNJL2ZQ');
     </script>
-
-    <link rel="icon" type="image/svg+xml" href="logo.jpg">
-    <title>Contact Us | Anbudan Miththiran</title>
-
+    
+    <title>Anbudan Miththiran - Articles, Poems, Stories</title>
+    <meta name="description" content="Anbudan Miththiran - A collection of Tamil articles, poems, stories, and books. Explore the world of Tamil literature.">
+    <meta name="keywords" content="Tamil, Poems, Stories, Articles, Anbudan Miththiran, Tamil Literature">
+    <meta property="og:title" content="Anbudan Miththiran - Articles, Poems, Stories">
+    <meta property="og:description" content="Explore Tamil articles, poems, and stories by Anbudan Miththiran.">
+    <meta property="og:image" content="logo.jpg">
+    <meta property="og:type" content="website">
+    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+    
     <style>
         :root {
             --primary-dark: #2c3e50;
             --accent-yellow: #ffb703;
             --accent-blue: #3498db;
-            --text-dark: #3a2c1a;
+            --text-dark: #2c3e50;
+            --text-muted: #636e72;
             --bg-gradient: linear-gradient(135deg, #fff4e6, #ffd8a8, #ffb703);
             --card-bg: rgba(255, 255, 255, 0.95);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-
-        body {
-            min-height: 100vh;
-            background: var(--bg-gradient);
-            color: var(--text-dark);
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* --- Unified Navbar --- */
+        
+        body { background: var(--bg-gradient); min-height: 100vh; color: var(--text-dark); display: flex; flex-direction: column; }
+        
+        /* --- Modern Navbar --- */
         .navbar {
-            background: var(--primary-dark); padding: 15px 5%; display: flex;
-            justify-content: space-between; align-items: center; flex-wrap: wrap;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15); position: sticky; top: 0; z-index: 100;
+            background: var(--primary-dark);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        .nav-brand { color: var(--accent-yellow); font-size: 1.5rem; font-weight: 700; text-decoration: none; }
-        .nav-links { display: flex; gap: 20px; flex-wrap: wrap; }
-        .nav-links a { color: #fff; text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: 0.3s; padding: 5px 0; }
+        .nav-brand {
+            color: var(--accent-yellow);
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 5px 0;
+        }
         .nav-links a:hover { color: var(--accent-yellow); }
 
-        /* --- Page Container --- */
-        .container {
-            max-width: 700px;
-            margin: 60px auto;
-            background: var(--card-bg);
-            padding: 50px 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255,255,255,0.6);
+        /* --- Hero Search Section --- */
+        .hero-search {
             text-align: center;
-            flex: 1;
-            width: 90%;
+            padding: 50px 20px 30px;
         }
-
-        h1 {
-            color: var(--primary-dark);
+        .hero-search h1 {
             font-size: 2.5rem;
             margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        p {
-            margin-bottom: 25px;
-            line-height: 1.8;
-            font-size: 1.1rem;
-            color: #4a4a4a;
-        }
-
-        .contact-box {
-            background: #fffcf5;
-            border: 1px solid #ffe8cc;
-            padding: 25px;
-            border-radius: 12px;
-            margin: 30px 0;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-        }
-
-        .contact-box strong {
             color: var(--primary-dark);
-            display: block;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+        }
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            background: #fff;
+            border-radius: 50px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: border 0.3s ease;
+        }
+        .search-container:focus-within { border: 2px solid var(--accent-yellow); }
+        .search-input {
+            flex: 1;
+            padding: 15px 25px;
+            border: none;
+            font-size: 16px;
+            outline: none;
+            background: transparent;
+        }
+        .search-btn {
+            padding: 0 30px;
+            background: var(--primary-dark);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+        .search-btn:hover { background: #1a252f; }
+
+        /* --- Content Layout --- */
+        .container {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 0 20px;
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
         }
 
-        .contact-link {
-            display: inline-block;
-            font-size: 1.2rem;
+        /* --- Modern Cards --- */
+        .post-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+        .post-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+        .post-card-content { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+        .post-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--accent-yellow);
+        }
+        .post-card h2 {
+            font-size: 1.25rem;
+            margin: 10px 0;
+            color: var(--primary-dark);
+            line-height: 1.4;
+        }
+        .post-meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px; }
+        
+        .tags-container { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 15px; }
+        .tag { background: #f1f2f6; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; color: #576574; font-weight: 500; }
+        
+        .read-more {
+            margin-top: auto;
+            align-self: flex-start;
             color: var(--accent-blue);
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.3s;
-            margin-bottom: 15px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s ease;
         }
+        .read-more:hover { color: #2980b9; }
+        .read-more::after { content: '→'; transition: transform 0.3s ease; }
+        .read-more:hover::after { transform: translateX(5px); }
 
-        .contact-link:hover {
-            color: #2980b9;
-            text-decoration: underline;
+        /* --- Badges --- */
+        .badge {
+            align-self: flex-start;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
+        .badge-article { background-color: #e3f2fd; color: #0d47a1; }
+        .badge-poem { background-color: #f3e5f5; color: #4a148c; }
+        .badge-story { background-color: #e8f5e9; color: #1b5e20; }
+        .badge-book { background-color: #fff3e0; color: #e65100; }
 
         footer {
-            background: var(--primary-dark); color: #fff; text-align: center;
-            padding: 25px; font-weight: 500; font-size: 0.9rem; margin-top: auto;
+            background: var(--primary-dark);
+            color: #fff;
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+            font-weight: 500;
+            font-size: 0.9rem;
         }
 
+        /* --- Mobile Responsiveness --- */
         @media(max-width: 768px) {
-            .navbar { flex-direction: column; gap: 15px; }
-            .nav-links { justify-content: center; }
-            .container { padding: 30px 20px; margin: 30px auto; }
-            h1 { font-size: 2rem; }
+            .navbar { flex-direction: column; gap: 15px; padding: 15px; }
+            .nav-links { justify-content: center; gap: 15px; }
+            .hero-search h1 { font-size: 2rem; }
+            .container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
-
 <body>
 
     <nav class="navbar">
@@ -128,33 +215,98 @@
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="category.html?type=article">Articles</a>
+            <a href="category.html?type=poem">Poems</a>
+            <a href="category.html?type=story">Stories</a>
             <a href="videos.html">Videos</a>
             <a href="podcast.html">Podcast</a>
             <a href="books.html">Books</a>
             <a href="about.html">About</a>
-            <a href="privacy.html">Privacy</a>
         </div>
     </nav>
 
-    <div class="container">
-        <h1>Contact Us</h1>
+    <div class="hero-search">
+        <h1>Discover Tamil Literature</h1>
+        <div class="search-container">
+            <input type="text" id="search-input" class="search-input" placeholder="தேடுக... (Search in Tamil or English)">
+            <button onclick="handleSearch()" class="search-btn">Search</button>
+        </div>
+    </div>
 
-        <p>If you have any questions, feedback, or enquiries regarding this website or any published works, please feel free to reach out.</p>
-
-        <div class="contact-box">
-            <p>
-                <strong>Email Address:</strong>
-                <a href="mailto:miththiran@yandex.com" class="contact-link">miththiran@yandex.com</a>
-            </p>
-            
-            <p>
-                <strong>Official Website:</strong>
-                <a href="https://www.anbumiththiran.in" target="_blank" class="contact-link">www.anbumiththiran.in</a>
-            </p>
+    <div class="container" id="posts-container">
         </div>
 
-        <p style="font-weight: 500; color: var(--primary-dark);">We will try our best to respond as soon as possible.</p>
-    </div>
+    <script>
+        function trackEvent(eventName, params) {
+            if (typeof gtag === 'function') {
+                gtag('event', eventName, params);
+            }
+        }
+
+        async function fetchPublicPosts(query = '') {
+            try {
+                const url = query 
+                    ? `https://premium-backend-8plp.onrender.com/content/public?q=${encodeURIComponent(query)}`
+                    : 'https://premium-backend-8plp.onrender.com/content/public';
+                
+                const response = await fetch(url);
+                const posts = await response.json();
+                const container = document.getElementById('posts-container');
+                container.innerHTML = '';
+
+                if (posts.length === 0) {
+                    container.innerHTML = '<p style="text-align:center; grid-column: 1/-1; font-size:1.1rem; color:var(--primary-dark);">No posts found matching your search.</p>';
+                    return;
+                }
+
+                posts.forEach(post => {
+                    const card = document.createElement('div');
+                    card.className = 'post-card';
+
+                    // Use book_cover_url for books, image_url for others
+                    let displayImage = '';
+                    if (post.contenttype === 'book') {
+                        displayImage = post.book_cover_url || post.image_url;
+                    } else {
+                        displayImage = post.image_url;
+                    }
+
+                    const imageHtml = displayImage 
+                        ? `<img src="${displayImage}" alt="${post.title}" onerror="this.style.display='none'">`
+                        : '';
+
+                    card.innerHTML = `
+                        ${imageHtml}
+                        <div class="post-card-content">
+                            <span class="badge badge-${post.contenttype}">${post.contenttype}</span>
+                            <h2>${post.title}</h2>
+                            <div class="post-meta">By <strong>${post.writer}</strong> • ${new Date(post.createdat).toLocaleDateString()}</div>
+                            
+                            <div class="tags-container">
+                                ${post.tags ? post.tags.map(tag => `<span class="tag">#${tag}</span>`).join('') : ''}
+                            </div>
+                            
+                            <a href="post.html?id=${post.id}" class="read-more" onclick="trackEvent('view_post', { post_title: '${post.title.replace(/'/g, "\\'")}', post_id: '${post.id}' })">Read Full Post</a>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            } catch (err) {
+                console.error("Error fetching posts:", err);
+                document.getElementById('posts-container').innerHTML = '<p style="text-align:center; grid-column: 1/-1;">Error loading content. Please try again later.</p>';
+            }
+        }
+
+        function handleSearch() {
+            const query = document.getElementById('search-input').value;
+            fetchPublicPosts(query);
+        }
+
+        document.getElementById('search-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleSearch();
+        });
+
+        fetchPublicPosts();
+    </script>
 
     <footer>
         &copy; 2026 Anbudan Miththiran | Tamil Literature & Thoughts
