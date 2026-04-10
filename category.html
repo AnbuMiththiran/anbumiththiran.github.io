@@ -3,506 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" id="meta-description" content="Explore Tamil content by category on Anbudan Miththiran.">
-    <meta name="keywords" content="Tamil articles, poems, stories, Anbudan Miththiran, literature">
-    <meta property="og:type" content="website">
-    <meta name="theme-color" content="#b45309">
-    
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' fill='%23b45309'>📚</text></svg>">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'tamil': ['Noto Sans Tamil', 'sans-serif'],
-                        'inter': ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'amber-custom': '#b45309',
-                        'slate-custom': '#2c3e50',
-                        'cream': '#fffaf3',
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        },
-                        'pulse-glow': {
-                            '0%, 100%': { boxShadow: '0 0 20px rgba(180, 83, 9, 0.3)' },
-                            '50%': { boxShadow: '0 0 40px rgba(180, 83, 9, 0.6)' },
-                        },
-                    },
-                }
-            }
-        }
-    </script>
-    
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-9RLGNJL2ZQ');
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9RLGNJL2ZQ');
     </script>
     
     <title>Category - Anbudan Miththiran</title>
+    <meta name="description" id="meta-description" content="Explore Tamil content by category on Anbudan Miththiran.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        html { scroll-behavior: smooth; }
-        .dark { color-scheme: dark; }
+        :root {
+            --primary-dark: #2c3e50;
+            --accent-yellow: #ffb703;
+            --accent-blue: #3498db;
+            --text-dark: #2c3e50;
+            --text-muted: #636e72;
+            --bg-gradient: linear-gradient(135deg, #fff4e6, #ffd8a8, #ffb703);
+            --card-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         
-        .glass {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
+        body { background: var(--bg-gradient); min-height: 100vh; color: var(--text-dark); display: flex; flex-direction: column; }
         
-        .dark .glass {
-            background: rgba(30, 27, 75, 0.4);
-            border: 1px solid rgba(139, 92, 246, 0.2);
+        /* --- Unified Navbar --- */
+        .navbar {
+            background: var(--primary-dark);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
+        .nav-brand { color: var(--accent-yellow); font-size: 1.5rem; font-weight: 700; text-decoration: none; }
+        .nav-links { display: flex; gap: 20px; flex-wrap: wrap; }
+        .nav-links a { color: #fff; text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.3s; padding: 5px 0; }
+        .nav-links a:hover { color: var(--accent-yellow); }
+
+        /* --- Header & Search --- */
+        .page-header { text-align: center; padding: 40px 20px 20px; }
+        .page-header h1 { font-size: 2.5rem; color: var(--primary-dark); text-shadow: 1px 1px 2px rgba(255,255,255,0.5); margin-bottom: 20px; }
         
-        .gradient-text {
-            background: linear-gradient(135deg, #b45309 0%, #ffb703 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .search-container {
+            max-width: 600px; margin: 0 auto 30px; display: flex; background: #fff;
+            border-radius: 50px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); overflow: hidden;
+            border: 2px solid transparent; transition: border 0.3s ease;
         }
+        .search-container:focus-within { border-2px solid var(--accent-yellow); }
+        .search-input { flex: 1; padding: 15px 25px; border: none; font-size: 16px; outline: none; background: transparent; }
+        .search-btn { padding: 0 30px; background: var(--primary-dark); color: white; border: none; cursor: pointer; font-weight: 600; transition: 0.3s; }
+        .search-btn:hover { background: #1a252f; }
+
+        /* --- Grid Layout --- */
+        .container {
+            max-width: 1100px; margin: 0 auto 40px; padding: 0 20px; flex: 1;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px;
+        }
+
+        /* --- Post Cards --- */
+        .post-card {
+            background: var(--card-bg); border-radius: 16px; overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.3s, box-shadow 0.3s;
+            display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,0.5);
+        }
+        .post-card:hover { transform: translateY(-8px); box-shadow: 0 12px 25px rgba(0,0,0,0.15); }
+        .post-card-content { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+        .post-card img { width: 100%; height: 200px; object-fit: cover; border-bottom: 3px solid var(--accent-yellow); }
+        .post-card h2 { font-size: 1.25rem; margin: 10px 0; color: var(--primary-dark); }
+        .post-meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px; }
         
-        .dark .gradient-text {
-            background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+        .tags-container { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 15px; }
+        .tag { background: #f1f2f6; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; color: #576574; font-weight: 500; }
         
-        .card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .read-more {
+            margin-top: auto; align-self: flex-start; color: var(--accent-blue);
+            text-decoration: none; font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 5px;
         }
-        
-        .card-hover:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 25px 50px rgba(180, 83, 9, 0.2);
-        }
-        
-        .dark .card-hover:hover {
-            box-shadow: 0 25px 50px rgba(139, 92, 246, 0.3);
-        }
-        
-        .skeleton {
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-        }
-        
-        .dark .skeleton {
-            background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-        }
-        
-        @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-        
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-        }
-        
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background-color: currentColor;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-        
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-        }
-        
-        .masonry-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        @media (max-width: 768px) {
-            .masonry-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-        }
-        
-        .badge {
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .badge-article { 
-            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-            color: #0d47a1;
-        }
-        .badge-poem { 
-            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
-            color: #4a148c;
-        }
-        .badge-story { 
-            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-            color: #1b5e20;
-        }
-        
-        .dark .badge-article { 
-            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
-            color: #93c5fd;
-        }
-        .dark .badge-poem { 
-            background: linear-gradient(135deg, #4c1d95 0%, #5b21b6 100%);
-            color: #d8b4fe;
-        }
-        .dark .badge-story { 
-            background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
-            color: #86efac;
-        }
-        
-        .search-input {
-            transition: all 0.3s ease;
-        }
-        
-        .search-input:focus {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(180, 83, 9, 0.15);
-        }
-        
-        .dark .search-input:focus {
-            box-shadow: 0 8px 16px rgba(139, 92, 246, 0.25);
-        }
-        
-        .filter-btn {
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .filter-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #b45309, #ffb703);
-            border-radius: 2px;
-        }
-        
-        .dark .filter-btn.active::after {
-            background: linear-gradient(90deg, #a78bfa, #60a5fa);
-        }
-        
-        *:focus-visible {
-            outline: 2px solid #b45309;
-            outline-offset: 2px;
-        }
-        
-        .dark *:focus-visible {
-            outline: 2px solid #a78bfa;
-        }
-        
-        .fade-in-up {
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .read-more:hover { color: #2980b9; }
+        .read-more::after { content: '→'; transition: transform 0.3s; }
+        .read-more:hover::after { transform: translateX(5px); }
+
+        .badge { align-self: flex-start; padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+        .badge-article { background-color: #e3f2fd; color: #0d47a1; }
+        .badge-poem { background-color: #f3e5f5; color: #4a148c; }
+        .badge-story { background-color: #e8f5e9; color: #1b5e20; }
+
+        footer { background: var(--primary-dark); color: #fff; text-align: center; padding: 25px; font-weight: 500; font-size: 0.9rem; }
+
+        @media(max-width: 768px) {
+            .navbar { flex-direction: column; gap: 15px; }
+            .nav-links { justify-content: center; }
+            .container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
-<body class="bg-cream text-slate-custom font-inter" x-data="{ darkMode: localStorage.getItem('darkMode') === 'true', mobileMenuOpen: false, posts: [], loading: true, searchQuery: '', activeFilter: 'all', currentType: 'article' }" :class="{ 'dark': darkMode }" @keydown.escape="mobileMenuOpen = false">
-    
-    <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-white dark:bg-slate-950 shadow-sm dark:shadow-lg transition-colors duration-300" role="navigation" aria-label="Main navigation">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <a href="index.html" class="flex items-center gap-2 font-bold text-xl gradient-text hover:opacity-80 transition-opacity" aria-label="Anbudan Miththiran Home">
-                    <span class="text-2xl">📚</span>
-                    <span class="hidden sm:inline">Anbudan</span>
-                </a>
-                
-                <div class="hidden md:flex gap-8 items-center">
-                    <a href="index.html" class="text-sm font-medium hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Home</a>
-                    <a href="category.html?type=article" class="text-sm font-medium hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Articles</a>
-                    <a href="category.html?type=poem" class="text-sm font-medium hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Poems</a>
-                    <a href="category.html?type=story" class="text-sm font-medium hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Stories</a>
-                    <a href="videos.html" class="text-sm font-medium hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Videos</a>
-                    <a href="podcast.html" class="text-sm font-medium hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Podcast</a>
-                    <a href="books.html" class="text-sm font-medium hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Books</a>
-                    
-                    <button @click="darkMode = !darkMode; localStorage.setItem('darkMode', darkMode)" 
-                            class="p-2 rounded-lg bg-gray-100 dark:bg-slate-800 hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors"
-                            :aria-label="darkMode ? 'Switch to light mode' : 'Switch to dark mode'"
-                            role="switch"
-                            :aria-checked="darkMode">
-                        <span x-show="!darkMode" class="text-xl">🌙</span>
-                        <span x-show="darkMode" class="text-xl">☀️</span>
-                    </button>
-                </div>
-                
-                <div class="md:hidden flex items-center gap-3">
-                    <button @click="darkMode = !darkMode; localStorage.setItem('darkMode', darkMode)" 
-                            class="p-2 rounded-lg bg-gray-100 dark:bg-slate-800"
-                            :aria-label="darkMode ? 'Switch to light mode' : 'Switch to dark mode'"
-                            role="switch"
-                            :aria-checked="darkMode">
-                        <span x-show="!darkMode" class="text-lg">🌙</span>
-                        <span x-show="darkMode" class="text-lg">☀️</span>
-                    </button>
-                    <button @click="mobileMenuOpen = !mobileMenuOpen" 
-                            class="hamburger text-slate-custom dark:text-white"
-                            :aria-expanded="mobileMenuOpen"
-                            aria-controls="mobile-menu"
-                            aria-label="Toggle menu">
-                        <span :class="{ 'rotate-45 translate-y-2': mobileMenuOpen }"></span>
-                        <span :class="{ 'opacity-0': mobileMenuOpen }"></span>
-                        <span :class="{ '-rotate-45 -translate-y-2': mobileMenuOpen }"></span>
-                    </button>
-                </div>
-            </div>
-            
-            <div id="mobile-menu" x-show="mobileMenuOpen" @click.away="mobileMenuOpen = false" 
-                 class="md:hidden pb-4 space-y-2 animate-in fade-in duration-200">
-                <a href="index.html" class="block px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors" @click="mobileMenuOpen = false">Home</a>
-                <a href="category.html?type=article" class="block px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors" @click="mobileMenuOpen = false">Articles</a>
-                <a href="category.html?type=poem" class="block px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors" @click="mobileMenuOpen = false">Poems</a>
-                <a href="category.html?type=story" class="block px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors" @click="mobileMenuOpen = false">Stories</a>
-                <a href="videos.html" class="block px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors" @click="mobileMenuOpen = false">Videos</a>
-                <a href="podcast.html" class="block px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors" @click="mobileMenuOpen = false">Podcast</a>
-                <a href="books.html" class="block px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors" @click="mobileMenuOpen = false">Books</a>
-            </div>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">Anbudan Miththiran</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="category.html?type=article">Articles</a>
+            <a href="category.html?type=poem">Poems</a>
+            <a href="category.html?type=story">Stories</a>
+            <a href="videos.html">Videos</a>
+            <a href="podcast.html">Podcast</a>
+            <a href="books.html">Books</a>
+            <a href="about.html">About</a>
         </div>
     </nav>
-    
-    <!-- Hero Section -->
-    <section class="bg-gradient-to-br from-purple-50 to-blue-50 dark:from-slate-800 dark:to-purple-900 transition-colors duration-300 px-4 sm:px-6 lg:px-8 py-16 relative overflow-hidden">
-        <div class="absolute top-10 left-10 w-72 h-72 bg-purple-200 dark:bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
-        <div class="absolute bottom-10 right-10 w-72 h-72 bg-blue-200 dark:bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style="animation-delay: 2s;"></div>
-        
-        <div class="max-w-6xl mx-auto relative z-10 text-center">
-            <h1 id="category-title" class="text-4xl sm:text-5xl font-bold gradient-text mb-4">📖 Explore Writings</h1>
-            <p class="text-lg text-slate-custom dark:text-gray-300 max-w-2xl mx-auto">
-                Discover Tamil articles, poems, and stories by Anbudan Miththiran exploring philosophy, spirituality, and human connection.
-            </p>
+
+    <div class="page-header">
+        <h1 id="category-title">Category</h1>
+        <div class="search-container">
+            <input type="text" id="search-input" class="search-input" placeholder="தேடுக... (Search in Tamil or English)">
+            <button onclick="handleSearch()" class="search-btn">Search</button>
         </div>
-    </section>
-    
-    <!-- Filter & Search Section -->
-    <section class="bg-white dark:bg-slate-900 px-4 sm:px-6 lg:px-8 py-8 border-b border-gray-200 dark:border-slate-700 transition-colors duration-300">
-        <div class="max-w-6xl mx-auto">
-            <!-- Search Bar -->
-            <div class="mb-8">
-                <div class="flex gap-3 flex-col sm:flex-row">
-                    <input type="text" 
-                           id="search-input"
-                           x-model="searchQuery" 
-                           @keyup.enter="handleSearch()"
-                           placeholder="Search in Tamil or English..." 
-                           class="flex-1 px-4 py-3 rounded-lg border-2 border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-custom dark:text-white focus:border-amber-custom dark:focus:border-purple-400 outline-none transition-colors search-input"
-                           aria-label="Search posts">
-                    <button @click="handleSearch()" 
-                            class="px-6 py-3 bg-amber-custom dark:bg-purple-500 text-white rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition-all whitespace-nowrap">
-                        🔍 Search
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Category Filters -->
-            <div class="flex gap-3 flex-wrap">
-                <button @click="filterByType('all')" 
-                        :class="{ 'active': activeFilter === 'all' }"
-                        class="filter-btn px-6 py-2 rounded-full font-semibold text-sm transition-all bg-gray-100 dark:bg-slate-800 text-slate-custom dark:text-gray-300 hover:text-amber-custom dark:hover:text-purple-400">
-                    All Content
-                </button>
-                <button @click="filterByType('article')" 
-                        :class="{ 'active': activeFilter === 'article' }"
-                        class="filter-btn px-6 py-2 rounded-full font-semibold text-sm transition-all bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 hover:text-amber-custom dark:hover:text-purple-400">
-                    📄 Articles
-                </button>
-                <button @click="filterByType('poem')" 
-                        :class="{ 'active': activeFilter === 'poem' }"
-                        class="filter-btn px-6 py-2 rounded-full font-semibold text-sm transition-all bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 hover:text-amber-custom dark:hover:text-purple-400">
-                    ✨ Poems
-                </button>
-                <button @click="filterByType('story')" 
-                        :class="{ 'active': activeFilter === 'story' }"
-                        class="filter-btn px-6 py-2 rounded-full font-semibold text-sm transition-all bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 hover:text-amber-custom dark:hover:text-purple-400">
-                    📚 Stories
-                </button>
-            </div>
+    </div>
+
+    <div class="container" id="posts-container">
         </div>
-    </section>
-    
-    <!-- Main Content -->
-    <main class="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900 transition-colors duration-300">
-        <div class="max-w-6xl mx-auto">
-            <!-- Loading State -->
-            <div x-show="loading" class="masonry-grid">
-                <div class="skeleton rounded-xl h-96"></div>
-                <div class="skeleton rounded-xl h-96"></div>
-                <div class="skeleton rounded-xl h-96"></div>
-                <div class="skeleton rounded-xl h-96"></div>
-            </div>
-            
-            <!-- Posts Grid -->
-            <div x-show="!loading && posts.length > 0" class="masonry-grid">
-                <template x-for="(post, index) in posts" :key="post.id">
-                    <div class="glass rounded-xl overflow-hidden card-hover fade-in-up" :style="`animation-delay: ${index * 50}ms`">
-                        <!-- Image Container -->
-                        <div class="relative h-48 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-slate-700 dark:to-slate-600 overflow-hidden group">
-                            <template x-if="post.image_url">
-                                <img :src="post.image_url" :alt="post.title" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">
-                            </template>
-                            <template x-if="!post.image_url">
-                                <div class="w-full h-full flex items-center justify-center text-5xl group-hover:scale-110 transition-transform duration-300">
-                                    <span x-text="post.contenttype === 'poem' ? '✨' : post.contenttype === 'story' ? '📚' : '📄'"></span>
-                                </div>
-                            </template>
-                            
-                            <!-- Badge Overlay -->
-                            <div class="absolute top-4 left-4">
-                                <span class="badge" :class="{
-                                    'badge-article': post.contenttype === 'article',
-                                    'badge-poem': post.contenttype === 'poem',
-                                    'badge-story': post.contenttype === 'story'
-                                }">
-                                    <span x-text="post.contenttype"></span>
-                                </span>
-                            </div>
-                        </div>
-                        
-                        <!-- Content -->
-                        <div class="p-6">
-                            <!-- Title -->
-                            <h2 class="font-bold text-lg text-slate-custom dark:text-white mb-3 line-clamp-2 leading-tight font-tamil" x-text="post.title"></h2>
-                            
-                            <!-- Metadata -->
-                            <div class="flex flex-wrap items-center gap-2 text-sm text-slate-custom dark:text-gray-400 mb-4">
-                                <span class="flex items-center gap-1">
-                                    <span>✍️</span>
-                                    <span x-text="post.writer"></span>
-                                </span>
-                                <span>•</span>
-                                <span class="flex items-center gap-1">
-                                    <span>📅</span>
-                                    <span x-text="new Date(post.createdat).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })"></span>
-                                </span>
-                            </div>
-                            
-                            <!-- Tags -->
-                            <div x-show="post.tags && post.tags.length > 0" class="flex flex-wrap gap-2 mb-4">
-                                <template x-for="tag in (post.tags || []).slice(0, 3)" :key="tag">
-                                    <span class="px-2 py-1 bg-gray-100 dark:bg-slate-800 rounded text-xs font-medium text-slate-custom dark:text-gray-300 hover:bg-amber-custom dark:hover:bg-purple-500 hover:text-white transition-colors cursor-pointer">
-                                        #<span x-text="tag"></span>
-                                    </span>
-                                </template>
-                            </div>
-                            
-                            <!-- Description -->
-                            <p class="text-sm text-slate-custom dark:text-gray-400 line-clamp-2 mb-4 leading-relaxed"></p>
-                            
-                            <!-- Read More Button -->
-                            <a :href="'post.html?id=' + post.id" 
-                               @click="trackEvent('view_post', { post_title: post.title, post_id: post.id, post_type: post.contenttype })"
-                               class="inline-flex items-center gap-2 text-amber-custom dark:text-purple-400 font-semibold hover:gap-3 transition-all group">
-                                <span>Read More</span>
-                                <span class="group-hover:translate-x-1 transition-transform">→</span>
-                            </a>
-                        </div>
-                    </div>
-                </template>
-            </div>
-            
-            <!-- Empty State -->
-            <div x-show="!loading && posts.length === 0" class="text-center py-20">
-                <div class="text-6xl mb-4">📭</div>
-                <h3 class="text-2xl font-bold text-slate-custom dark:text-white mb-2">No Content Found</h3>
-                <p class="text-slate-custom dark:text-gray-400 mb-6">
-                    <span x-show="searchQuery">No results for "<span x-text="searchQuery"></span>"</span>
-                    <span x-show="!searchQuery">No content available in this category</span>
-                </p>
-                <div class="flex gap-3 justify-center flex-wrap">
-                    <button @click="searchQuery = ''; filterByType('all')" 
-                            class="px-6 py-2 bg-amber-custom dark:bg-purple-500 text-white rounded-lg font-semibold hover:shadow-lg transition-all">
-                        Clear Filters
-                    </button>
-                    <a href="index.html" class="px-6 py-2 border-2 border-amber-custom dark:border-purple-400 text-amber-custom dark:text-purple-400 rounded-lg font-semibold hover:bg-amber-50 dark:hover:bg-slate-800 transition-all">
-                        Go Home
-                    </a>
-                </div>
-            </div>
-        </div>
-    </main>
-    
-    <!-- Footer -->
-    <footer class="bg-slate-custom dark:bg-slate-950 text-white py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid md:grid-cols-3 gap-8 mb-8">
-                <div>
-                    <h3 class="font-bold text-lg mb-4">Anbudan Miththiran</h3>
-                    <p class="text-sm text-gray-300">Tamil writer, podcaster, and storyteller exploring love, wisdom, and transformation through words.</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2 text-sm text-gray-300">
-                        <li><a href="category.html?type=article" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Articles</a></li>
-                        <li><a href="category.html?type=poem" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Poems</a></li>
-                        <li><a href="category.html?type=story" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Stories</a></li>
-                        <li><a href="books.html" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Books</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Connect</h4>
-                    <ul class="space-y-2 text-sm text-gray-300">
-                        <li><a href="mailto:miththiran@yandex.com" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Email</a></li>
-                        <li><a href="podcast.html" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Podcast</a></li>
-                        <li><a href="videos.html" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Videos</a></li>
-                        <li><a href="contact.html" class="hover:text-amber-custom dark:hover:text-purple-400 transition-colors">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-700 pt-8 text-center text-sm text-gray-400">
-                <p>&copy; 2026 Anbudan Miththiran. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-    
+
     <script>
         function trackEvent(eventName, params) {
             if (typeof gtag === 'function') {
@@ -513,87 +142,71 @@
         const urlParams = new URLSearchParams(window.location.search);
         const type = urlParams.get('type') || 'article';
         
-        const rootEl = document.querySelector('[x-data]');
-        rootEl.currentType = type;
-        rootEl.activeFilter = type;
-        
         const displayTitle = type.charAt(0).toUpperCase() + type.slice(1) + "s";
-        document.getElementById('category-title').innerText = `📖 Explore ${displayTitle}`;
-        document.title = `${displayTitle} | Anbudan Miththiran`;
+        document.getElementById('category-title').innerText = displayTitle;
+        document.title = `${displayTitle} - Anbudan Miththiran`;
         document.getElementById('meta-description').content = `Explore our collection of Tamil ${displayTitle} by Anbudan Miththiran.`;
 
-        async function fetchCategoryPosts(query = '', filterType = type) {
-            const rootEl = document.querySelector('[x-data]');
-            rootEl.loading = true;
-            
+        async function fetchCategoryPosts(query = '') {
             try {
-                let url;
-                if (filterType === 'all') {
-                    // Fetch all types
-                    const types = ['article', 'poem', 'story'];
-                    let allPosts = [];
-                    
-                    for (const t of types) {
-                        const endpoint = query 
-                            ? `https://premium-backend-8plp.onrender.com/content/public/category/${t}?q=${encodeURIComponent(query)}`
-                            : `https://premium-backend-8plp.onrender.com/content/public/category/${t}`;
-                        
-                        try {
-                            const response = await fetch(endpoint);
-                            const posts = await response.json();
-                            allPosts = allPosts.concat(posts || []);
-                        } catch (err) {
-                            console.error(`Error fetching ${t}:`, err);
-                        }
-                    }
-                    
-                    rootEl.posts = allPosts.sort((a, b) => new Date(b.createdat) - new Date(a.createdat));
-                } else {
-                    url = query 
-                        ? `https://premium-backend-8plp.onrender.com/content/public/category/${filterType}?q=${encodeURIComponent(query)}`
-                        : `https://premium-backend-8plp.onrender.com/content/public/category/${filterType}`;
-                    
-                    const response = await fetch(url);
-                    const posts = await response.json();
-                    rootEl.posts = posts || [];
+                const url = query 
+                    ? `https://premium-backend-8plp.onrender.com/content/public/category/${type}?q=${encodeURIComponent(query)}`
+                    : `https://premium-backend-8plp.onrender.com/content/public/category/${type}`;
+                
+                const response = await fetch(url);
+                const posts = await response.json();
+                const container = document.getElementById('posts-container');
+                container.innerHTML = '';
+
+                if (posts.length === 0) {
+                    container.innerHTML = `<p style="text-align:center; grid-column: 1/-1;">No ${type}s found matching your search.</p>`;
+                    return;
                 }
+
+                posts.forEach(post => {
+                    const card = document.createElement('div');
+                    card.className = 'post-card';
+
+                    let displayImage = post.contenttype === 'book' ? (post.book_cover_url || post.image_url) : post.image_url;
+
+                    const imageHtml = displayImage 
+                        ? `<img src="${displayImage}" alt="${post.title}" onerror="this.style.display='none'">`
+                        : '';
+
+                    card.innerHTML = `
+                        ${imageHtml}
+                        <div class="post-card-content">
+                            <span class="badge badge-${post.contenttype}">${post.contenttype}</span>
+                            <h2>${post.title}</h2>
+                            <div class="post-meta">By <strong>${post.writer}</strong> • ${new Date(post.createdat).toLocaleDateString()}</div>
+                            <div class="tags-container">
+                                ${post.tags ? post.tags.map(tag => `<span class="tag">#${tag}</span>`).join('') : ''}
+                            </div>
+                            <a href="post.html?id=${post.id}" class="read-more" onclick="trackEvent('view_post', { post_title: '${post.title.replace(/'/g, "\\'")}', post_id: '${post.id}' })">Read Full Post</a>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
             } catch (err) {
                 console.error("Error fetching posts:", err);
-                rootEl.posts = [];
-            } finally {
-                rootEl.loading = false;
+                document.getElementById('posts-container').innerHTML = '<p style="text-align:center; grid-column: 1/-1;">Error loading content. Please try again later.</p>';
             }
         }
 
         function handleSearch() {
-            const rootEl = document.querySelector('[x-data]');
-            fetchCategoryPosts(rootEl.searchQuery, rootEl.activeFilter);
-        }
-
-        function filterByType(filterType) {
-            const rootEl = document.querySelector('[x-data]');
-            rootEl.activeFilter = filterType;
-            rootEl.searchQuery = '';
-            
-            if (filterType !== 'all') {
-                rootEl.currentType = filterType;
-                const displayTitle = filterType.charAt(0).toUpperCase() + filterType.slice(1) + "s";
-                document.getElementById('category-title').innerText = `📖 Explore ${displayTitle}`;
-                document.title = `${displayTitle} | Anbudan Miththiran`;
-            } else {
-                document.getElementById('category-title').innerText = '📖 Explore All Content';
-                document.title = 'All Content | Anbudan Miththiran';
-            }
-            
-            fetchCategoryPosts('', filterType);
+            const query = document.getElementById('search-input').value;
+            fetchCategoryPosts(query);
         }
 
         document.getElementById('search-input').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') handleSearch();
         });
 
-        // Initial load
-        fetchCategoryPosts('', type);
+        fetchCategoryPosts();
     </script>
+
+    <footer>
+        &copy; 2026 Anbudan Miththiran | Tamil Literature & Thoughts
+    </footer>
 </body>
 </html>
