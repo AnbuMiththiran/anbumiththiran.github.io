@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9RLGNJL2ZQ');
+    </script>
+    
+    <title>Anbudan Miththiran - Articles, Poems, Stories</title>
+    <meta name="description" content="Anbudan Miththiran - A collection of Tamil articles, poems, stories, and books. Explore the world of Tamil literature.">
+    <meta name="keywords" content="Tamil, Poems, Stories, Articles, Anbudan Miththiran, Tamil Literature">
+    <meta property="og:title" content="Anbudan Miththiran - Articles, Poems, Stories">
+    <meta property="og:description" content="Explore Tamil articles, poems, and stories by Anbudan Miththiran.">
+    <meta property="og:image" content="logo.jpg">
+    <meta property="og:type" content="website">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-dark: #2c3e50;
+            --accent-yellow: #ffb703;
+            --accent-blue: #3498db;
+            --text-dark: #2c3e50;
+            --text-muted: #636e72;
+            --bg-gradient: linear-gradient(135deg, #fff4e6, #ffd8a8, #ffb703);
+            --card-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        body { background: var(--bg-gradient); min-height: 100vh; color: var(--text-dark); display: flex; flex-direction: column; }
+        
+        /* --- Modern Navbar --- */
+        .navbar {
+            background: var(--primary-dark);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-brand {
+            color: var(--accent-yellow);
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 5px 0;
+        }
+        .nav-links a:hover { color: var(--accent-yellow); }
+
+        /* --- Author Branding Section --- */
+        .author-section {
+            background: linear-gradient(135deg, var(--primary-dark), #34495e);
+            color: white;
+            padding: 50px 5%;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .author-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .author-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid var(--accent-yellow);
+            object-fit: cover;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            margin: 0 auto;
+        }
+        .author-info h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--accent-yellow);
+        }
+        .author-info .tagline {
+            font-size: 1.2rem;
+            color: #ecf0f1;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        .author-info p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #bdc3c7;
+        }
+        .author-stats {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            background: rgba(255,255,255,0.1);
+            padding: 15px 25px;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-yellow);
+        }
+        .stat-item .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-yellow);
+        }
+        .stat-item .stat-label {
+            font-size: 0.85rem;
+            color: #bdc3c7;
+            margin-top: 5px;
+        }
+        .author-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        .btn-primary {
+            background: var(--accent-yellow);
+            color: var(--primary-dark);
+        }
+        .btn-primary:hover {
+            background: #ffb703;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 183, 3, 0.3);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent-yellow);
+            border: 2px solid var(--accent-yellow);
+        }
+        .btn-secondary:hover {
+            background: var(--accent-yellow);
+            color: var(--primary-dark);
+        }
+
+        @media (max-width: 768px) {
+            .author-container {
+                grid-template-columns: 1fr;
+            }
+            .author-info h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* --- Hero Search Section --- */
+        .hero-search {
+            text-align: center;
+            padding: 50px 20px 30px;
+        }
+        .hero-search h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-dark);
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+        }
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            background: #fff;
+            border-radius: 50px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: border 0.3s ease;
+        }
+        .search-container:focus-within { border: 2px solid var(--accent-yellow); }
+        .search-input {
+            flex: 1;
+            padding: 15px 25px;
+            border: none;
+            font-size: 16px;
+            outline: none;
+            background: transparent;
+        }
+        .search-btn {
+            padding: 0 30px;
+            background: var(--primary-dark);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+        .search-btn:hover { background: #1a252f; }
+
+        /* --- Content Layout --- */
+        .container {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 0 20px;
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        /* --- Modern Cards --- */
+        .post-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255,255,255,0.5);
+            position: relative;
+        }
+        .post-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+        .post-card-content { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+        .post-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--accent-yellow);
+        }
+        .post-card h2 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary-dark);
+            line-height: 1.4;
+        }
+        .post-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+        .post-excerpt {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            flex: 1;
+        }
+        
+        /* --- View Count Badge --- */
+        .view-count {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+            color: var(--accent-blue);
+            font-weight: 600;
+            background: rgba(52, 152, 219, 0.1);
+            padding: 8px 12px;
+            border-radius: 20px;
+            width: fit-content;
+        }
+        .view-count svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .post-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        .read-more {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .read-more:hover { color: var(--primary-dark); }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--primary-dark);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">📚 Anbudan Miththiran</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="category.html?type=article">Articles</a>
+            <a href="category.html?type=poem">Poems</a>
+            <a href="category.html?type=story">Stories</a>
+            <a href="books.html">Books</a>
+            <a href="about.html">About</a>
+            <a href="dashboard.html">Analytics</a>
+        </div>
+    </nav>
+
+    <!-- Author Branding Section -->
+    <section class="author-section">
+        <div class="author-container">
+            <img src="logo.jpg" alt="Anbudan Miththiran" class="author-photo">
+            <div class="author-info">
+                <h1>Anbudan Miththiran</h1>
+                <p class="tagline">Preserving Tamil Literature, Inspiring Modern Readers</p>
+                <p>Welcome to my literary space. I'm a passionate Tamil writer dedicated to creating meaningful stories, thoughtful poetry, and insightful articles that celebrate our rich cultural heritage while connecting with contemporary audiences. Every piece you read here is crafted with care and authenticity.</p>
+                
+                <div class="author-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" id="total-views">0</div>
+                        <div class="stat-label">Total Views</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="total-readers">0</div>
+                        <div class="stat-label">Readers</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="total-posts">0</div>
+                        <div class="stat-label">Published Works</div>
+                    </div>
+                </div>
+
+                <div class="author-buttons">
+                    <button class="btn btn-primary">Follow</button>
+                    <button class="btn btn-secondary">Subscribe</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="hero-search">
+        <h2>Explore My Works</h2>
+        <div class="search-container">
+            <input type="text" class="search-input" id="search-input" placeholder="Search articles, poems, stories...">
+            <button class="search-btn" onclick="performSearch()">Search</button>
+        </div>
+    </section>
+
+    <!-- Content Grid -->
+    <div class="container" id="content-container">
+        <div class="loading">Loading content...</div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Anbudan Miththiran | Tamil Literature & Thoughts</p>
+    </footer>
+
+    <script>
+        // Configuration
+        const API_BASE_URL = 'http://localhost:5000/api';
+        const BACKEND_API = 'https://premium-backend-8plp.onrender.com';
+
+        // Track page view
+        function trackPageView() {
+            fetch(`${API_BASE_URL}/views`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    postId: 'homepage',
+                    postTitle: 'Anbudan Miththiran Homepage',
+                    postType: 'homepage',
+                    readTime: 0,
+                    engagementScore: 0
+                })
+            }).catch(err => console.log('View tracking:', err));
+        }
+
+        // Load analytics data
+        async function loadAnalytics() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/analytics/dashboard`);
+                const data = await response.json();
+                
+                document.getElementById('total-views').textContent = data.stats?.total_views || 0;
+                document.getElementById('total-readers').textContent = data.stats?.total_readers || 0;
+                document.getElementById('total-posts').textContent = data.stats?.total_posts || 0;
+            } catch (error) {
+                console.log('Analytics loading:', error);
+            }
+        }
+
+        // Load content from backend
+        async function loadContent() {
+            try {
+                const response = await fetch(`${BACKEND_API}/content/public`);
+                const posts = await response.json();
+                
+                if (!Array.isArray(posts)) {
+                    document.getElementById('content-container').innerHTML = '<div class="loading">No content available yet.</div>';
+                    return;
+                }
+
+                let html = '';
+                for (const post of posts) {
+                    // Get view count for this post
+                    let viewCount = 0;
+                    try {
+                        const viewResponse = await fetch(`${API_BASE_URL}/views/${post.id}`);
+                        const viewData = await viewResponse.json();
+                        viewCount = viewData.total_views || 0;
+                    } catch (e) {
+                        console.log('View count error:', e);
+                    }
+
+                    const image = post.contenttype === 'book' ? (post.book_cover_url || post.image_url) : post.image_url;
+                    
+                    html += `
+                        <div class="post-card">
+                            ${image ? `<img src="${image}" alt="${post.title}">` : ''}
+                            <div class="post-card-content">
+                                <span style="display: inline-block; background: #e8f4f8; color: #3498db; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; font-weight: 600; margin-bottom: 10px; width: fit-content;">
+                                    ${post.contenttype.toUpperCase()}
+                                </span>
+                                <h2>${post.title}</h2>
+                                <div class="post-meta">By ${post.writer} • ${new Date(post.createdat).toLocaleDateString()}</div>
+                                <p class="post-excerpt">${post.body ? post.body.substring(0, 100) + '...' : 'No preview available'}</p>
+                            </div>
+                            <div class="post-footer">
+                                <a href="post.html?id=${post.id}" class="read-more">Read More →</a>
+                                <div class="view-count">
+                                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path></svg>
+                                    ${viewCount}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                document.getElementById('content-container').innerHTML = html;
+            } catch (error) {
+                console.error('Error loading content:', error);
+                document.getElementById('content-container').innerHTML = '<div class="loading">Error loading content. Please try again later.</div>';
+            }
+        }
+
+        function performSearch() {
+            const query = document.getElementById('search-input').value;
+            if (query.trim()) {
+                window.location.href = `category.html?search=${encodeURIComponent(query)}`;
+            }
+        }
+
+        // Initialize on page load
+        window.addEventListener('load', () => {
+            trackPageView();
+            loadAnalytics();
+            loadContent();
+        });
+
+        // Track time on page
+        let timeOnPage = 0;
+        setInterval(() => {
+            timeOnPage++;
+        }, 1000);
+    </script>
+</body>
+</html>
