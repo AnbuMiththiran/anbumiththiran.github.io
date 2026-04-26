@@ -3,152 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-9RLGNJL2ZQ');
-    </script>
-    
-    <title>Admin Login - Anbudan Miththiran</title>
+    <title>Admin Portal - Anbudan Miththiran</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
     <style>
         :root {
             --primary-dark: #2c3e50;
             --accent-yellow: #ffb703;
             --bg-gradient: linear-gradient(135deg, #fff4e6, #ffd8a8, #ffb703);
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        
-        body { 
-            background: var(--bg-gradient); 
-            min-height: 100vh; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-        }
-
-        .login-container { 
-            background: rgba(255, 255, 255, 0.98); 
-            padding: 40px; 
-            border-radius: 20px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
-            width: 90%; 
-            max-width: 400px; 
-            border: 1px solid rgba(255,255,255,0.8);
-        }
-
-        h2 { 
-            text-align: center; 
-            color: var(--primary-dark); 
-            margin-bottom: 30px; 
-            font-weight: 700;
-            font-size: 1.8rem;
-        }
-
-        input { 
-            width: 100%; 
-            padding: 15px; 
-            margin-bottom: 20px; 
-            border: 2px solid #eee; 
-            border-radius: 10px; 
-            font-size: 1rem; 
-            outline: none;
-            transition: border-color 0.3s ease;
-            background: #f8f9fa;
-        }
-
-        input:focus { border-color: var(--accent-yellow); background: #fff; }
-
-        button { 
-            width: 100%; 
-            padding: 15px; 
-            background-color: var(--primary-dark); 
-            color: white; 
-            border: none; 
-            border-radius: 10px; 
-            cursor: pointer; 
-            font-size: 1.1rem; 
-            font-weight: 600; 
-            transition: background-color 0.3s, transform 0.2s; 
-        }
-        
-        button:hover { background-color: #1a252f; transform: translateY(-2px); }
-
-        #message { 
-            text-align: center; 
-            margin-top: 20px; 
-            padding: 12px; 
-            border-radius: 8px; 
-            display: none; 
-            font-size: 0.95rem; 
-            font-weight: 500;
-        }
-        .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-        .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
-
-        footer { 
-            text-align: center; 
-            padding: 20px; 
-            color: var(--primary-dark); 
-            font-weight: 600; 
-            width: 100%; 
-            position: absolute; 
-            bottom: 0; 
-            font-size: 0.9rem;
-        }
+        body { background: var(--bg-gradient); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .login-container { background: #fff; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
+        h2 { text-align: center; color: var(--primary-dark); margin-bottom: 25px; }
+        input { width: 100%; padding: 12px; margin-bottom: 15px; border: 2px solid #eee; border-radius: 8px; outline: none; font-size: 1rem; }
+        input:focus { border-color: var(--accent-yellow); }
+        button { width: 100%; padding: 12px; background: var(--primary-dark); color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; margin-bottom: 10px; font-size: 1rem; transition: background 0.3s; }
+        button:hover { background: #1a252f; }
+        .link-btn { background: none; color: var(--primary-dark); text-decoration: underline; font-size: 0.9rem; border: none; cursor: pointer; display: block; margin: 0 auto; font-weight: 500; }
+        #message { margin-top: 15px; padding: 10px; border-radius: 5px; display: none; text-align: center; font-size: 0.9rem; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .hidden { display: none !important; }
+        .loader { border: 3px solid #f3f3f3; border-top: 3px solid var(--primary-dark); border-radius: 50%; width: 20px; height: 20px; animation: spin 1s linear infinite; display: inline-block; vertical-align: middle; margin-right: 8px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <h2>Admin Portal</h2>
-        <input type="email" id="email" placeholder="Email Address" required>
-        <input type="password" id="password" placeholder="Password" required>
-        <button onclick="login()">Secure Login</button>
+        <h2 id="portal-title">Admin Login</h2>
+        
+        <!-- Login Form -->
+        <div id="login-form">
+            <input type="password" id="password" placeholder="Enter Admin Password">
+            <button id="login-btn" onclick="handleLogin()">Login</button>
+            <button class="link-btn" onclick="toggleView('forgot')">Forgot Password?</button>
+        </div>
+
+        <!-- 2FA Form -->
+        <div id="mfa-form" class="hidden">
+            <p style="margin-bottom:15px; font-size:0.9rem; text-align:center; color: #555;">Enter the 6-digit verification code sent to your registered email.</p>
+            <input type="text" id="otp" placeholder="Verification Code" maxlength="6">
+            <button id="verify-btn" onclick="handleVerifyOtp()">Verify & Login</button>
+            <button class="link-btn" onclick="toggleView('login')">Back to Login</button>
+        </div>
+
+        <!-- Forgot Password Form -->
+        <div id="forgot-form" class="hidden">
+            <p style="margin-bottom:15px; font-size:0.9rem; text-align:center; color: #555;">Click the button below to receive a password reset link at your registered email.</p>
+            <button id="forgot-btn" onclick="handleForgotPassword()">Send Reset Link</button>
+            <button class="link-btn" onclick="toggleView('login')">Back to Login</button>
+        </div>
+
+        <!-- Reset Password Form -->
+        <div id="reset-form" class="hidden">
+            <p style="margin-bottom:15px; font-size:0.9rem; text-align:center; color: #555;">Enter your new secure password.</p>
+            <input type="password" id="new-password" placeholder="New Password">
+            <button id="reset-btn" onclick="handleResetPassword()">Update Password</button>
+        </div>
+
         <div id="message"></div>
     </div>
 
     <script>
-        async function login() {
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const messageDiv = document.getElementById('message');
+        const API_BASE = 'https://premium-backend-8plp.onrender.com';
+        const msgDiv = document.getElementById('message');
+        const urlParams = new URLSearchParams(window.location.search);
+        const resetToken = urlParams.get('reset_token');
 
-            try {
-                const response = await fetch('https://premium-backend-8plp.onrender.com/admin-login', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password })
-                });
-                const data = await response.json();
+        // Static admin email used for internal logic, not visible to users
+        const ADMIN_EMAIL = 'miththiran@yandex.com';
 
-                if (data.success) {
-                    localStorage.setItem('adminToken', data.token);
-                    messageDiv.innerText = "Login successful! Redirecting...";
-                    messageDiv.className = "success";
-                    messageDiv.style.display = "block";
-                    setTimeout(() => {
-                        window.location.href = 'dashboard.html';
-                    }, 1500);
-                } else {
-                    messageDiv.innerText = data.message || "Invalid credentials";
-                    messageDiv.className = "error";
-                    messageDiv.style.display = "block";
-                }
-            } catch (err) {
-                messageDiv.innerText = "Error connecting to server";
-                messageDiv.className = "error";
-                messageDiv.style.display = "block";
+        if (resetToken) {
+            toggleView('reset');
+            document.getElementById('portal-title').innerText = "Reset Password";
+        }
+
+        function showMsg(text, type) {
+            msgDiv.innerText = text;
+            msgDiv.className = type;
+            msgDiv.style.display = 'block';
+        }
+
+        function setLoading(btnId, isLoading) {
+            const btn = document.getElementById(btnId);
+            if (isLoading) {
+                btn.disabled = true;
+                btn.innerHTML = '<span class="loader"></span> Processing...';
+            } else {
+                btn.disabled = false;
+                btn.innerHTML = btnId === 'login-btn' ? 'Login' : 
+                                btnId === 'verify-btn' ? 'Verify & Login' : 
+                                btnId === 'forgot-btn' ? 'Send Reset Link' : 'Update Password';
             }
         }
-    </script>
 
-    <footer>
-        &copy; 2026 Anbudan Miththiran
-    </footer>
+        function toggleView(view) {
+            document.getElementById('login-form').classList.add('hidden');
+            document.getElementById('mfa-form').classList.add('hidden');
+            document.getElementById('forgot-form').classList.add('hidden');
+            document.getElementById('reset-form').classList.add('hidden');
+            document.getElementById(view + '-form').classList.remove('hidden');
+            msgDiv.style.display = 'none';
+            
+            if (view === 'login') document.getElementById('portal-title').innerText = "Admin Login";
+            if (view === 'forgot') document.getElementById('portal-title').innerText = "Recover Access";
+        }
+
+        async function handleLogin() {
+            const password = document.getElementById('password').value;
+            if (!password) return showMsg("Please enter password", "error");
+            
+            setLoading('login-btn', true);
+            try {
+                const res = await fetch(`${API_BASE}/admin-login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: ADMIN_EMAIL, password })
+                });
+                const data = await res.json();
+                if (data.mfaRequired) {
+                    toggleView('mfa');
+                    showMsg("Verification code sent to your email.", "success");
+                } else {
+                    showMsg(data.message || "Login failed", "error");
+                }
+            } catch (e) { showMsg("Server connection error", "error"); }
+            finally { setLoading('login-btn', false); }
+        }
+
+        async function handleVerifyOtp() {
+            const otp = document.getElementById('otp').value;
+            if (!otp) return showMsg("Please enter verification code", "error");
+
+            setLoading('verify-btn', true);
+            try {
+                const res = await fetch(`${API_BASE}/admin-verify-otp`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: ADMIN_EMAIL, otp })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    localStorage.setItem('adminToken', data.token);
+                    showMsg("Login successful! Redirecting...", "success");
+                    setTimeout(() => window.location.href = 'dashboard.html', 1000);
+                } else { showMsg(data.message, "error"); }
+            } catch (e) { showMsg("Verification error", "error"); }
+            finally { setLoading('verify-btn', false); }
+        }
+
+        async function handleForgotPassword() {
+            setLoading('forgot-btn', true);
+            try {
+                const res = await fetch(`${API_BASE}/forgot-password`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: ADMIN_EMAIL })
+                });
+                const data = await res.json();
+                showMsg(data.message, "success");
+            } catch (e) { showMsg("Error sending request", "error"); }
+            finally { setLoading('forgot-btn', false); }
+        }
+
+        async function handleResetPassword() {
+            const newPassword = document.getElementById('new-password').value;
+            if (!newPassword) return showMsg("Please enter new password", "error");
+
+            setLoading('reset-btn', true);
+            try {
+                const res = await fetch(`${API_BASE}/reset-password`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ token: resetToken, newPassword })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    showMsg("Password updated! Please login.", "success");
+                    setTimeout(() => window.location.href = 'admin.html', 2000);
+                } else { showMsg(data.message, "error"); }
+            } catch (e) { showMsg("Reset error", "error"); }
+            finally { setLoading('reset-btn', false); }
+        }
+    </script>
 </body>
 </html>
