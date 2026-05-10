@@ -209,6 +209,7 @@
     </style>
 </head>
 <body>
+
 <!-- App Install Popup -->
 <div id="appInstallPopup" style="
     position: fixed;
@@ -256,11 +257,27 @@
 </div>
 
 <script>
-    // Show popup after 2 seconds
+    function isWebView() {
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+        // Detect Android WebView
+        return (
+            userAgent.includes("wv") ||
+            userAgent.includes("Android") && userAgent.includes("Version/") ||
+            window.matchMedia('(display-mode: standalone)').matches
+        );
+    }
+
+    // Show popup only in browser
     window.addEventListener("load", () => {
-        setTimeout(() => {
-            document.getElementById("appInstallPopup").style.display = "flex";
-        }, 2000);
+
+        if (!isWebView()) {
+
+            setTimeout(() => {
+                document.getElementById("appInstallPopup").style.display = "flex";
+            }, 2000);
+
+        }
     });
 
     // APK Download
@@ -273,7 +290,6 @@
         document.getElementById("appInstallPopup").style.display = "none";
     }
 </script>
-    
 
     <nav class="navbar">
         <a href="index.html" class="nav-brand">Anbudan Miththiran</a>
