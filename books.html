@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9RLGNJL2ZQ');
+    </script>
+    
+    <title>Books - Anbudan Miththiran</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="pratilipi-style.css">
+    <style>
+        .book-card {
+            background: var(--bg-white);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+        .book-cover-large {
+            width: 140px;
+            height: 210px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .book-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .book-details h2 {
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+        }
+        .book-details p {
+            color: var(--gray-dark);
+            margin-bottom: 15px;
+        }
+        .buy-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: auto;
+        }
+        .buy-link {
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: white;
+        }
+        @media (max-width: 600px) {
+            .book-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .book-cover-large {
+                width: 160px;
+                height: 240px;
+            }
+            .buy-group {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Desktop Header -->
+    <header class="app-header">
+        <a href="index.html" class="header-brand">Anbudan <span>Miththiran</span></a>
+        <nav class="desktop-nav">
+            <a href="index.html">Home</a>
+            <a href="category.html?type=article">Articles</a>
+            <a href="category.html?type=poem">Poems</a>
+            <a href="category.html?type=story">Stories</a>
+            <a href="videos.html">Videos</a>
+            <a href="podcast.html">Podcast</a>
+            <a href="books.html" class="active">Books</a>
+            <a href="about.html">About</a>
+        </nav>
+    </header>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-nav">
+        <a href="index.html" class="mobile-nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="category.html?type=article" class="mobile-nav-item">
+            <i class="fas fa-newspaper"></i>
+            <span>Articles</span>
+        </a>
+        <a href="videos.html" class="mobile-nav-item">
+            <i class="fas fa-play-circle"></i>
+            <span>Videos</span>
+        </a>
+        <a href="books.html" class="mobile-nav-item active">
+            <i class="fas fa-book"></i>
+            <span>Books</span>
+        </a>
+        <a href="about.html" class="mobile-nav-item">
+            <i class="fas fa-user"></i>
+            <span>About</span>
+        </a>
+    </nav>
+
+    <main class="container">
+        <div style="margin-bottom: 20px;">
+            <h1 style="font-size: 1.8rem; color: var(--primary-dark);">My Published Books</h1>
+        </div>
+        <div id="book-container">
+            <!-- Loading State -->
+            <div style="text-align: center; padding: 50px;">
+                <i class="fas fa-circle-notch fa-spin fa-2x" style="color: var(--primary-color);"></i>
+                <p style="margin-top: 10px; color: var(--gray-dark);">Loading books...</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        async function fetchBooks(query = '') {
+            try {
+                const url = query 
+                    ? `https://premium-backend-8plp.onrender.com/content/public/category/book?q=${encodeURIComponent(query)}`
+                    : 'https://premium-backend-8plp.onrender.com/content/public/category/book';
+                
+                const response = await fetch(url);
+                const books = await response.json();
+                const container = document.getElementById('book-container');
+                container.innerHTML = '';
+
+                if (books.length === 0) {
+                    container.innerHTML = '<div style="text-align:center; padding: 40px;"><p>No books found.</p></div>';
+                    return;
+                }
+
+                books.forEach(book => {
+                    const card = document.createElement('div');
+                    card.className = 'book-card';
+                    
+                    let linksHtml = '';
+                    if (book.links) {
+                        if (book.links.amazon) linksHtml += `<a href="${book.links.amazon}" target="_blank" class="buy-link" style="background:#FF9900;">Amazon</a>`;
+                        if (book.links.flipkart) linksHtml += `<a href="${book.links.flipkart}" target="_blank" class="buy-link" style="background:#2874F0;">Flipkart</a>`;
+                        if (book.links.notionpress) linksHtml += `<a href="${book.links.notionpress}" target="_blank" class="buy-link" style="background:#1ABC9C;">Notion Press</a>`;
+                    }
+                    
+                    const displayImage = book.book_cover_url || book.image_url || 'logo.jpg';
+
+                    card.innerHTML = `
+                        <img src="${displayImage}" class="book-cover-large" alt="${book.title}" onerror="this.src='logo.jpg'">
+                        <div class="book-details">
+                            <h2>${book.title}</h2>
+                            <p>By ${book.writer}</p>
+                            <div class="buy-group">
+                                ${linksHtml}
+                                <a href="post.html?id=${book.id}" class="buy-link" style="background:var(--gray-dark);">Details</a>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            } catch (err) {
+                console.error("Error fetching books:", err);
+                document.getElementById('book-container').innerHTML = '<div style="text-align:center; padding: 40px;"><p>Error loading books.</p></div>';
+            }
+        }
+
+        fetchBooks();
+    </script>
+</body>
+</html>

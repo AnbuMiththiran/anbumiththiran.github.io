@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9RLGNJL2ZQ');
+    </script>
+    
+    <title>Category - Anbudan Miththiran</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="pratilipi-style.css">
+</head>
+<body>
+
+    <!-- Desktop Header -->
+    <header class="app-header">
+        <a href="index.html" class="header-brand">Anbudan <span>Miththiran</span></a>
+        
+        <div class="header-search">
+            <i class="fas fa-search"></i>
+            <input type="text" id="search-input" placeholder="Search in this category...">
+        </div>
+
+        <nav class="desktop-nav">
+            <a href="index.html">Home</a>
+            <a href="category.html?type=article" id="nav-article">Articles</a>
+            <a href="category.html?type=poem" id="nav-poem">Poems</a>
+            <a href="category.html?type=story" id="nav-story">Stories</a>
+            <a href="videos.html">Videos</a>
+            <a href="podcast.html">Podcast</a>
+            <a href="books.html">Books</a>
+            <a href="about.html">About</a>
+        </nav>
+    </header>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-nav">
+        <a href="index.html" class="mobile-nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="category.html?type=article" class="mobile-nav-item" id="mobile-nav-article">
+            <i class="fas fa-newspaper"></i>
+            <span>Articles</span>
+        </a>
+        <a href="videos.html" class="mobile-nav-item">
+            <i class="fas fa-play-circle"></i>
+            <span>Videos</span>
+        </a>
+        <a href="books.html" class="mobile-nav-item">
+            <i class="fas fa-book"></i>
+            <span>Books</span>
+        </a>
+        <a href="about.html" class="mobile-nav-item">
+            <i class="fas fa-user"></i>
+            <span>About</span>
+        </a>
+    </nav>
+
+    <main class="container">
+        <div style="margin-bottom: 20px;">
+            <h1 id="category-title" style="font-size: 1.8rem; color: var(--primary-dark);">Category</h1>
+        </div>
+        <div class="content-grid" id="posts-container">
+            <!-- Loading State -->
+            <div style="grid-column: 1/-1; text-align: center; padding: 50px;">
+                <i class="fas fa-circle-notch fa-spin fa-2x" style="color: var(--primary-color);"></i>
+                <p style="margin-top: 10px; color: var(--gray-dark);">Loading content...</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const type = urlParams.get('type') || 'article';
+        
+        const displayTitle = type.charAt(0).toUpperCase() + type.slice(1) + "s";
+        document.getElementById('category-title').innerText = displayTitle;
+        document.title = `${displayTitle} - Anbudan Miththiran`;
+
+        // Highlight active nav
+        if (document.getElementById(`nav-${type}`)) {
+            document.getElementById(`nav-${type}`).classList.add('active');
+        }
+        if (type === 'article' && document.getElementById('mobile-nav-article')) {
+            document.getElementById('mobile-nav-article').classList.add('active');
+        }
+
+        async function fetchCategoryPosts(query = '') {
+            try {
+                const url = query 
+                    ? `https://premium-backend-8plp.onrender.com/content/public/category/${type}?q=${encodeURIComponent(query)}`
+                    : `https://premium-backend-8plp.onrender.com/content/public/category/${type}`;
+                
+                const response = await fetch(url);
+                const posts = await response.json();
+                const container = document.getElementById('posts-container');
+                container.innerHTML = '';
+
+                if (posts.length === 0) {
+                    container.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding: 40px;"><p style="color:var(--gray-dark);">No posts found in this category.</p></div>';
+                    return;
+                }
+
+                posts.forEach(post => {
+                    const card = document.createElement('div');
+                    card.className = 'story-card';
+
+                    let displayImage = post.contenttype === 'book' ? (post.book_cover_url || post.image_url) : post.image_url;
+                    if (!displayImage) displayImage = 'logo.jpg';
+
+                    card.innerHTML = `
+                        <img src="${displayImage}" class="story-cover" alt="${post.title}" onerror="this.src='logo.jpg'">
+                        <div class="story-info">
+                            <div class="story-category">${post.contenttype || 'Literature'}</div>
+                            <h3 class="story-title">${post.title}</h3>
+                            <div class="story-meta">
+                                <span><i class="far fa-user"></i> ${post.writer}</span>
+                                <span><i class="far fa-calendar"></i> ${new Date(post.createdat).toLocaleDateString()}</span>
+                            </div>
+                        </div>
+                        <div class="story-actions">
+                            <a href="post.html?id=${post.id}" class="read-btn">Read Now</a>
+                            <div class="share-group">
+                                <i class="fas fa-share-alt share-btn" onclick="sharePost('${post.title}', '${post.id}')" title="Share"></i>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            } catch (err) {
+                console.error("Error fetching posts:", err);
+                document.getElementById('posts-container').innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding: 40px;"><p>Error loading content. Please try again later.</p></div>';
+            }
+        }
+
+        function sharePost(title, id) {
+            const url = window.location.origin + '/post.html?id=' + id;
+            if (navigator.share) {
+                navigator.share({ title: title, url: url });
+            } else {
+                window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(title + ' ' + url)}`, '_blank');
+            }
+        }
+
+        document.getElementById('search-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') fetchCategoryPosts(e.target.value);
+        });
+
+        fetchCategoryPosts();
+    </script>
+</body>
+</html>
