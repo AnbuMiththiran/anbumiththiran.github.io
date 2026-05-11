@@ -15,201 +15,123 @@
     <meta name="description" content="Explore Tamil books by Anbudan Miththiran. Purchase links for Amazon, Flipkart, and Notion Press.">
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="facebook-style.css">
     <style>
-        :root {
-            --primary-dark: #2c3e50;
-            --accent-yellow: #ffb703;
-            --text-dark: #2c3e50;
-            --bg-gradient: linear-gradient(135deg, #fff4e6, #ffd8a8, #ffb703);
+        .book-card-fb {
+            background: var(--fb-white);
+            border-radius: 8px;
+            box-shadow: var(--fb-card-shadow);
+            margin-bottom: 16px;
+            padding: 16px;
+            display: flex;
+            gap: 16px;
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        
-        body { background: var(--bg-gradient); min-height: 100vh; color: var(--text-dark); display: flex; flex-direction: column; }
-        
-        /* --- Unified Navbar --- */
-        .navbar {
-            background: var(--primary-dark); padding: 15px 5%; display: flex;
-            justify-content: space-between; align-items: center; flex-wrap: wrap;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15); position: sticky; top: 0; z-index: 100;
+        .book-cover-fb {
+            width: 120px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        .nav-brand { color: var(--accent-yellow); font-size: 1.5rem; font-weight: 700; text-decoration: none; }
-        .nav-links { display: flex; gap: 20px; flex-wrap: wrap; }
-        .nav-links a { color: #fff; text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: 0.3s; padding: 5px 0; }
-        .nav-links a:hover { color: var(--accent-yellow); }
-
-        /* --- Header & Search --- */
-        .page-header { text-align: center; padding: 40px 20px 20px; }
-        .page-header h1 { font-size: 2.5rem; color: var(--primary-dark); text-shadow: 1px 1px 2px rgba(255,255,255,0.5); margin-bottom: 20px; }
-        
-        .search-container {
-            max-width: 600px; margin: 0 auto 30px; display: flex; background: #fff;
-            border-radius: 50px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); overflow: hidden;
-            border: 2px solid transparent; transition: border 0.3s ease;
+        .book-info-fb {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
-        .search-container:focus-within { border: 2px solid var(--accent-yellow); }
-        .search-input { flex: 1; padding: 15px 25px; border: none; font-size: 16px; outline: none; background: transparent; }
-        .search-btn { padding: 0 30px; background: var(--primary-dark); color: white; border: none; cursor: pointer; font-weight: 600; transition: 0.3s; }
-        .search-btn:hover { background: #1a252f; }
-
-        /* --- Books Grid --- */
-        .container { max-width: 1200px; margin: 0 auto 40px; padding: 0 20px; flex: 1; }
-        .book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
-        
-        .book-card {
-            background: rgba(255, 255, 255, 0.95); padding: 25px; border-radius: 16px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.08); text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid rgba(255,255,255,0.6);
-            display: flex; flex-direction: column;
-        }
-        .book-card:hover { transform: translateY(-8px); box-shadow: 0 12px 25px rgba(0,0,0,0.15); }
-        
-        .book-cover {
-            width: 100%; height: 350px; background: #f8f9fa; border-radius: 8px; margin-bottom: 20px;
-            display: flex; align-items: center; justify-content: center; font-weight: bold; color: #adb5bd;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1); object-fit: cover; border: 1px solid #eee;
-        }
-        
-        .book-title { font-size: 1.3rem; color: var(--primary-dark); margin-bottom: 5px; font-weight: 700; line-height: 1.3; }
-        .book-author { color: #636e72; font-size: 0.95rem; margin-bottom: 20px; }
-        
-        .purchase-links { display: flex; flex-direction: column; gap: 10px; margin-top: auto; }
         .buy-btn {
-            display: block; padding: 12px; color: white; text-decoration: none; border-radius: 8px;
-            font-weight: 600; font-size: 0.95rem; transition: transform 0.2s, opacity 0.2s;
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            margin-top: 8px;
+            text-align: center;
         }
-        .buy-btn:hover { transform: translateY(-2px); opacity: 0.95; }
-        .btn-amazon { background-color: #ff9900; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
-        .btn-flipkart { background-color: #2874f0; }
-        .btn-notion { background-color: #1abc9c; }
-        .btn-details { background-color: transparent; border: 2px solid var(--primary-dark); color: var(--primary-dark); }
-        .btn-details:hover { background-color: var(--primary-dark); color: #fff; }
-
-        footer { background: var(--primary-dark); color: #fff; text-align: center; padding: 25px; font-weight: 500; margin-top: 40px; }
-
-        @media(max-width: 768px) {
-            .navbar { flex-direction: column; gap: 15px; }
-            .nav-links { justify-content: center; }
+        .btn-amazon { background: #FF9900; color: white; }
+        .btn-flipkart { background: #2874F0; color: white; }
+        .btn-notion { background: #1ABC9C; color: white; }
+        
+        @media (max-width: 500px) {
+            .book-card-fb {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
-<!-- App Install Popup -->
-<div id="appInstallPopup" style="
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #111;
-    color: white;
-    padding: 14px 18px;
-    border-radius: 14px;
-    display: none;
-    align-items: center;
-    gap: 12px;
-    z-index: 9999;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-    font-family: sans-serif;
-">
 
-    <div>
-        <strong>Anbudan Miththiran App</strong><br>
-        Install Android App
-    </div>
-
-    <button id="downloadBtn" style="
-        background: #ff9800;
-        border: none;
-        color: white;
-        padding: 10px 14px;
-        border-radius: 8px;
-        cursor: pointer;
-        font-weight: bold;
-    ">
-        Download APK
-    </button>
-
-    <button onclick="closePopup()" style="
-        background: transparent;
-        border: none;
-        color: white;
-        font-size: 18px;
-        cursor: pointer;
-    ">
-        ✕
-    </button>
-</div>
-
-<script>
-    function isWebView() {
-        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-        // Detect Android WebView
-        return (
-            userAgent.includes("wv") ||
-            userAgent.includes("Android") && userAgent.includes("Version/") ||
-            window.matchMedia('(display-mode: standalone)').matches
-        );
-    }
-
-    // Show popup only in browser
-    window.addEventListener("load", () => {
-
-        if (!isWebView()) {
-
-            setTimeout(() => {
-                document.getElementById("appInstallPopup").style.display = "flex";
-            }, 2000);
-
-        }
-    });
-
-    // APK Download
-    document.getElementById("downloadBtn").addEventListener("click", () => {
-        window.location.href =
-        "https://github.com/AnbuMiththiran/anbudan-miththiran-app/releases/download/v1.0.2/anbudan-miththiran-app-v1_0_2.apk";
-    });
-
-    function closePopup() {
-        document.getElementById("appInstallPopup").style.display = "none";
-    }
-</script>
-    
-    <nav class="navbar">
-        <a href="index.html" class="nav-brand">Anbudan Miththiran</a>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="category.html?type=article">Articles</a>
-            <a href="category.html?type=poem">Poems</a>
-            <a href="category.html?type=story">Stories</a>
-            <a href="videos.html">Videos</a>
-            <a href="podcast.html">Podcast</a>
-            <a href="books.html">Books</a>
-            <a href="about.html">About</a>
+    <!-- Facebook Style Header -->
+    <header class="fb-header">
+        <div class="header-left">
+            <a href="index.html" class="fb-logo">A</a>
+            <div class="fb-search">
+                <i class="fas fa-search" style="color: #65676B;"></i>
+                <input type="text" id="search-input" placeholder="Search Anbudan Miththiran">
+            </div>
         </div>
+        <div class="header-center">
+            <a href="index.html" class="nav-item" title="Home"><i class="fas fa-home fa-lg"></i></a>
+            <a href="videos.html" class="nav-item" title="Videos"><i class="fas fa-play-circle fa-lg"></i></a>
+            <a href="books.html" class="nav-item active" title="Books"><i class="fas fa-book fa-lg"></i></a>
+            <a href="podcast.html" class="nav-item" title="Podcast"><i class="fas fa-podcast fa-lg"></i></a>
+        </div>
+        <div class="header-right">
+            <a href="about.html" class="profile-link">
+                <img src="logo.jpg" alt="Profile" class="profile-pic">
+                <span>Miththiran</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+        <a href="index.html" class="nav-item"><i class="fas fa-home fa-lg"></i></a>
+        <a href="category.html?type=article" class="nav-item"><i class="fas fa-newspaper fa-lg"></i></a>
+        <a href="videos.html" class="nav-item"><i class="fas fa-play-circle fa-lg"></i></a>
+        <a href="books.html" class="nav-item active"><i class="fas fa-book fa-lg"></i></a>
+        <a href="about.html" class="nav-item"><i class="fas fa-bars fa-lg"></i></a>
     </nav>
 
-    <div class="page-header">
-        <h1>My Published Books</h1>
-        <div class="search-container">
-            <input type="text" id="search-input" class="search-input" placeholder="தேடுக... (Search books in Tamil or English)">
-            <button onclick="handleSearch()" class="search-btn">Search</button>
-        </div>
-    </div>
+    <main class="fb-main">
+        <!-- Left Sidebar -->
+        <aside class="fb-sidebar">
+            <a href="index.html" class="sidebar-item">
+                <div class="sidebar-icon" style="color: #1877F2;"><i class="fas fa-arrow-left"></i></div>
+                <span>Back to Feed</span>
+            </a>
+            <a href="books.html" class="sidebar-item" style="background: var(--fb-hover); font-weight: 600;">
+                <div class="sidebar-icon" style="color: #F02849;"><i class="fas fa-book"></i></div>
+                <span>All Books</span>
+            </a>
+        </aside>
 
-    <div class="container">
-        <div class="book-grid" id="book-container">
+        <!-- Main Feed -->
+        <section class="fb-feed">
+            <div class="fb-card" style="padding: 16px; margin-bottom: 16px;">
+                <h1 style="font-size: 24px; font-weight: 700;">My Published Books</h1>
             </div>
-    </div>
+            <div id="book-container">
+                <div class="fb-card" style="text-align: center; padding: 40px;">
+                    <i class="fas fa-circle-notch fa-spin fa-2x" style="color: var(--fb-blue);"></i>
+                    <p style="margin-top: 10px; color: var(--fb-text-secondary);">Loading books...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right Panel -->
+        <aside class="fb-right-panel">
+            <div class="fb-card">
+                <h3 style="font-size: 17px; color: var(--fb-text-secondary); margin-bottom: 12px;">Support the Author</h3>
+                <p style="font-size: 14px; color: var(--fb-text-primary);">Your support helps me continue writing and sharing Tamil literature.</p>
+            </div>
+        </aside>
+    </main>
 
     <script>
-        function trackEvent(eventName, params) {
-            if (typeof gtag === 'function') {
-                gtag('event', eventName, params);
-            }
-        }
-
         async function fetchBooks(query = '') {
             try {
                 const url = query 
@@ -222,41 +144,42 @@
                 container.innerHTML = '';
 
                 if (books.length === 0) {
-                    container.innerHTML = '<p style="text-align:center; grid-column: 1/-1;">No books found matching your search.</p>';
+                    container.innerHTML = '<div class="fb-card" style="padding: 20px;"><p>No books found.</p></div>';
                     return;
                 }
 
                 books.forEach(book => {
                     const card = document.createElement('div');
-                    card.className = 'book-card';
+                    card.className = 'book-card-fb';
                     
                     let linksHtml = '';
                     if (book.links) {
-                        const bookTitleEscaped = book.title.replace(/'/g, "\\'");
-                        if (book.links.amazon) linksHtml += `<a href="${book.links.amazon}" target="_blank" class="buy-btn btn-amazon" onclick="trackEvent('purchase_click', { platform: 'Amazon', book_title: '${bookTitleEscaped}' })">Amazon</a>`;
-                        if (book.links.flipkart) linksHtml += `<a href="${book.links.flipkart}" target="_blank" class="buy-btn btn-flipkart" onclick="trackEvent('purchase_click', { platform: 'Flipkart', book_title: '${bookTitleEscaped}' })">Flipkart</a>`;
-                        if (book.links.notion) linksHtml += `<a href="${book.links.notion}" target="_blank" class="buy-btn btn-notion" onclick="trackEvent('purchase_click', { platform: 'NotionPress', book_title: '${bookTitleEscaped}' })">Notion Press</a>`;
+                        if (book.links.amazon) linksHtml += `<a href="${book.links.amazon}" target="_blank" class="buy-btn btn-amazon">Amazon</a>`;
+                        if (book.links.flipkart) linksHtml += `<a href="${book.links.flipkart}" target="_blank" class="buy-btn btn-flipkart">Flipkart</a>`;
+                        if (book.links.notion) linksHtml += `<a href="${book.links.notion}" target="_blank" class="buy-btn btn-notion">Notion Press</a>`;
                     }
                     
                     const displayImage = book.book_cover_url || book.image_url;
                     const coverHtml = displayImage 
-                        ? `<img src="${displayImage}" class="book-cover" alt="${book.title}">`
-                        : `<div class="book-cover">NO COVER AVAILABLE</div>`;
+                        ? `<img src="${displayImage}" class="book-cover-fb" alt="${book.title}">`
+                        : `<div class="book-cover-fb" style="background: #eee; display: flex; align-items: center; justify-content: center; font-size: 10px;">NO COVER</div>`;
 
                     card.innerHTML = `
                         ${coverHtml}
-                        <div class="book-title">${book.title}</div>
-                        <div class="book-author">By <strong>${book.writer}</strong></div>
-                        <div class="purchase-links">
-                            ${linksHtml}
-                            <a href="post.html?id=${book.id}" class="buy-btn btn-details">View Details</a>
+                        <div class="book-info-fb">
+                            <h2 style="font-size: 18px; font-weight: 600; margin-bottom: 4px;">${book.title}</h2>
+                            <p style="font-size: 14px; color: var(--fb-text-secondary); margin-bottom: 12px;">By ${book.writer}</p>
+                            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                                ${linksHtml}
+                                <a href="post.html?id=${book.id}" class="buy-btn" style="background: var(--fb-bg); color: var(--fb-text-primary);">Details</a>
+                            </div>
                         </div>
                     `;
                     container.appendChild(card);
                 });
             } catch (err) {
                 console.error("Error fetching books:", err);
-                document.getElementById('book-container').innerHTML = '<p style="text-align:center; grid-column: 1/-1;">Error loading books.</p>';
+                document.getElementById('book-container').innerHTML = '<div class="fb-card" style="padding: 20px;"><p>Error loading books.</p></div>';
             }
         }
 
@@ -271,9 +194,5 @@
 
         fetchBooks();
     </script>
-
-    <footer>
-        &copy; 2026 Anbudan Miththiran | Tamil Literature & Thoughts
-    </footer>
 </body>
 </html>
