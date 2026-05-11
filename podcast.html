@@ -13,246 +13,181 @@
     
     <title>Podcast - Anbudan Miththiran</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="facebook-style.css">
     <style>
-        :root {
-            --primary-dark: #2c3e50;
-            --accent-yellow: #ffb703;
-            --spotify-green: #1DB954;
-            --bg-gradient: linear-gradient(135deg, #fff4e6, #ffd8a8, #ffb703);
+        .podcast-card-fb {
+            background: var(--fb-white);
+            border-radius: 8px;
+            box-shadow: var(--fb-card-shadow);
+            margin-bottom: 16px;
+            overflow: hidden;
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        
-        body { background: var(--bg-gradient); min-height: 100vh; color: #3a2c1a; display: flex; flex-direction: column; }
-        
-        /* --- Unified Navbar --- */
-        .navbar {
-            background: var(--primary-dark); padding: 15px 5%; display: flex;
-            justify-content: space-between; align-items: center; flex-wrap: wrap;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15); position: sticky; top: 0; z-index: 100;
+        .podcast-header {
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
-        .nav-brand { color: var(--accent-yellow); font-size: 1.5rem; font-weight: 700; text-decoration: none; }
-        .nav-links { display: flex; gap: 20px; flex-wrap: wrap; }
-        .nav-links a { color: #fff; text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: 0.3s; padding: 5px 0; }
-        .nav-links a:hover { color: var(--accent-yellow); }
-
-        /* --- Hero Section --- */
-        .hero {
-            text-align: center; padding: 60px 20px;
-            background: rgba(255, 255, 255, 0.6);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
+        .podcast-body {
+            padding: 0 12px 12px 12px;
         }
-        .hero h1 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 15px; color: var(--primary-dark); }
-        .hero p { max-width: 650px; margin: auto; font-size: 1.1rem; color: #4a4a4a; line-height: 1.8; }
-
-        .section-title { text-align: center; margin: 40px 0 25px; font-size: 1.8rem; color: var(--primary-dark); }
-
-        /* --- Featured Podcast --- */
-        .featured-card {
-            max-width: 800px; margin: 0 auto 40px; background: rgba(255,255,255,0.95);
-            padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255,255,255,0.5);
+        .podcast-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--fb-divider);
         }
-        .featured-card img { width: 100%; border-radius: 12px; object-fit: cover; max-height: 400px; }
-        .featured-card h2 { margin: 20px 0 15px; font-size: 1.5rem; color: var(--primary-dark); }
-        
-        audio { width: 100%; height: 45px; outline: none; border-radius: 50px; }
-
-        /* --- Episodes Grid --- */
-        .container {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px; padding: 0 20px; max-width: 1200px; margin: 0 auto; flex: 1;
+        .audio-player-container {
+            padding: 12px;
+            background: #f0f2f5;
         }
-
-        .card {
-            background: rgba(255,255,255,0.95); padding: 20px; border-radius: 16px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid rgba(255,255,255,0.5); display: flex; flex-direction: column;
+        audio {
+            width: 100%;
+            height: 40px;
         }
-        .card:hover { transform: translateY(-8px); box-shadow: 0 12px 25px rgba(0,0,0,0.15); }
-        .card img { width: 100%; border-radius: 10px; aspect-ratio: 1/1; object-fit: cover; margin-bottom: 15px; }
-        .card h3 { font-size: 1.1rem; margin-bottom: 15px; color: var(--primary-dark); line-height: 1.4; flex: 1; }
-
-        /* --- Listen Button --- */
-        .listen-section { text-align: center; margin: 60px 0; }
-        .listen-btn {
-            display: inline-block; padding: 15px 40px; background: var(--spotify-green);
-            color: white; border-radius: 50px; text-decoration: none; font-weight: 600;
-            font-size: 1.1rem; transition: 0.3s; box-shadow: 0 6px 20px rgba(29, 185, 84, 0.4);
-        }
-        .listen-btn:hover { background: #169944; transform: scale(1.05); }
-
-        footer { background: var(--primary-dark); color: #fff; text-align: center; padding: 25px; font-weight: 500; margin-top: auto; }
-
-        @media(max-width: 768px) {
-            .navbar { flex-direction: column; gap: 15px; }
-            .nav-links { justify-content: center; }
-            .featured-card { margin: 0 15px 40px; }
+        .spotify-btn {
+            background: #1DB954;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
         }
     </style>
 </head>
 <body>
-<!-- App Install Popup -->
-<div id="appInstallPopup" style="
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #111;
-    color: white;
-    padding: 14px 18px;
-    border-radius: 14px;
-    display: none;
-    align-items: center;
-    gap: 12px;
-    z-index: 9999;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-    font-family: sans-serif;
-">
 
-    <div>
-        <strong>Anbudan Miththiran App</strong><br>
-        Install Android App
-    </div>
-
-    <button id="downloadBtn" style="
-        background: #ff9800;
-        border: none;
-        color: white;
-        padding: 10px 14px;
-        border-radius: 8px;
-        cursor: pointer;
-        font-weight: bold;
-    ">
-        Download APK
-    </button>
-
-    <button onclick="closePopup()" style="
-        background: transparent;
-        border: none;
-        color: white;
-        font-size: 18px;
-        cursor: pointer;
-    ">
-        ✕
-    </button>
-</div>
-
-<script>
-    function isWebView() {
-        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-        // Detect Android WebView
-        return (
-            userAgent.includes("wv") ||
-            userAgent.includes("Android") && userAgent.includes("Version/") ||
-            window.matchMedia('(display-mode: standalone)').matches
-        );
-    }
-
-    // Show popup only in browser
-    window.addEventListener("load", () => {
-
-        if (!isWebView()) {
-
-            setTimeout(() => {
-                document.getElementById("appInstallPopup").style.display = "flex";
-            }, 2000);
-
-        }
-    });
-
-    // APK Download
-    document.getElementById("downloadBtn").addEventListener("click", () => {
-        window.location.href =
-        "https://github.com/AnbuMiththiran/anbudan-miththiran-app/releases/download/v1.0.2/anbudan-miththiran-app-v1_0_2.apk";
-    });
-
-    function closePopup() {
-        document.getElementById("appInstallPopup").style.display = "none";
-    }
-</script>
-    
-    <nav class="navbar">
-        <a href="index.html" class="nav-brand">Anbudan Miththiran</a>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="category.html?type=article">Articles</a>
-            <a href="category.html?type=poem">Poems</a>
-            <a href="category.html?type=story">Stories</a>
-            <a href="videos.html">Videos</a>
-            <a href="podcast.html">Podcast</a>
-            <a href="books.html">Books</a>
-            <a href="about.html">About</a>
+    <!-- Facebook Style Header -->
+    <header class="fb-header">
+        <div class="header-left">
+            <a href="index.html" class="fb-logo">A</a>
+            <div class="fb-search">
+                <i class="fas fa-search" style="color: #65676B;"></i>
+                <input type="text" id="search-input" placeholder="Search Anbudan Miththiran">
+            </div>
         </div>
+        <div class="header-center">
+            <a href="index.html" class="nav-item" title="Home"><i class="fas fa-home fa-lg"></i></a>
+            <a href="videos.html" class="nav-item" title="Videos"><i class="fas fa-play-circle fa-lg"></i></a>
+            <a href="books.html" class="nav-item" title="Books"><i class="fas fa-book fa-lg"></i></a>
+            <a href="podcast.html" class="nav-item active" title="Podcast"><i class="fas fa-podcast fa-lg"></i></a>
+        </div>
+        <div class="header-right">
+            <a href="about.html" class="profile-link">
+                <img src="logo.jpg" alt="Profile" class="profile-pic">
+                <span>Miththiran</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+        <a href="index.html" class="nav-item"><i class="fas fa-home fa-lg"></i></a>
+        <a href="category.html?type=article" class="nav-item"><i class="fas fa-newspaper fa-lg"></i></a>
+        <a href="videos.html" class="nav-item"><i class="fas fa-play-circle fa-lg"></i></a>
+        <a href="books.html" class="nav-item"><i class="fas fa-book fa-lg"></i></a>
+        <a href="about.html" class="nav-item"><i class="fas fa-bars fa-lg"></i></a>
     </nav>
 
-    <section class="hero">
-        <h1>🎙 Anbudan Miththiran Works</h1>
-        <p>Life • Philosophy • Society • Self Awakening <br> A Tamil podcast exploring deeper human truths.</p>
-    </section>
+    <main class="fb-main">
+        <!-- Left Sidebar -->
+        <aside class="fb-sidebar">
+            <a href="index.html" class="sidebar-item">
+                <div class="sidebar-icon" style="color: #1877F2;"><i class="fas fa-arrow-left"></i></div>
+                <span>Back to Feed</span>
+            </a>
+            <a href="podcast.html" class="sidebar-item" style="background: var(--fb-hover); font-weight: 600;">
+                <div class="sidebar-icon" style="color: #F7B928;"><i class="fas fa-microphone"></i></div>
+                <span>All Episodes</span>
+            </a>
+        </aside>
 
-    <h2 class="section-title">🔥 Latest Episode</h2>
-    <div id="featured-episode"></div>
+        <!-- Main Feed -->
+        <section class="fb-feed">
+            <div class="fb-card" style="padding: 16px; margin-bottom: 16px;">
+                <h1 style="font-size: 24px; font-weight: 700;">Podcast Episodes</h1>
+                <p style="color: var(--fb-text-secondary); margin-top: 4px;">Life • Philosophy • Society • Self Awakening</p>
+            </div>
 
-    <h2 class="section-title">🎙 Recent Episodes</h2>
-    <div class="container" id="podcast-list">
-        </div>
+            <div id="podcast-container">
+                <div class="fb-card" style="text-align: center; padding: 40px;">
+                    <i class="fas fa-circle-notch fa-spin fa-2x" style="color: var(--fb-blue);"></i>
+                    <p style="margin-top: 10px; color: var(--fb-text-secondary);">Loading episodes...</p>
+                </div>
+            </div>
+        </section>
 
-    <div class="listen-section">
-        <a href="https://open.spotify.com/show/5uMIWUWtjb0jkggHoEG6nl" target="_blank" class="listen-btn">🎧 Listen on Spotify</a>
-    </div>
+        <!-- Right Panel -->
+        <aside class="fb-right-panel">
+            <div class="fb-card">
+                <h3 style="font-size: 17px; color: var(--fb-text-secondary); margin-bottom: 12px;">Listen on Spotify</h3>
+                <p style="font-size: 14px; color: var(--fb-text-primary);">Get the full experience on Spotify.</p>
+                <a href="https://open.spotify.com/show/5uMIWUWtjb0jkggHoEG6nl" target="_blank" class="spotify-btn">
+                    <i class="fab fa-spotify"></i> Spotify
+                </a>
+            </div>
+        </aside>
+    </main>
 
     <script>
         fetch("podcast-data.json")
         .then(response => response.json())
         .then(data => {
-            const container = document.getElementById("podcast-list");
-            const featured = document.getElementById("featured-episode");
+            const container = document.getElementById("podcast-container");
+            container.innerHTML = '';
 
-            // Safeguard if RSS empty
             if(!data || !data.items || data.items.length === 0) {
-                featured.innerHTML = `<p style="text-align:center;">No episodes available currently.</p>`;
+                container.innerHTML = `<div class="fb-card" style="padding: 20px;"><p>No episodes available.</p></div>`;
                 return;
             }
 
-            /* FEATURED */
-            const latest = data.items[0];
-            featured.innerHTML = `
-            <div class="featured-card">
-                <img src="${latest.thumbnail || data.feed.image}" alt="Podcast Thumbnail">
-                <h2>${latest.title}</h2>
-                <audio controls>
-                    <source src="${latest.enclosure.link}" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-            </div>
-            `;
-
-            /* EPISODES */
-            data.items.slice(1, 7).forEach(item => {
-                const div = document.createElement("div");
-                div.className = "card";
-                div.innerHTML = `
-                    <img src="${item.thumbnail || data.feed.image}" alt="Episode Thumbnail">
-                    <h3>${item.title}</h3>
-                    <audio controls>
-                        <source src="${item.enclosure.link}" type="audio/mpeg">
-                    </audio>
+            data.items.forEach(item => {
+                const card = document.createElement("div");
+                card.className = "podcast-card-fb";
+                card.innerHTML = `
+                    <div class="podcast-header">
+                        <img src="logo.jpg" class="card-author-pic" alt="Miththiran">
+                        <div class="card-meta">
+                            <h3>Anbudan Miththiran</h3>
+                            <p>${new Date(item.pubDate || Date.now()).toLocaleDateString()} • <i class="fas fa-globe-americas"></i></p>
+                        </div>
+                    </div>
+                    <div class="podcast-body">
+                        <p style="font-weight: 600; font-size: 17px; margin-bottom: 8px;">${item.title}</p>
+                    </div>
+                    <img src="${item.thumbnail || data.feed.image}" class="podcast-image" alt="Thumbnail">
+                    <div class="audio-player-container">
+                        <audio controls>
+                            <source src="${item.enclosure.link}" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <div class="card-actions">
+                        <button class="action-btn" onclick="sharePodcast('${item.title.replace(/'/g, "\\'")}', '${item.link}')">
+                            <i class="far fa-share-square"></i> Share
+                        </button>
+                    </div>
                 `;
-                container.appendChild(div);
+                container.appendChild(card);
             });
         })
         .catch(error => {
             console.log("RSS Load Error:", error);
-            document.getElementById("featured-episode").innerHTML = '<p style="text-align:center;">Podcast data could not be loaded.</p>';
+            document.getElementById("podcast-container").innerHTML = '<div class="fb-card" style="padding: 20px;"><p>Error loading podcast data.</p></div>';
         });
-    </script>
 
-    <footer>
-        &copy; 2026 Anbudan Miththiran | Tamil Literature & Thoughts
-    </footer>
+        function sharePodcast(title, link) {
+            if (navigator.share) {
+                navigator.share({ title: title, url: link });
+            } else {
+                alert('Link: ' + link);
+            }
+        }
+    </script>
 </body>
 </html>
