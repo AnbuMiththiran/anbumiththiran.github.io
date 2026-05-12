@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9RLGNJL2ZQ');
+    </script>
+    
+    <title>About - Anbudan Miththiran</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="pratilipi-style.css">
+</head>
+<body>
+
+    <!-- App Header -->
+    <header class="app-header">
+        <a href="index.html" class="header-brand">Anbudan <span>Miththiran</span></a>
+        <div class="header-spacer"></div>
+        <!-- Desktop search -->
+        <div class="header-search">
+            <i class="fas fa-search"></i>
+            <input type="text" id="search-input" placeholder="Search stories, poems...">
+        </div>
+        <!-- Desktop nav -->
+        <nav class="desktop-nav">
+            <a href="index.html">Home</a>
+            <a href="category.html?type=article">Articles</a>
+            <a href="category.html?type=poem">Poems</a>
+            <a href="category.html?type=story">Stories</a>
+            <a href="videos.html">Videos</a>
+            <a href="podcast.html">Podcast</a>
+            <a href="books.html">Books</a>
+            <a href="about.html">About</a>
+        </nav>
+        <!-- Mobile search button -->
+        <button class="header-search-btn" id="header-search-btn" aria-label="Search">
+            <i class="fas fa-search"></i>
+        </button>
+    </header>
+
+    <!-- Mobile Slide-Down Search -->
+    <div class="mobile-search-bar" id="mobile-search-bar" style="display:none">
+        <div class="mobile-search-bar-inner" style="position:relative">
+            <i class="fas fa-search"></i>
+            <input type="text" id="mobile-search-input" placeholder="Search stories, poems...">
+        </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation (5 tabs + More) -->
+    <nav class="mobile-nav">
+        <a href="index.html" class="mobile-nav-item" data-page="index.html">
+            <i class="fas fa-home"></i><span>Home</span>
+        </a>
+        <a href="category.html?type=article" class="mobile-nav-item" data-page="category-article">
+            <i class="fas fa-newspaper"></i><span>Articles</span>
+        </a>
+        <a href="videos.html" class="mobile-nav-item" data-page="videos.html">
+            <i class="fas fa-play-circle"></i><span>Videos</span>
+        </a>
+        <a href="books.html" class="mobile-nav-item" data-page="books.html">
+            <i class="fas fa-book"></i><span>Books</span>
+        </a>
+        <button class="mobile-nav-item" id="more-nav-btn" aria-label="More">
+            <i class="fas fa-ellipsis-h"></i><span>More</span>
+        </button>
+    </nav>
+
+    <!-- More Drawer Overlay -->
+    <div class="more-overlay" id="more-overlay" style="display:none"></div>
+
+    <!-- More Drawer Sheet -->
+    <div class="more-drawer" id="more-drawer" style="display:none">
+        <div class="drawer-handle"></div>
+        <div class="drawer-title">More Pages</div>
+        <div class="drawer-grid">
+            <a href="category.html?type=poem" class="drawer-item" data-page="category-poem">
+                <div class="drawer-item-icon"><i class="fas fa-feather-alt"></i></div>
+                <span>Poems</span>
+            </a>
+            <a href="category.html?type=story" class="drawer-item" data-page="category-story">
+                <div class="drawer-item-icon"><i class="fas fa-scroll"></i></div>
+                <span>Stories</span>
+            </a>
+            <a href="podcast.html" class="drawer-item" data-page="podcast.html">
+                <div class="drawer-item-icon"><i class="fas fa-microphone"></i></div>
+                <span>Podcast</span>
+            </a>
+            <a href="about.html" class="drawer-item" data-page="about.html">
+                <div class="drawer-item-icon"><i class="fas fa-user-circle"></i></div>
+                <span>About</span>
+            </a>
+            <a href="contact.html" class="drawer-item" data-page="contact.html">
+                <div class="drawer-item-icon"><i class="fas fa-envelope"></i></div>
+                <span>Contact</span>
+            </a>
+            <a href="privacy.html" class="drawer-item" data-page="privacy.html">
+                <div class="drawer-item-icon"><i class="fas fa-shield-alt"></i></div>
+                <span>Privacy</span>
+            </a>
+        </div>
+    </div>
+
+
+
+    <main class="container">
+        <section class="post-detail">
+            <header class="post-header">
+                <h1>About Me</h1>
+                <div class="post-author-info">
+                    <img src="logo.jpg" class="post-author-img" alt="Miththiran">
+                    <span>Anbudan Miththiran</span>
+                </div>
+            </header>
+
+            <div class="post-content">
+                <p>
+                    I am <strong>Anbudan Miththiran</strong> — a writer, thinker, podcaster, and storyteller.
+                    A devotee of <strong>Lord Krishna</strong> and <strong>Lord Shiva</strong>, I walk the path
+                    of wisdom, love, and social reform.
+                </p>
+
+                <p>
+                    Born into an economically poorest family, my native village lies near
+                    <strong>Puliangudi, Tamil Nadu</strong>. From childhood, my heart searched for the
+                    purest form of love — a search that eventually shaped me into a writer.
+                </p>
+
+                <p>
+                    I believe words can heal, awaken, and transform society.
+                </p>
+
+                <div style="margin-top: 36px;">
+                    <h2 class="section-heading">My Publications</h2>
+                    <div class="pub-grid">
+                        <a href="https://amzn.to/4rLDJ9A" target="_blank" class="pub-link">📚 அன்பை நீங்கள் ஏன் நாடவில்லை</a>
+                        <a href="https://amzn.to/4rcZ3F7" target="_blank" class="pub-link">📚 சிந்தனை வேள்வி</a>
+                        <a href="https://amzn.to/4rkkmEQ" target="_blank" class="pub-link">📚 அன்பான புரிதல்</a>
+                        <a href="https://amzn.to/4kBzB9S" target="_blank" class="pub-link">📚 தேசபக்தியும், மனிதநேயமும்</a>
+                        <a href="https://amzn.to/4adFeYc" target="_blank" class="pub-link">📚 True Love Doesn’t Split</a>
+                        <a href="https://amzn.to/3Mr2jxd" target="_blank" class="pub-link">📚 உண்மையான காதல் பிரிவதில்லை</a>
+                        <a href="https://amzn.to/4qBNLZV" target="_blank" class="pub-link">📚 My Mind Feels as Butterfly</a>
+                        <a href="https://amzn.to/4aeCHwM" target="_blank" class="pub-link">📚 மென்மையானவள்</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="text-align: center; padding: 40px 20px; color: var(--gray-dark); font-size: 0.9rem;">
+        &copy; 2026 Anbudan Miththiran | Tamil Literature & Thoughts
+    </footer>
+
+    <script src="nav.js"></script>
+</body>
+</html>
