@@ -118,96 +118,146 @@
     </main>
 
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const postId = urlParams.get('id');
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get('id');
 
-        async function fetchPost() {
-            if (!postId) {
-                document.getElementById('post-content').innerHTML = '<p style="text-align:center;">Post not found.</p>';
+    async function fetchPost() {
+        if (!postId) {
+            document.getElementById('post-content').innerHTML = '<p style="text-align:center;">Post not found.</p>';
+            return;
+        }
+
+        try {
+            const response = await fetch(`https://premium-backend-8plp.onrender.com/content/public/${postId}`);
+            const post = await response.json();
+            const container = document.getElementById('post-content');
+
+            if (!post || post.success === false) {
+                container.innerHTML = '<h2 style="text-align:center;">Post not found or is premium.</h2>';
                 return;
             }
 
-            try {
-                const response = await fetch(`https://premium-backend-8plp.onrender.com/content/public/${postId}`);
-                const post = await response.json();
-                const container = document.getElementById('post-content');
-
-                if (!post || post.success === false) {
-                    container.innerHTML = '<h2 style="text-align:center;">Post not found or is premium.</h2>';
-                    return;
-                }
-
-                document.title = `${post.title} - Anbudan Miththiran`;
-                
-                let displayImage = post.contenttype === 'book' ? (post.book_cover_url || post.image_url) : post.image_url;
-                const formattedBody = post.body ? post.body.split('\n').filter(p => p.trim() !== '').map(p => `<p>${p}</p>`).join('') : '';
-                let imageHtml = displayImage ? `<img src="${displayImage}" style="width:100%; border-radius:12px; margin-bottom:25px;" alt="${post.title}" onerror="this.style.display='none'">` : '';
-
-                let bookLinksHtml = '';
-                if (post.contenttype === 'book' && post.links) {
-                    bookLinksHtml = `
-                        <div style="background: var(--gray-light); padding: 20px; border-radius: 12px; margin-top: 30px;">
-                            <h3 style="margin-bottom:15px;">Get this book:</h3>
-                            <div style="display:flex; flex-wrap:wrap; gap:10px;">
-                                ${post.links.amazon ? `<a href="${post.links.amazon}" target="_blank" style="background:#FF9900; color:white; padding:10px 20px; border-radius:8px; text-decoration:none; font-weight:600;">Amazon</a>` : ''}
-                                ${post.links.flipkart ? `<a href="${post.links.flipkart}" target="_blank" style="background:#2874F0; color:white; padding:10px 20px; border-radius:8px; text-decoration:none; font-weight:600;">Flipkart</a>` : ''}
-                                ${post.links.notionpress ? `<a href="${post.links.notionpress}" target="_blank" style="background:#1ABC9C; color:white; padding:10px 20px; border-radius:8px; text-decoration:none; font-weight:600;">Notion Press</a>` : ''}
-                            </div>
-                        </div>
-                    `;
-                }
-
-                const shareUrl = window.location.href;
-                const shareText = encodeURIComponent(post.title);
-
-                container.innerHTML = `
-                    <header class="post-header">
-                        <div class="story-category">${post.contenttype || 'Literature'}</div>
-                        <h1>${post.title}</h1>
-                        <div class="post-author-info">
-                            <img src="logo.jpg" class="post-author-img" alt="Miththiran">
-                            <span>By ${post.writer} • ${new Date(post.createdat).toLocaleDateString()}</span>
-                        </div>
-                    </header>
-                    
-                    ${imageHtml}
-                    
-                    <div class="post-content">
-                        ${formattedBody}
-                    </div>
-
-                    <div style="margin-top: 20px;">
-                        ${post.tags ? post.tags.map(tag => `<span style="color: var(--primary-color); margin-right: 10px; font-weight:500;">#${tag}</span>`).join('') : ''}
-                    </div>
-
-                    ${bookLinksHtml}
-
-                    <footer class="post-footer">
-                        <div class="share-section">
-                            <h3>Share this with your friends</h3>
-                            <div class="share-buttons-large">
-                                <a href="https://api.whatsapp.com/send?text=${shareText}%20${encodeURIComponent(shareUrl)}" target="_blank" class="share-icon-btn bg-whatsapp"><i class="fab fa-whatsapp"></i></a>
-                                <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}" target="_blank" class="share-icon-btn bg-facebook"><i class="fab fa-facebook-f"></i></a>
-                                <a href="https://twitter.com/intent/tweet?text=${shareText}&url=${encodeURIComponent(shareUrl)}" target="_blank" class="share-icon-btn bg-twitter"><i class="fab fa-twitter"></i></a>
-                                <button onclick="copyToClipboard('${shareUrl}')" class="share-icon-btn bg-copy"><i class="fas fa-link"></i></button>
-                            </div>
-                        </div>
-                    </footer>
-                `;
-            } catch (err) {
-                console.error("Error fetching post:", err);
-                document.getElementById('post-content').innerHTML = '<p style="text-align:center;">Error loading content.</p>';
+            // --- SEO Enhancements Start ---
+            // Update Title
+            document.title = `${post.title} - Anbudan Miththiran`;
+            
+            // Create or update Meta Description
+            let metaDesc = document.querySelector('meta[name="description"]');
+            if (!metaDesc) {
+                metaDesc = document.createElement('meta');
+                metaDesc.name = "description";
+                document.head.appendChild(metaDesc);
             }
-        }
+            // Use tags or a generic description if body is not available for snippet
+            const descText = post.tags ? `Read ${post.title} by Anbudan Miththiran. Tags: ${post.tags.join(', ')}` : `Read ${post.title} on Anbudan Miththiran.`;
+            metaDesc.content = descText;
 
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                alert('Link copied to clipboard!');
-            });
-        }
+            // Create or update Canonical URL
+            let canonical = document.querySelector('link[rel="canonical"]');
+            if (!canonical) {
+                canonical = document.createElement('link');
+                canonical.rel = "canonical";
+                document.head.appendChild(canonical);
+            }
+            canonical.href = `https://www.anbumiththiran.in/post.html?id=${postId}`;
 
-        fetchPost();
-    </script>
+            // Create or update Open Graph Tags
+            const ogTags = {
+                'og:title': `${post.title} - Anbudan Miththiran`,
+                'og:description': descText,
+                'og:url': `https://www.anbumiththiran.in/post.html?id=${postId}`,
+                'og:type': 'article',
+                'og:image': post.contenttype === 'book' ? (post.book_cover_url || post.image_url) : post.image_url
+            };
+
+            for (const [property, content] of Object.entries(ogTags)) {
+                let tag = document.querySelector(`meta[property="${property}"]`);
+                if (!tag) {
+                    tag = document.createElement('meta');
+                    tag.setAttribute('property', property);
+                    document.head.appendChild(tag);
+                }
+                tag.content = content || 'https://www.anbumiththiran.in/logo.jpg';
+            }
+            // --- SEO Enhancements End ---
+
+            let displayImage = post.contenttype === 'book' ? (post.book_cover_url || post.image_url) : post.image_url;
+            const formattedBody = post.body ? post.body.split('\n').filter(p => p.trim() !== '').map(p => `<p>${p}</p>`).join('') : '';
+            let imageHtml = displayImage ? `<img src="${displayImage}" style="width:100%; border-radius:12px; margin-bottom:25px;" alt="${post.title}" onerror="this.style.display='none'">` : '';
+
+            // ... (rest of your existing rendering logic remains the same) ...
+            
+            // For completeness in the fix file, here is the rest of the rendering logic:
+            let bookLinksHtml = '';
+            if (post.contenttype === 'book' && post.links) {
+                bookLinksHtml = `
+                    <div style="background: var(--gray-light); padding: 20px; border-radius: 12px; margin-top: 30px;">
+                        <h3 style="margin-bottom:15px;">Get this book:</h3>
+                        <div style="display:flex; flex-wrap:wrap; gap:10px;">
+                            ${post.links.amazon ? `<a href="${post.links.amazon}" target="_blank" style="background:#FF9900; color:white; padding:10px 20px; border-radius:8px; text-decoration:none; font-weight:600;">Amazon</a>` : ''}
+                            ${post.links.flipkart ? `<a href="${post.links.flipkart}" target="_blank" style="background:#2874F0; color:white; padding:10px 20px; border-radius:8px; text-decoration:none; font-weight:600;">Flipkart</a>` : ''}
+                            ${post.links.notionpress ? `<a href="${post.links.notionpress}" target="_blank" style="background:#1ABC9C; color:white; padding:10px 20px; border-radius:8px; text-decoration:none; font-weight:600;">Notion Press</a>` : ''}
+                        </div>
+                    </div>
+                `;
+            }
+
+            let tagsHtml = '';
+            if (post.tags && post.tags.length > 0) {
+                tagsHtml = `<div style="margin-top: 20px;">
+                    ${post.tags.map(tag => `<span style="color: var(--primary-color); margin-right: 10px; font-weight:500;">#${tag}</span>`).join('')}
+                </div>`;
+            }
+
+            container.innerHTML = `
+                <header class="post-header">
+                    <div class="story-category">${post.contenttype || 'Literature'}</div>
+                    <h1>${post.title}</h1>
+                    <div class="post-author-info">
+                        <img src="logo.jpg" class="post-author-img" alt="${post.writer || 'Author'}">
+                        <span>By ${post.writer || 'Anbudan Miththiran'} • ${new Date(post.createdat).toLocaleDateString()}</span>
+                    </div>
+                </header>
+                
+                ${imageHtml}
+                
+                <div class="post-content">
+                    ${formattedBody}
+                </div>
+
+                ${bookLinksHtml}
+                ${tagsHtml}
+
+                <footer class="post-footer">
+                    <div class="share-section">
+                        <h3>Share this with your friends</h3>
+                        <div class="share-buttons-large">
+                            <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(post.title + ' https://www.anbumiththiran.in/post.html?id=' + post.id)}" target="_blank" class="share-icon-btn bg-whatsapp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://www.anbumiththiran.in/post.html?id=' + post.id)}" target="_blank" class="share-icon-btn bg-facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent('https://www.anbumiththiran.in/post.html?id=' + post.id)}" target="_blank" class="share-icon-btn bg-twitter"><i class="fab fa-twitter"></i></a>
+                            <button onclick="copyToClipboard('https://www.anbumiththiran.in/post.html?id=${post.id}')" class="share-icon-btn bg-copy"><i class="fas fa-link"></i></button>
+                        </div>
+                    </div>
+                </footer>
+            `;
+        } catch (err) {
+            console.error("Error fetching post:", err);
+            document.getElementById('post-content').innerHTML = '<p style="text-align:center;">Error loading content. Please try again later.</p>';
+        }
+    }
+
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            alert('Link copied to clipboard!');
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+        });
+    }
+
+    fetchPost();
+</script>
+
+
     <script src="nav.js"></script>
 </body>
 </html>
