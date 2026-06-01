@@ -1,17 +1,49 @@
+<?php
+// 1. Get the ID from the URL
+$postId = isset($_GET['id']) ? $_GET['id'] : '';
+
+// 2. Set default SEO values
+$title = "Post - Anbudan Miththiran";
+$description = "Read amazing stories, poems, and articles on Anbudan Miththiran.";
+$image = "https://www.anbumiththiran.in/logo.jpg";
+$url = "https://www.anbumiththiran.in/post.php?id=" . htmlspecialchars($postId);
+
+// 3. Fetch data from your API server-side
+if ($postId) {
+    // Suppress errors with @ in case the API is asleep, so the page doesn't crash
+    $json = @file_get_contents("https://premium-backend-8plp.onrender.com/content/public/" . $postId);
+    if ($json) {
+        $post = json_decode($json, true);
+        if ($post && $post['title']) {
+            $contentType = isset($post['contenttype']) ? ucfirst($post['contenttype']) : 'Post';
+            $title = $post['title'] . " | " . $contentType . " - Anbudan Miththiran";
+            $description = "Read " . $post['title'] . " by " . ($post['writer'] ?? 'Anbudan Miththiran');
+            $image = isset($post['image_url']) ? $post['image_url'] : $image;
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-9RLGNJL2ZQ');
-    </script>
     
-    <title>Post - Anbudan Miththiran</title>
+    <title><?php echo htmlspecialchars($title); ?></title>
+    <meta name="description" content="<?php echo htmlspecialchars($description); ?>">
+    <link rel="canonical" href="<?php echo htmlspecialchars($url); ?>">
+    
+    <meta property="og:title" content="<?php echo htmlspecialchars($title); ?>">
+    <meta property="og:description" content="<?php echo htmlspecialchars($description); ?>">
+    <meta property="og:image" content="<?php echo htmlspecialchars($image); ?>">
+    <meta property="og:url" content="<?php echo htmlspecialchars($url); ?>">
+    <meta property="og:type" content="article">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?php echo htmlspecialchars($title); ?>">
+    <meta name="twitter:description" content="<?php echo htmlspecialchars($description); ?>">
+    <meta name="twitter:image" content="<?php echo htmlspecialchars($image); ?>">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="pratilipi-style.css">
