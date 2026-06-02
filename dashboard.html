@@ -139,7 +139,7 @@
 
         async function fetchPosts() {
             try {
-                const response = await fetch('https://premium-backend-8plp.onrender.com/admin/content', {
+                const response = await fetch('https://api.anbumiththiran.in/admin/content', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 if (response.status === 401 || response.status === 403) {
@@ -175,7 +175,7 @@
         async function deletePost(id) {
             if (!confirm("Are you sure you want to delete this post? This action cannot be undone.")) return;
             try {
-                const response = await fetch(`https://premium-backend-8plp.onrender.com/admin/content/${id}`, {
+                const response = await fetch(`hhtps://api.anbumiththiran.in/admin/content/${id}`, {
                     method: 'DELETE',
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
