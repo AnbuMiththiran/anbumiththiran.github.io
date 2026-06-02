@@ -158,7 +158,7 @@ if ($postId) {
         }
 
         try {
-            const response = await fetch(`https://premium-backend-8plp.onrender.com/content/public/${postId}`);
+            const response = await fetch(`https://api.anbumiththiran.in/content/public/${postId}`);
             const post = await response.json();
             const container = document.getElementById('post-content');
 
