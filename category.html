@@ -140,8 +140,8 @@
         async function fetchCategoryPosts(query = '') {
             try {
                 const url = query 
-                    ? `https://premium-backend-8plp.onrender.com/content/public/category/${type}?q=${encodeURIComponent(query)}`
-                    : `https://premium-backend-8plp.onrender.com/content/public/category/${type}`;
+                    ? `https://api.anbumiththiran.in/content/public/category/${type}?q=${encodeURIComponent(query)}`
+                    : `https://api.anbumiththiran.in/content/public/category/${type}`;
                 
                 const response = await fetch(url);
                 const posts = await response.json();
