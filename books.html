@@ -185,8 +185,8 @@
         async function fetchBooks(query = '') {
             try {
                 const url = query 
-                    ? `https://premium-backend-8plp.onrender.com/content/public/category/book?q=${encodeURIComponent(query)}`
-                    : 'https://premium-backend-8plp.onrender.com/content/public/category/book';
+                    ? `https://api.anbumiththiran.in/content/public/category/book?q=${encodeURIComponent(query)}`
+                    : 'https://api.anbumiththiran.in/content/public/category/book';
                 
                 const response = await fetch(url);
                 const books = await response.json();
