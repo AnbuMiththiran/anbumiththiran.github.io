@@ -140,8 +140,8 @@
         async function fetchPublicPosts(query = '') {
             try {
                 const url = query 
-                    ? `https://premium-backend-8plp.onrender.com/content/public?q=${encodeURIComponent(query)}`
-                    : 'https://premium-backend-8plp.onrender.com/content/public';
+                    ? `https://api.anbumiththiran.in/content/public?q=${encodeURIComponent(query)}`
+                    : 'https://api.anbumiththiran.in/content/public';
                 
                 const response = await fetch(url);
                 const posts = await response.json();
