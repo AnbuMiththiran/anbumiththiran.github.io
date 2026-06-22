@@ -1,0 +1,8 @@
+# Add this to your existing .htaccess file (don't replace the whole file,
+# just merge this rule in — ideally near the top, before any other rewrite rules)
+
+RewriteEngine On
+
+# Redirect old post.html links to post.php, keeping the query string (?id=...)
+RewriteCond %{THE_REQUEST} \s/+post\.html [NC]
+RewriteRule ^post\.html$ /post.php [R=301,L,QSA]

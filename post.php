@@ -1,0 +1,340 @@
+<?php
+// 1. Get the ID from the URL
+$postId = isset($_GET['id']) ? $_GET['id'] : '';
+
+// 2. Set default SEO values
+$title = "Post - Anbudan Miththiran";
+$description = "Read amazing stories, poems, and articles on Anbudan Miththiran.";
+$image = "https://www.anbumiththiran.in/logo.jpg";
+$url = "https://www.anbumiththiran.in/post.php?id=" . htmlspecialchars($postId);
+
+// 3. Fetch data from your API server-side
+if ($postId) {
+    // Suppress errors with @ in case the API is asleep, so the page doesn't crash
+    $json = @file_get_contents("https://premium-backend-8plp.onrender.com/content/public/" . $postId);
+    if ($json) {
+        $post = json_decode($json, true);
+        if ($post && $post['title']) {
+            $contentType = isset($post['contenttype']) ? ucfirst($post['contenttype']) : 'Post';
+            $title = $post['title'] . " | " . $contentType . " - Anbudan Miththiran";
+            $description = "Read " . $post['title'] . " by " . ($post['writer'] ?? 'Anbudan Miththiran');
+
+            // Use book cover for books, otherwise the regular image, falling back to default logo
+            if (isset($post['contenttype']) && $post['contenttype'] === 'book' && !empty($post['book_cover_url'])) {
+                $image = $post['book_cover_url'];
+            } elseif (!empty($post['image_url'])) {
+                $image = $post['image_url'];
+            }
+        }
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title><?php echo htmlspecialchars($title); ?></title>
+    <meta name="description" content="<?php echo htmlspecialchars($description); ?>">
+    <link rel="canonical" href="<?php echo htmlspecialchars($url); ?>">
+    
+    <meta property="og:title" content="<?php echo htmlspecialchars($title); ?>">
+    <meta property="og:description" content="<?php echo htmlspecialchars($description); ?>">
+    <meta property="og:image" content="<?php echo htmlspecialchars($image); ?>">
+    <meta property="og:url" content="<?php echo htmlspecialchars($url); ?>">
+    <meta property="og:type" content="article">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?php echo htmlspecialchars($title); ?>">
+    <meta name="twitter:description" content="<?php echo htmlspecialchars($description); ?>">
+    <meta name="twitter:image" content="<?php echo htmlspecialchars($image); ?>">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="pratilipi-style.css">
+</head>
+<body>
+
+    <!-- App Header -->
+    <header class="app-header">
+        <a href="index.html" class="header-brand">Anbudan <span>Miththiran</span></a>
+        <div class="header-spacer"></div>
+        <!-- Desktop search -->
+        <div class="header-search">
+            <i class="fas fa-search"></i>
+            <input type="text" id="search-input" placeholder="Search stories, poems...">
+        </div>
+        <!-- Desktop nav -->
+        <nav class="desktop-nav">
+            <a href="index.html">Home</a>
+            <a href="category.html?type=article">Articles</a>
+            <a href="category.html?type=poem">Poems</a>
+            <a href="category.html?type=story">Stories</a>
+            <a href="videos.html">Videos</a>
+            <a href="podcast.html">Podcast</a>
+            <a href="books.html">Books</a>
+            <a href="about.html">About</a>
+        </nav>
+        <!-- Mobile search button -->
+        <button class="header-search-btn" id="header-search-btn" aria-label="Search">
+            <i class="fas fa-search"></i>
+        </button>
+    </header>
+
+    <!-- Mobile Slide-Down Search -->
+    <div class="mobile-search-bar" id="mobile-search-bar" style="display:none">
+        <div class="mobile-search-bar-inner" style="position:relative">
+            <i class="fas fa-search"></i>
+            <input type="text" id="mobile-search-input" placeholder="Search stories, poems...">
+        </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation (5 tabs + More) -->
+    <nav class="mobile-nav">
+        <a href="index.html" class="mobile-nav-item" data-page="index.html">
+            <i class="fas fa-home"></i><span>Home</span>
+        </a>
+        <a href="category.html?type=article" class="mobile-nav-item" data-page="category-article">
+            <i class="fas fa-newspaper"></i><span>Articles</span>
+        </a>
+        <a href="videos.html" class="mobile-nav-item" data-page="videos.html">
+            <i class="fas fa-play-circle"></i><span>Videos</span>
+        </a>
+        <a href="books.html" class="mobile-nav-item" data-page="books.html">
+            <i class="fas fa-book"></i><span>Books</span>
+        </a>
+        <button class="mobile-nav-item" id="more-nav-btn" aria-label="More">
+            <i class="fas fa-ellipsis-h"></i><span>More</span>
+        </button>
+    </nav>
+
+    <!-- More Drawer Overlay -->
+    <div class="more-overlay" id="more-overlay" style="display:none"></div>
+
+    <!-- More Drawer Sheet -->
+    <div class="more-drawer" id="more-drawer" style="display:none">
+        <div class="drawer-handle"></div>
+        <div class="drawer-title">More Pages</div>
+        <div class="drawer-grid">
+            <a href="category.html?type=poem" class="drawer-item" data-page="category-poem">
+                <div class="drawer-item-icon"><i class="fas fa-feather-alt"></i></div>
+                <span>Poems</span>
+            </a>
+            <a href="category.html?type=story" class="drawer-item" data-page="category-story">
+                <div class="drawer-item-icon"><i class="fas fa-scroll"></i></div>
+                <span>Stories</span>
+            </a>
+            <a href="podcast.html" class="drawer-item" data-page="podcast.html">
+                <div class="drawer-item-icon"><i class="fas fa-microphone"></i></div>
+                <span>Podcast</span>
+            </a>
+            <a href="about.html" class="drawer-item" data-page="about.html">
+                <div class="drawer-item-icon"><i class="fas fa-user-circle"></i></div>
+                <span>About</span>
+            </a>
+            <a href="contact.html" class="drawer-item" data-page="contact.html">
+                <div class="drawer-item-icon"><i class="fas fa-envelope"></i></div>
+                <span>Contact</span>
+            </a>
+            <a href="privacy.html" class="drawer-item" data-page="privacy.html">
+                <div class="drawer-item-icon"><i class="fas fa-shield-alt"></i></div>
+                <span>Privacy</span>
+            </a>
+        </div>
+    </div>
+
+    <main class="container">
+        <article class="post-detail" id="post-content">
+            <div style="text-align: center; padding: 50px;">
+                <i class="fas fa-circle-notch fa-spin fa-2x" style="color: var(--primary-color);"></i>
+                <p style="margin-top: 10px; color: var(--gray-dark);">Loading post...</p>
+            </div>
+        </article>
+    </main>
+
+   <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get('id');
+
+    async function fetchPost() {
+        if (!postId) {
+            document.getElementById('post-content').innerHTML = '<p style="text-align:center;">Post not found.</p>';
+            return;
+        }
+
+        try {
+            const response = await fetch(`https://api.anbumiththiran.in/content/public/${postId}`);
+            const post = await response.json();
+            const container = document.getElementById('post-content');
+
+            if (!post || post.success === false) {
+                container.innerHTML = '<h2 style="text-align:center;">Post not found or is premium.</h2>';
+                return;
+            }
+
+            // --- SEO & DYNAMIC HEAD TITLE START ---
+            
+            // 1. Dynamic Title Update
+            const contentType = post.contenttype ? post.contenttype.charAt(0).toUpperCase() + post.contenttype.slice(1) : 'Post';
+            document.title = `${post.title} | ${contentType} - Anbudan Miththiran`;
+            
+            // 2. Meta Description
+            let metaDesc = document.querySelector('meta[name="description"]');
+            if (!metaDesc) {
+                metaDesc = document.createElement('meta');
+                metaDesc.name = "description";
+                document.head.appendChild(metaDesc);
+            }
+            const descText = post.tags ? `Read ${post.title} by ${post.writer || 'Anbudan Miththiran'}. Tags: ${post.tags.join(', ')}` : `Read ${post.title} on Anbudan Miththiran.`;
+            metaDesc.content = descText;
+
+            // 3. Canonical URL
+            let canonical = document.querySelector('link[rel="canonical"]');
+            if (!canonical) {
+                canonical = document.createElement('link');
+                canonical.rel = "canonical";
+                document.head.appendChild(canonical);
+            }
+            canonical.href = `https://www.anbumiththiran.in/post.html?id=${postId}`;
+
+            // 4. Social Media Tags (Open Graph & Twitter)
+            const displayImage = post.contenttype === 'book' ? (post.book_cover_url || post.image_url) : post.image_url;
+            const ogTags = {
+                'og:title': `${post.title} - Anbudan Miththiran`,
+                'og:description': descText,
+                'og:url': `https://www.anbumiththiran.in/post.html?id=${postId}`,
+                'og:type': 'article',
+                'og:image': displayImage || 'https://www.anbumiththiran.in/logo.jpg',
+                'twitter:card': 'summary_large_image',
+                'twitter:title': `${post.title} - Anbudan Miththiran`,
+                'twitter:description': descText,
+                'twitter:image': displayImage || 'https://www.anbumiththiran.in/logo.jpg'
+            };
+
+            for (const [property, content] of Object.entries(ogTags)) {
+                const attr = property.startsWith('twitter:') ? 'name' : 'property';
+                let tag = document.querySelector(`meta[${attr}="${property}"]`);
+                if (!tag) {
+                    tag = document.createElement('meta');
+                    tag.setAttribute(attr, property);
+                    document.head.appendChild(tag);
+                }
+                tag.content = content;
+            }
+
+            // 5. Structured Data (Schema.org JSON-LD)
+            const schemaData = {
+                "@context": "https://schema.org",
+                "@graph": [
+                    {
+                        "@type": "BreadcrumbList",
+                        "itemListElement": [
+                            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.anbumiththiran.in" },
+                            { "@type": "ListItem", "position": 2, "name": contentType, "item": `https://www.anbumiththiran.in/category.html?type=${post.contenttype}` },
+                            { "@type": "ListItem", "position": 3, "name": post.title }
+                        ]
+                    },
+                    {
+                        "@type": "Article",
+                        "headline": post.title,
+                        "description": descText,
+                        "image": displayImage,
+                        "author": { "@type": "Person", "name": post.writer || "Anbudan Miththiran" },
+                        "datePublished": post.createdat,
+                        "publisher": {
+                            "@type": "Organization",
+                            "name": "Anbudan Miththiran",
+                            "logo": { "@type": "ImageObject", "url": "https://www.anbumiththiran.in/logo.jpg" }
+                        }
+                    }
+                ]
+            };
+
+            let schemaScript = document.getElementById('post-schema');
+            if (!schemaScript) {
+                schemaScript = document.createElement('script');
+                schemaScript.id = 'post-schema';
+                schemaScript.type = 'application/ld+json';
+                document.head.appendChild(schemaScript);
+            }
+            schemaScript.text = JSON.stringify(schemaData);
+
+            // --- SEO & DYNAMIC HEAD TITLE END ---
+
+            // RENDERING LOGIC
+            const formattedBody = post.body ? post.body.split('\n').filter(p => p.trim() !== '').map(p => `<p>${p}</p>`).join('') : '';
+            let imageHtml = displayImage ? `<img src="${displayImage}" style="width:100%; border-radius:12px; margin-bottom:25px;" alt="${post.title}" onerror="this.style.display='none'">` : '';
+
+            let bookLinksHtml = '';
+            if (post.contenttype === 'book' && post.links) {
+                bookLinksHtml = `
+                    <div style="background: var(--gray-light); padding: 20px; border-radius: 12px; margin-top: 30px;">
+                        <h3 style="margin-bottom:15px;">Get this book:</h3>
+                        <div style="display:flex; flex-wrap:wrap; gap:10px;">
+                            ${post.links.amazon ? `<a href="${post.links.amazon}" target="_blank" style="background:#FF9900; color:white; padding:10px 20px; border-radius:8px; text-decoration:none; font-weight:600;">Amazon</a>` : ''}
+                            ${post.links.flipkart ? `<a href="${post.links.flipkart}" target="_blank" style="background:#2874F0; color:white; padding:10px 20px; border-radius:8px; text-decoration:none; font-weight:600;">Flipkart</a>` : ''}
+                            ${post.links.notionpress ? `<a href="${post.links.notionpress}" target="_blank" style="background:#1ABC9C; color:white; padding:10px 20px; border-radius:8px; text-decoration:none; font-weight:600;">Notion Press</a>` : ''}
+                        </div>
+                    </div>
+                `;
+            }
+
+            let tagsHtml = '';
+            if (post.tags && post.tags.length > 0) {
+                tagsHtml = `<div style="margin-top: 20px;">
+                    ${post.tags.map(tag => `<span style="color: var(--primary-color); margin-right: 10px; font-weight:500;">#${tag}</span>`).join('')}
+                </div>`;
+            }
+
+            container.innerHTML = `
+                <header class="post-header">
+                    <div class="story-category">${post.contenttype || 'Literature'}</div>
+                    <h1>${post.title}</h1>
+                    <div class="post-author-info">
+                        <img src="logo.jpg" class="post-author-img" alt="${post.writer || 'Author'}">
+                        <span>By ${post.writer || 'Anbudan Miththiran'} • ${new Date(post.createdat).toLocaleDateString()}</span>
+                    </div>
+                </header>
+                
+                ${imageHtml}
+                
+                <div class="post-content">
+                    ${formattedBody}
+                </div>
+
+                ${bookLinksHtml}
+                ${tagsHtml}
+
+                <footer class="post-footer">
+                    <div class="share-section">
+                        <h3>Share this with your friends</h3>
+                        <div class="share-buttons-large">
+                            <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(post.title + ' https://www.anbumiththiran.in/post.html?id=' + post.id)}" target="_blank" class="share-icon-btn bg-whatsapp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://www.anbumiththiran.in/post.html?id=' + post.id)}" target="_blank" class="share-icon-btn bg-facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent('https://www.anbumiththiran.in/post.html?id=' + post.id)}" target="_blank" class="share-icon-btn bg-twitter"><i class="fab fa-twitter"></i></a>
+                            <button onclick="copyToClipboard('https://www.anbumiththiran.in/post.html?id=${post.id}')" class="share-icon-btn bg-copy"><i class="fas fa-link"></i></button>
+                        </div>
+                    </div>
+                </footer>
+            `;
+        } catch (err) {
+            console.error("Error fetching post:", err);
+            document.getElementById('post-content').innerHTML = '<p style="text-align:center;">Error loading content. Please try again later.</p>';
+        }
+    }
+
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            alert('Link copied to clipboard!');
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+        });
+    }
+
+    fetchPost();
+</script>
+
+    <script src="nav.js"></script>
+</body>
+</html>
