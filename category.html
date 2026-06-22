@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9RLGNJL2ZQ');
+    </script>
+    
+    <title>Category - Anbudan Miththiran</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="pratilipi-style.css">
+</head>
+<body>
+
+    <!-- App Header -->
+    <header class="app-header">
+        <a href="index.html" class="header-brand">Anbudan <span>Miththiran</span></a>
+        <div class="header-spacer"></div>
+        <!-- Desktop search -->
+        <div class="header-search">
+            <i class="fas fa-search"></i>
+            <input type="text" id="search-input" placeholder="Search stories, poems...">
+        </div>
+        <!-- Desktop nav -->
+        <nav class="desktop-nav">
+            <a href="index.html">Home</a>
+            <a href="category.html?type=article">Articles</a>
+            <a href="category.html?type=poem">Poems</a>
+            <a href="category.html?type=story">Stories</a>
+            <a href="videos.html">Videos</a>
+            <a href="podcast.html">Podcast</a>
+            <a href="books.html">Books</a>
+            <a href="about.html">About</a>
+        </nav>
+        <!-- Mobile search button -->
+        <button class="header-search-btn" id="header-search-btn" aria-label="Search">
+            <i class="fas fa-search"></i>
+        </button>
+    </header>
+
+    <!-- Mobile Slide-Down Search -->
+    <div class="mobile-search-bar" id="mobile-search-bar" style="display:none">
+        <div class="mobile-search-bar-inner" style="position:relative">
+            <i class="fas fa-search"></i>
+            <input type="text" id="mobile-search-input" placeholder="Search stories, poems...">
+        </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation (5 tabs + More) -->
+    <nav class="mobile-nav">
+        <a href="index.html" class="mobile-nav-item" data-page="index.html">
+            <i class="fas fa-home"></i><span>Home</span>
+        </a>
+        <a href="category.html?type=article" class="mobile-nav-item" data-page="category-article">
+            <i class="fas fa-newspaper"></i><span>Articles</span>
+        </a>
+        <a href="videos.html" class="mobile-nav-item" data-page="videos.html">
+            <i class="fas fa-play-circle"></i><span>Videos</span>
+        </a>
+        <a href="books.html" class="mobile-nav-item" data-page="books.html">
+            <i class="fas fa-book"></i><span>Books</span>
+        </a>
+        <button class="mobile-nav-item" id="more-nav-btn" aria-label="More">
+            <i class="fas fa-ellipsis-h"></i><span>More</span>
+        </button>
+    </nav>
+
+    <!-- More Drawer Overlay -->
+    <div class="more-overlay" id="more-overlay" style="display:none"></div>
+
+    <!-- More Drawer Sheet -->
+    <div class="more-drawer" id="more-drawer" style="display:none">
+        <div class="drawer-handle"></div>
+        <div class="drawer-title">More Pages</div>
+        <div class="drawer-grid">
+            <a href="category.html?type=poem" class="drawer-item" data-page="category-poem">
+                <div class="drawer-item-icon"><i class="fas fa-feather-alt"></i></div>
+                <span>Poems</span>
+            </a>
+            <a href="category.html?type=story" class="drawer-item" data-page="category-story">
+                <div class="drawer-item-icon"><i class="fas fa-scroll"></i></div>
+                <span>Stories</span>
+            </a>
+            <a href="podcast.html" class="drawer-item" data-page="podcast.html">
+                <div class="drawer-item-icon"><i class="fas fa-microphone"></i></div>
+                <span>Podcast</span>
+            </a>
+            <a href="about.html" class="drawer-item" data-page="about.html">
+                <div class="drawer-item-icon"><i class="fas fa-user-circle"></i></div>
+                <span>About</span>
+            </a>
+            <a href="contact.html" class="drawer-item" data-page="contact.html">
+                <div class="drawer-item-icon"><i class="fas fa-envelope"></i></div>
+                <span>Contact</span>
+            </a>
+            <a href="privacy.html" class="drawer-item" data-page="privacy.html">
+                <div class="drawer-item-icon"><i class="fas fa-shield-alt"></i></div>
+                <span>Privacy</span>
+            </a>
+        </div>
+    </div>
+
+
+
+    <main class="container">
+        <div style="margin-bottom: 20px;">
+            <h1 id="category-title" style="font-size: 1.8rem; color: var(--primary-dark);">Category</h1>
+        </div>
+        <div class="content-grid" id="posts-container">
+            <!-- Loading State -->
+            <div class="loading-state">
+                <i class="fas fa-circle-notch fa-spin fa-2x"></i>
+                <p >Loading content...</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const type = urlParams.get('type') || 'article';
+        
+        const displayTitle = type.charAt(0).toUpperCase() + type.slice(1) + "s";
+        document.getElementById('category-title').innerText = displayTitle;
+        document.title = `${displayTitle} - Anbudan Miththiran`;
+
+        // Highlight active nav
+        if (document.getElementById(`nav-${type}`)) {
+            document.getElementById(`nav-${type}`).classList.add('active');
+        }
+        if (type === 'article' && document.getElementById('mobile-nav-article')) {
+            document.getElementById('mobile-nav-article').classList.add('active');
+        }
+
+        async function fetchCategoryPosts(query = '') {
+            try {
+                const url = query 
+                    ? `https://api.anbumiththiran.in/content/public/category/${type}?q=${encodeURIComponent(query)}`
+                    : `https://api.anbumiththiran.in/content/public/category/${type}`;
+                
+                const response = await fetch(url);
+                const posts = await response.json();
+                const container = document.getElementById('posts-container');
+                container.innerHTML = '';
+
+                if (posts.length === 0) {
+                    container.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding: 40px;"><p style="color:var(--gray-dark);">No posts found in this category.</p></div>';
+                    return;
+                }
+
+                posts.forEach(post => {
+                    const card = document.createElement('div');
+                    card.className = 'story-card';
+
+                    let displayImage = post.contenttype === 'book' ? (post.book_cover_url || post.image_url) : post.image_url;
+                    if (!displayImage) displayImage = 'logo.jpg';
+
+                    card.innerHTML = `
+                        <img src="${displayImage}" class="story-cover" alt="${post.title}" onerror="this.src='logo.jpg'">
+                        <div class="story-info">
+                            <div class="story-category">${post.contenttype || 'Literature'}</div>
+                            <h3 class="story-title">${post.title}</h3>
+                            <div class="story-meta">
+                                <span><i class="far fa-user"></i> ${post.writer}</span>
+                                <span><i class="far fa-calendar"></i> ${new Date(post.createdat).toLocaleDateString()}</span>
+                            </div>
+                        </div>
+                        <div class="story-actions">
+                            <a href="post.html?id=${post.id}" class="read-btn">Read Now</a>
+                            <div class="share-group">
+                                <i class="fas fa-share-alt share-btn" onclick="sharePost('${post.title}', '${post.id}')" title="Share"></i>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            } catch (err) {
+                console.error("Error fetching posts:", err);
+                document.getElementById('posts-container').innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding: 40px;"><p>Error loading content. Please try again later.</p></div>';
+            }
+        }
+
+        function sharePost(title, id) {
+            // Use the pre-rendered static preview page so social apps
+            // (WhatsApp, Facebook, Twitter, etc.) can read correct meta tags.
+            const url = window.location.origin + '/p/' + id + '.html';
+            if (navigator.share) {
+                navigator.share({ title: title, url: url });
+            } else {
+                window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(title + ' ' + url)}`, '_blank');
+            }
+        }
+
+        document.getElementById('search-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') fetchCategoryPosts(e.target.value);
+        });
+
+        fetchCategoryPosts();
+    </script>
+    <script src="nav.js"></script>
+</body>
+</html>
