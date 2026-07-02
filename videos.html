@@ -166,8 +166,6 @@
         </div>
     </div>
 
-
-
     <main class="container">
         <div style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
             <h1 style="font-size: 1.8rem; color: var(--primary-dark);">Videos</h1>
@@ -191,22 +189,22 @@
     </main>
 
     <script>
-        const CHANNEL_ID = 'UCF4J9RTNoyk0zKYeJ87tslQ';
-        const RSS_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
-        const PROXY_URL = 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(RSS_URL);
+        // 1. Updated ID and logic for a specific playlist
+        const PLAYLIST_ID = 'PLClU3NeglzQF1TXYxbXdT9UDduhT0N-Ar'; 
+        const RSS_URL = `https://www.youtube.com/feeds/videos.xml?playlist_id=${PLAYLIST_ID}`;
+        
+        // 2. Switched to rss2json API to fix CORS and rate-limiting issues
+        const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}`;
 
         async function loadYouTubeContent() {
             const videosContainer = document.getElementById('videos-container');
             const shortsContainer = document.getElementById('shorts-container');
 
             try {
-                const response = await fetch(PROXY_URL);
-                const xmlText = await response.text();
-                const parser = new DOMParser();
-                const xmlDoc = parser.parseFromString(xmlText, "text/xml");
-                const entries = xmlDoc.getElementsByTagName("entry");
+                const response = await fetch(API_URL);
+                const data = await response.json();
 
-                if (entries.length === 0) {
+                if (data.status !== 'ok' || !data.items || data.items.length === 0) {
                     videosContainer.innerHTML = '<p>No videos found.</p>';
                     return;
                 }
@@ -217,14 +215,14 @@
                 let videoCount = 0;
                 let shortsCount = 0;
 
-                for (let i = 0; i < entries.length; i++) {
-                    const entry = entries[i];
-                    const title = entry.getElementsByTagName("title")[0].textContent;
-                    const videoId = entry.getElementsByTagName("yt:videoId")[0].textContent;
-                    const link = entry.getElementsByTagName("link")[0].getAttribute("href");
-                    const published = new Date(entry.getElementsByTagName("published")[0].textContent).toLocaleDateString();
+                data.items.forEach(item => {
+                    // Extract video ID from link
+                    const videoId = item.link.split('v=')[1];
+                    const title = item.title;
+                    const published = new Date(item.pubDate).toLocaleDateString();
 
-                    const isShort = link.includes('/shorts/') || title.toLowerCase().includes('#shorts');
+                    // Check if short
+                    const isShort = title.toLowerCase().includes('#shorts');
 
                     if (isShort && shortsCount < 8) {
                         const card = document.createElement('div');
@@ -254,10 +252,10 @@
                         videosContainer.appendChild(card);
                         videoCount++;
                     }
-                }
+                });
             } catch (error) {
                 console.error('Error:', error);
-                videosContainer.innerHTML = '<p>Error loading videos.</p>';
+                videosContainer.innerHTML = '<p style="color:red;">Error loading videos.</p>';
             }
         }
 
