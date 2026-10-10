@@ -1,4 +1,83 @@
-
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ANBUMITHTHIRAN 56 - anbumiththiran.in</title>
+<style>
+body{background:#000;color:#fff;font-family:system-ui;padding:12px}
+h1{text-align:center;color:#ff0040} .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.card{background:#111;padding:14px;border-radius:14px;border:1px solid #222}
+audio{width:100%} 
+.title{font-weight:700;margin-bottom:10px}
+.sub{text-align:center;opacity:.6;margin-bottom:14px}
+</style></head><body>
+<h1>ANBUMITHTHIRAN 56</h1>
+<p class="sub">Anbudan Miththiran - 56 Paadalgal - Site Streaming</p>
+<div class="grid" id="g"></div>
+<script>
+const SONGS = [
+{"n":"01", "title":"01_ta-IN-ValluvarNeural"},
+{"n":"02", "title":"02_ta-IN-ValluvarNeural"},
+{"n":"03", "title":"03_ta-IN-ValluvarNeural"},
+{"n":"04", "title":"04_ta-IN-ValluvarNeural"},
+{"n":"05", "title":"05_ta-IN-ValluvarNeural"},
+{"n":"06", "title":"06_ta-IN-ValluvarNeural"},
+{"n":"07", "title":"07_ta-IN-ValluvarNeural"},
+{"n":"08", "title":"08_ta-IN-ValluvarNeural"},
+{"n":"09", "title":"09_ta-IN-ValluvarNeural"},
+{"n":"10", "title":"10_ta-IN-ValluvarNeural"},
+{"n":"11", "title":"11_ta-IN-ValluvarNeural"},
+{"n":"12", "title":"12_ta-IN-ValluvarNeural"},
+{"n":"13", "title":"13_ta-IN-ValluvarNeural"},
+{"n":"14", "title":"14_ta-IN-ValluvarNeural"},
+{"n":"15", "title":"15_ta-IN-ValluvarNeural"},
+{"n":"16", "title":"16_ta-IN-ValluvarNeural"},
+{"n":"17", "title":"17_ta-IN-ValluvarNeural"},
+{"n":"18", "title":"18_ta-IN-ValluvarNeural"},
+{"n":"19", "title":"19_ta-IN-ValluvarNeural"},
+{"n":"20", "title":"20_ta-IN-ValluvarNeural"},
+{"n":"21", "title":"21_ta-IN-ValluvarNeural"},
+{"n":"22", "title":"22_ta-IN-ValluvarNeural"},
+{"n":"23", "title":"23_ta-IN-ValluvarNeural"},
+{"n":"24", "title":"24_ta-IN-ValluvarNeural"},
+{"n":"25", "title":"25_ta-IN-ValluvarNeural"},
+{"n":"26", "title":"26_ta-IN-ValluvarNeural"},
+{"n":"27", "title":"27_ta-IN-ValluvarNeural"},
+{"n":"28", "title":"28_ta-IN-ValluvarNeural"},
+{"n":"29", "title":"29_ta-IN-ValluvarNeural"},
+{"n":"30", "title":"30_ta-IN-ValluvarNeural"},
+{"n":"31", "title":"31_ta-IN-ValluvarNeural"},
+{"n":"32", "title":"32_ta-IN-ValluvarNeural"},
+{"n":"33", "title":"33_ta-IN-ValluvarNeural"},
+{"n":"34", "title":"34_ta-IN-ValluvarNeural"},
+{"n":"35", "title":"35_ta-IN-ValluvarNeural"},
+{"n":"36", "title":"36_ta-IN-ValluvarNeural"},
+{"n":"37", "title":"37_ta-IN-ValluvarNeural"},
+{"n":"38", "title":"38_ta-IN-ValluvarNeural"},
+{"n":"39", "title":"39_ta-IN-ValluvarNeural"},
+{"n":"40", "title":"40_ta-IN-ValluvarNeural"},
+{"n":"41", "title":"41_ta-IN-ValluvarNeural"},
+{"n":"42", "title":"42_ta-IN-ValluvarNeural"},
+{"n":"43", "title":"43_ta-IN-ValluvarNeural"},
+{"n":"44", "title":"44_ta-IN-ValluvarNeural"},
+{"n":"45", "title":"45_ta-IN-ValluvarNeural"},
+{"n":"46", "title":"46_ta-IN-ValluvarNeural"},
+{"n":"47", "title":"47_ta-IN-ValluvarNeural"},
+{"n":"48", "title":"48_ta-IN-ValluvarNeural"},
+{"n":"49", "title":"49_ta-IN-ValluvarNeural"},
+{"n":"50", "title":"50_ta-IN-ValluvarNeural"},
+{"n":"51", "title":"51_ta-IN-ValluvarNeural"},
+{"n":"52", "title":"52_ta-IN-ValluvarNeural"},
+{"n":"53", "title":"53_ta-IN-ValluvarNeural"},
+{"n":"54", "title":"54_ta-IN-ValluvarNeural"},
+{"n":"55", "title":"55_ta-IN-ValluvarNeural"},
+{"n":"56", "title":"56_ta-IN-ValluvarNeural"}
+];
+let h="";
+SONGS.forEach(s=>{
+  let play = `./audio/${s.n}_ta-IN-ValluvarNeural.mp3`;
+  h+=`<div class="card"><div class="title">${s.n}. ${s.title}</div><audio controls preload="metadata" playsinline controlsList="nodownload noplaybackrate" disablePictureInPicture oncontextmenu="return false" src="${play}"></audio></div>`;
+});
+document.getElementById('g').innerHTML=h;
+</script></body></html>
 <!DOCTYPE html>
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ANBUMITHTHIRAN 56 - anbumiththiran.in</title>
