@@ -1,28 +1,51 @@
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ANBUMITHTHIRAN 56 RADIO</title>
-<style>
-body{background:radial-gradient(circle at top,#2a0010,#000);color:#fff;font-family:system-ui;margin:0;padding:16px;min-height:100vh}
-h1{text-align:center;color:#ff0040;margin:6px 0 2px}.sub{text-align:center;opacity:.6;font-size:12px;margin-bottom:18px}
-.radio{max-width:420px;margin:0 auto;background:#111;border:1px solid #222;border-radius:24px;padding:20px;text-align:center}
-.disc{width:180px;height:180px;margin:0 auto 14px;background:conic-gradient(#ff0040,#111,#ff0040);border-radius:50%;display:flex;align-items:center;justify-content:center;animation:spin 5s linear infinite;animation-play-state:paused}
-.disc.playing{animation-play-state:running} @keyframes spin{to{transform:rotate(360deg)}}
-.inner{width:64px;height:64px;background:#000;border-radius:50%;border:2px solid #ff0040;display:flex;align-items:center;justify-content:center;font-size:26px}
-#now{font-weight:800;font-size:18px;color:#fff;min-height:24px} #tamil{font-weight:800;font-size:20px;color:#ff0040;margin-top:6px;min-height:28px}
-audio{width:100%;margin-top:12px}.row{display:flex;gap:8px;justify-content:center;margin-top:10px;flex-wrap:wrap}
-.btn{background:#222;color:#fff;border:1px solid #333;padding:10px 14px;border-radius:12px;font-weight:700}.btn.main{background:#ff0040;border-color:#ff0040}
-.list{max-width:420px;margin:16px auto 0;max-height:420px;overflow:auto;border-radius:12px;border:1px solid #1a1a1a}
-.item{padding:12px;background:#0f0f0f;border-bottom:1px solid #1a1a1a;font-size:14px;cursor:pointer;display:flex;justify-content:space-between}
-.item.active{background:#1c0a0f;color:#ff0040}
-</style></head><body>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ✅ Page Title -->
+    <title>Enna Seithen - Pooranathuvam Malarattum 56 Kelvigal | Anbudan Miththiran | anbumiththiran.in</title>
+    <meta name="title" content="Enna Seithen - Pooranathuvam Malarattum 56 Kelvigal">
+    <meta name="description" content="Enna Seithen - Pooranathuvam Malarattum muthal 56 kelvigal - Anbudan Miththiran 56 Tamil kavithai non-stop radio - anbumiththiran.in">
+    <meta property="og:title" content="Enna Seithen - Pooranathuvam Malarattum 56 Kelvigal">
+    <meta property="og:description" content="Anbudan Miththiran 56 kavithai radio">
+    <meta property="og:url" content="https://anbumiththiran.in/Enna-Seithen/">
+
+    <!-- ✅ Google Analytics - GA4 518267398 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RLGNJL2ZQ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9RLGNJL2ZQ');
+    </script>
+
+    <style>
+    body{background:radial-gradient(circle at top,#2a0010,#000);color:#fff;font-family:system-ui;margin:0;padding:16px;min-height:100vh}
+    h1{text-align:center;color:#ff0040;margin:6px 0 2px}.sub{text-align:center;opacity:.6;font-size:12px;margin-bottom:18px}
+   .radio{max-width:420px;margin:0 auto;background:#111;border:1px solid #222;border-radius:24px;padding:20px;text-align:center}
+   .disc{width:180px;height:180px;margin:0 auto 14px;background:conic-gradient(#ff0040,#111,#ff0040);border-radius:50%;display:flex;align-items:center;justify-content:center;animation:spin 5s linear infinite;animation-play-state:paused}
+   .disc.playing{animation-play-state:running} @keyframes spin{to{transform:rotate(360deg)}}
+   .inner{width:64px;height:64px;background:#000;border-radius:50%;border:2px solid #ff0040;display:flex;align-items:center;justify-content:center;font-size:26px}
+    #now{font-weight:800;font-size:16px;min-height:22px} #tamil{font-weight:800;font-size:20px;color:#ff0040;margin-top:6px;min-height:28px}
+    audio{width:100%;margin-top:12px}.row{display:flex;gap:8px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+   .btn{background:#222;color:#fff;border:1px solid #333;padding:10px 14px;border-radius:12px;font-weight:700}.btn.main{background:#ff0040;border-color:#ff0040}
+   .list{max-width:420px;margin:16px auto 0;max-height:420px;overflow:auto;border-radius:12px;border:1px solid #1a1a1a}
+   .item{padding:12px;background:#0f0f0f;border-bottom:1px solid #1a1a1a;font-size:14px;cursor:pointer;display:flex;justify-content:space-between}
+   .item.active{background:#1c0a0f;color:#ff0040}
+    </style>
+</head>
+<body>
 <h1>🎙 ANBUMITHTHIRAN 56</h1>
-<div class="sub">anbumiththiran.in — RADIO — No Download</div>
+<div class="sub">Enna Seithen - Pooranathuvam Malarattum 56 Kelvigal — Radio</div>
+
 <div class="radio">
   <div class="disc" id="disc"><div class="inner">🎧</div></div>
-  <div id="now">Loading...</div>
+  <div id="now">Loading 56...</div>
   <div id="tamil"></div>
   <div id="count" style="font-size:11px;opacity:.5;margin-top:4px"></div>
-  <audio id="audio" controls preload="metadata" playsinline controlsList="nodownload noplaybackrate" disablePictureInPicture oncontextmenu="return false"></audio>
+  <audio id="audio" controls preload="metadata" playsinline controlsList="nodownload noplaybackrate" oncontextmenu="return false"></audio>
   <div class="row">
     <button class="btn" id="prev">⏮</button>
     <button class="btn main" id="play">▶ PLAY RADIO</button>
@@ -34,35 +57,27 @@ audio{width:100%;margin-top:12px}.row{display:flex;gap:8px;justify-content:cente
   </div>
   <div style="margin-top:10px;font-size:10px;letter-spacing:2px;color:#ff0040;font-weight:800">● LIVE RADIO — NO DOWNLOAD</div>
 </div>
+
 <div class="list" id="list"></div>
+
 <script>
 let DATA=[], idx=0, shuffle=false, autoPlay=true;
-const audio=document.getElementById('audio');
-const now=document.getElementById('now');
-const tamil=document.getElementById('tamil');
-const disc=document.getElementById('disc');
-const listEl=document.getElementById('list');
+const audio=document.getElementById('audio'), now=document.getElementById('now'), tamil=document.getElementById('tamil'), disc=document.getElementById('disc'), listEl=document.getElementById('list');
 
 async function init(){
   let r=await fetch('./anbumiththiran_56.json?v='+Date.now());
   DATA=await r.json();
   render(); load(0,false);
 }
-function getTitle(s){
-  // Use Tamil title - short > full > title
-  return s.short || s.full || s.title || s.file || "";
-}
-function path(i){
-  return DATA[i].src || "./audio/"+DATA[i].n+"_ta-IN-ValluvarNeural.mp3";
-}
-function load(i, play=true){
-  idx=i; let s=DATA[idx];
-  let t=getTitle(s);
+function getTitle(s){ return s.short || s.full || ""; }
+function path(i){ return DATA[i].src || "./audio/"+DATA[i].n+"_ta-IN-ValluvarNeural.mp3"; }
+function load(i,play=true){
+  idx=i; let s=DATA[idx]; let t=getTitle(s);
   audio.src=path(idx);
-  now.textContent = (s.no || s.n) + ". Anbudan Miththiran";
-  tamil.textContent = t;
-  document.getElementById('count').textContent=(idx+1)+" / "+DATA.length+" — Radio Playing";
-  if(play) audio.play();
+  now.textContent=(s.no||s.n)+". Anbudan Miththiran";
+  tamil.textContent=t;
+  document.getElementById('count').textContent=(idx+1)+" / "+DATA.length;
+  if(play){ audio.play(); gtag('event','play_song',{song_no:s.no, song_title:t}); }
   render();
 }
 function nxt(){ if(shuffle) load(Math.floor(Math.random()*DATA.length)); else load(idx<DATA.length-1?idx+1:0); }
@@ -75,12 +90,13 @@ function render(){
 }
 document.getElementById('next').onclick=nxt;
 document.getElementById('prev').onclick=prv;
-document.getElementById('play').onclick=function(){ if(audio.paused) audio.play(); else audio.pause(); };
+document.getElementById('play').onclick=function(){ if(audio.paused){ audio.play(); gtag('event','radio_play'); } else audio.pause(); };
 audio.onplay=function(){ disc.classList.add('playing'); document.getElementById('play').textContent='⏸ PAUSE'; };
 audio.onpause=function(){ disc.classList.remove('playing'); document.getElementById('play').textContent='▶ PLAY RADIO'; };
-audio.onended=function(){ if(autoPlay) nxt(); };
-document.getElementById('shuffle').onclick=function(e){ shuffle=!shuffle; e.target.textContent="🔀 Shuffle "+(shuffle?'ON':'OFF'); };
+audio.onended=function(){ if(autoPlay) nxt(); gtag('event','song_complete',{song_no:DATA[idx].no}); };
+document.getElementById('shuffle').onclick=function(e){ shuffle=!shuffle; e.target.textContent="🔀 Shuffle "+(shuffle?'ON':'OFF'); gtag('event','shuffle_'+(shuffle?'on':'off')); };
 document.getElementById('auto').onclick=function(e){ autoPlay=!autoPlay; e.target.textContent="Auto "+(autoPlay?'ON':'OFF'); };
-init();
-window.load=load;
-</script></body></html>
+init(); window.load=load;
+</script>
+</body>
+</html>
