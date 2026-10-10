@@ -1,101 +1,86 @@
 <!DOCTYPE html>
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ANBUMITHTHIRAN 56 RADIO - anbumiththiran.in</title>
+<title>ANBUMITHTHIRAN 56 RADIO</title>
 <style>
-body{background:radial-gradient(circle at top,#220010,#000);color:#fff;font-family:system-ui;min-height:100vh;margin:0;display:flex;flex-direction:column;align-items:center;padding:20px}
-h1{color:#ff0040;letter-spacing:2px;margin-bottom:2px}
-.sub{opacity:.6;font-size:13px;margin-bottom:24px}
-.radio{width:100%;max-width:380px;background:#111;border:1px solid #222;border-radius:28px;padding:24px;box-shadow:0 20px 60px #000;text-align:center}
-.disc{width:180px;height:180px;margin:0 auto 18px;background:conic-gradient(#ff0040,#000,#ff0040);border-radius:50%;display:flex;align-items:center;justify-content:center;animation:spin 6s linear infinite;animation-play-state:paused}
-.disc.playing{animation-play-state:running}
-.disc-inner{width:70px;height:70px;background:#000;border-radius:50%;border:3px solid #ff0040;display:flex;align-items:center;justify-content:center;font-size:28px}
-@keyframes spin{to{transform:rotate(360deg)}}
-#now{font-weight:800;font-size:18px;margin:10px 0 4px}
-#count{opacity:.5;font-size:12px;margin-bottom:12px}
-audio{width:100%;margin:10px 0}
-.row{display:flex;gap:10px;justify-content:center;margin-top:12px}
-.btn{background:#222;color:#fff;border:1px solid #333;padding:10px 16px;border-radius:12px;font-weight:700}
-.btn.main{background:#ff0040;border-color:#ff0040}
-.live{margin-top:12px;font-size:11px;letter-spacing:2px;color:#ff0040;font-weight:700}
-.list{width:100%;max-width:380px;margin-top:18px;max-height:240px;overflow:auto}
-.item{padding:10px 12px;background:#0f0f0f;border-bottom:1px solid #1a1a1a;font-size:13px;display:flex;justify-content:space-between;cursor:pointer}
-.item.active{color:#ff0040;background:#1a0a0e}
+body{background:radial-gradient(circle at top,#2a0010,#000);color:#fff;font-family:system-ui;margin:0;padding:16px;min-height:100vh}
+h1{text-align:center;color:#ff0040;margin:6px 0 2px}.sub{text-align:center;opacity:.6;font-size:12px;margin-bottom:18px}
+.radio{max-width:420px;margin:0 auto;background:#111;border:1px solid #222;border-radius:24px;padding:20px;text-align:center}
+.disc{width:180px;height:180px;margin:0 auto 14px;background:conic-gradient(#ff0040,#111,#ff0040);border-radius:50%;display:flex;align-items:center;justify-content:center;animation:spin 5s linear infinite;animation-play-state:paused}
+.disc.playing{animation-play-state:running} @keyframes spin{to{transform:rotate(360deg)}}
+.inner{width:64px;height:64px;background:#000;border-radius:50%;border:2px solid #ff0040;display:flex;align-items:center;justify-content:center;font-size:26px}
+#now{font-weight:800;font-size:18px;color:#fff;min-height:24px} #tamil{font-weight:800;font-size:20px;color:#ff0040;margin-top:6px;min-height:28px}
+audio{width:100%;margin-top:12px}.row{display:flex;gap:8px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+.btn{background:#222;color:#fff;border:1px solid #333;padding:10px 14px;border-radius:12px;font-weight:700}.btn.main{background:#ff0040;border-color:#ff0040}
+.list{max-width:420px;margin:16px auto 0;max-height:420px;overflow:auto;border-radius:12px;border:1px solid #1a1a1a}
+.item{padding:12px;background:#0f0f0f;border-bottom:1px solid #1a1a1a;font-size:14px;cursor:pointer;display:flex;justify-content:space-between}
+.item.active{background:#1c0a0f;color:#ff0040}
 </style></head><body>
-<h1>ANBUMITHTHIRAN</h1>
-<p class="sub">56 RADIO — anbumiththiran.in — LIVE</p>
-
+<h1>🎙 ANBUMITHTHIRAN 56</h1>
+<div class="sub">anbumiththiran.in — RADIO — No Download</div>
 <div class="radio">
-  <div class="disc" id="disc"><div class="disc-inner">🎧</div></div>
-  <div id="now">Click Play — Radio Start</div>
-  <div id="count">56 Paadalgal — Non-Stop</div>
-  <audio id="audio" preload="metadata" playsinline controlsList="nodownload noplaybackrate" disablePictureInPicture oncontextmenu="return false"></audio>
+  <div class="disc" id="disc"><div class="inner">🎧</div></div>
+  <div id="now">Loading...</div>
+  <div id="tamil"></div>
+  <div id="count" style="font-size:11px;opacity:.5;margin-top:4px"></div>
+  <audio id="audio" controls preload="metadata" playsinline controlsList="nodownload noplaybackrate" disablePictureInPicture oncontextmenu="return false"></audio>
   <div class="row">
     <button class="btn" id="prev">⏮</button>
     <button class="btn main" id="play">▶ PLAY RADIO</button>
     <button class="btn" id="next">⏭</button>
   </div>
   <div class="row">
-    <button class="btn" id="shuffle">🔀 Shuffle: OFF</button>
-    <button class="btn" id="auto">▶ Auto: ON</button>
+    <button class="btn" id="shuffle">🔀 Shuffle OFF</button>
+    <button class="btn" id="auto">Auto ON</button>
   </div>
-  <div class="live">● LIVE RADIO — NO DOWNLOAD</div>
+  <div style="margin-top:10px;font-size:10px;letter-spacing:2px;color:#ff0040;font-weight:800">● LIVE RADIO — NO DOWNLOAD</div>
 </div>
-
 <div class="list" id="list"></div>
-
 <script>
-const SONGS = Array.from({length:56},(_,i)=>{
-  let n=String(i+1).padStart(2,'0');
-  return {n, title:`${n}_ta-IN-ValluvarNeural`}
-});
-
-let idx=0, isShuffle=false, isAuto=true;
+let DATA=[], idx=0, shuffle=false, autoPlay=true;
 const audio=document.getElementById('audio');
 const now=document.getElementById('now');
-const count=document.getElementById('count');
+const tamil=document.getElementById('tamil');
 const disc=document.getElementById('disc');
-const list=document.getElementById('list');
-const playBtn=document.getElementById('play');
+const listEl=document.getElementById('list');
 
-function src(i){ return `./audio/${SONGS[i].n}_ta-IN-ValluvarNeural.mp3`; }
-
+async function init(){
+  let r=await fetch('./anbumiththiran_56.json?v='+Date.now());
+  DATA=await r.json();
+  render(); load(0,false);
+}
+function getTitle(s){
+  // Use Tamil title - short > full > title
+  return s.short || s.full || s.title || s.file || "";
+}
+function path(i){
+  return DATA[i].src || "./audio/"+DATA[i].n+"_ta-IN-ValluvarNeural.mp3";
+}
 function load(i, play=true){
-  idx=i;
-  audio.src=src(idx);
-  now.textContent=`${SONGS[idx].n}. ${SONGS[idx].title}`;
-  count.textContent=`${idx+1} / 56 — Radio Playing`;
+  idx=i; let s=DATA[idx];
+  let t=getTitle(s);
+  audio.src=path(idx);
+  now.textContent = (s.no || s.n) + ". Anbudan Miththiran";
+  tamil.textContent = t;
+  document.getElementById('count').textContent=(idx+1)+" / "+DATA.length+" — Radio Playing";
   if(play) audio.play();
   render();
 }
-
-function next(){
-  if(isShuffle){ load(Math.floor(Math.random()*SONGS.length)); }
-  else { if(idx<55) load(idx+1); else load(0); }
-}
-function prev(){ if(idx>0) load(idx-1); else load(55); }
-
+function nxt(){ if(shuffle) load(Math.floor(Math.random()*DATA.length)); else load(idx<DATA.length-1?idx+1:0); }
+function prv(){ load(idx>0?idx-1:DATA.length-1); }
 function render(){
-  list.innerHTML=SONGS.map((s,i)=>`<div class="item ${i===idx?'active':''}" onclick="load(${i})"><span>${s.n}. Anbudan Miththiran</span><span>${i===idx?'●':''}</span></div>`).join('');
+  listEl.innerHTML=DATA.map((s,i)=>{
+    let t=getTitle(s);
+    return "<div class='item "+(i===idx?'active':'')+"' onclick='load("+i+")'><span>"+(s.no||s.n)+". "+t+"</span><span>"+(i===idx?'●':'')+"</span></div>";
+  }).join('');
 }
-
-playBtn.onclick=()=>{
-  if(audio.paused){ audio.play(); } else { audio.pause(); }
-};
-audio.onplay=()=>{ disc.classList.add('playing'); playBtn.textContent='⏸ PAUSE'; };
-audio.onpause=()=>{ disc.classList.remove('playing'); playBtn.textContent='▶ PLAY RADIO'; };
-audio.onended=()=>{ if(isAuto) next(); };
-
-document.getElementById('next').onclick=next;
-document.getElementById('prev').onclick=prev;
-document.getElementById('shuffle').onclick=(e)=>{
-  isShuffle=!isShuffle; e.target.textContent=`🔀 Shuffle: ${isShuffle?'ON':'OFF'}`;
-};
-document.getElementById('auto').onclick=(e)=>{
-  isAuto=!isAuto; e.target.textContent=`▶ Auto: ${isAuto?'ON':'OFF'}`;
-};
-
-render();
-load(0,false);
-// Need one click to start due to browser policy
-now.textContent="🎙 ANBUMITHTHIRAN 56 RADIO — Tap PLAY";
+document.getElementById('next').onclick=nxt;
+document.getElementById('prev').onclick=prv;
+document.getElementById('play').onclick=function(){ if(audio.paused) audio.play(); else audio.pause(); };
+audio.onplay=function(){ disc.classList.add('playing'); document.getElementById('play').textContent='⏸ PAUSE'; };
+audio.onpause=function(){ disc.classList.remove('playing'); document.getElementById('play').textContent='▶ PLAY RADIO'; };
+audio.onended=function(){ if(autoPlay) nxt(); };
+document.getElementById('shuffle').onclick=function(e){ shuffle=!shuffle; e.target.textContent="🔀 Shuffle "+(shuffle?'ON':'OFF'); };
+document.getElementById('auto').onclick=function(e){ autoPlay=!autoPlay; e.target.textContent="Auto "+(autoPlay?'ON':'OFF'); };
+init();
+window.load=load;
 </script></body></html>
