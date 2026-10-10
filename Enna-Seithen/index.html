@@ -1,161 +1,101 @@
 <!DOCTYPE html>
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ANBUMITHTHIRAN 56 - anbumiththiran.in</title>
+<title>ANBUMITHTHIRAN 56 RADIO - anbumiththiran.in</title>
 <style>
-body{background:#000;color:#fff;font-family:system-ui;padding:12px}
-h1{text-align:center;color:#ff0040} .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
-.card{background:#111;padding:14px;border-radius:14px;border:1px solid #222}
-audio{width:100%} 
-.title{font-weight:700;margin-bottom:10px}
-.sub{text-align:center;opacity:.6;margin-bottom:14px}
+body{background:radial-gradient(circle at top,#220010,#000);color:#fff;font-family:system-ui;min-height:100vh;margin:0;display:flex;flex-direction:column;align-items:center;padding:20px}
+h1{color:#ff0040;letter-spacing:2px;margin-bottom:2px}
+.sub{opacity:.6;font-size:13px;margin-bottom:24px}
+.radio{width:100%;max-width:380px;background:#111;border:1px solid #222;border-radius:28px;padding:24px;box-shadow:0 20px 60px #000;text-align:center}
+.disc{width:180px;height:180px;margin:0 auto 18px;background:conic-gradient(#ff0040,#000,#ff0040);border-radius:50%;display:flex;align-items:center;justify-content:center;animation:spin 6s linear infinite;animation-play-state:paused}
+.disc.playing{animation-play-state:running}
+.disc-inner{width:70px;height:70px;background:#000;border-radius:50%;border:3px solid #ff0040;display:flex;align-items:center;justify-content:center;font-size:28px}
+@keyframes spin{to{transform:rotate(360deg)}}
+#now{font-weight:800;font-size:18px;margin:10px 0 4px}
+#count{opacity:.5;font-size:12px;margin-bottom:12px}
+audio{width:100%;margin:10px 0}
+.row{display:flex;gap:10px;justify-content:center;margin-top:12px}
+.btn{background:#222;color:#fff;border:1px solid #333;padding:10px 16px;border-radius:12px;font-weight:700}
+.btn.main{background:#ff0040;border-color:#ff0040}
+.live{margin-top:12px;font-size:11px;letter-spacing:2px;color:#ff0040;font-weight:700}
+.list{width:100%;max-width:380px;margin-top:18px;max-height:240px;overflow:auto}
+.item{padding:10px 12px;background:#0f0f0f;border-bottom:1px solid #1a1a1a;font-size:13px;display:flex;justify-content:space-between;cursor:pointer}
+.item.active{color:#ff0040;background:#1a0a0e}
 </style></head><body>
-<h1>ANBUMITHTHIRAN 56</h1>
-<p class="sub">Anbudan Miththiran - 56 Paadalgal - Site Streaming</p>
-<div class="grid" id="g"></div>
-<script>
-const SONGS = [
-{"n":"01", "title":"01_ta-IN-ValluvarNeural"},
-{"n":"02", "title":"02_ta-IN-ValluvarNeural"},
-{"n":"03", "title":"03_ta-IN-ValluvarNeural"},
-{"n":"04", "title":"04_ta-IN-ValluvarNeural"},
-{"n":"05", "title":"05_ta-IN-ValluvarNeural"},
-{"n":"06", "title":"06_ta-IN-ValluvarNeural"},
-{"n":"07", "title":"07_ta-IN-ValluvarNeural"},
-{"n":"08", "title":"08_ta-IN-ValluvarNeural"},
-{"n":"09", "title":"09_ta-IN-ValluvarNeural"},
-{"n":"10", "title":"10_ta-IN-ValluvarNeural"},
-{"n":"11", "title":"11_ta-IN-ValluvarNeural"},
-{"n":"12", "title":"12_ta-IN-ValluvarNeural"},
-{"n":"13", "title":"13_ta-IN-ValluvarNeural"},
-{"n":"14", "title":"14_ta-IN-ValluvarNeural"},
-{"n":"15", "title":"15_ta-IN-ValluvarNeural"},
-{"n":"16", "title":"16_ta-IN-ValluvarNeural"},
-{"n":"17", "title":"17_ta-IN-ValluvarNeural"},
-{"n":"18", "title":"18_ta-IN-ValluvarNeural"},
-{"n":"19", "title":"19_ta-IN-ValluvarNeural"},
-{"n":"20", "title":"20_ta-IN-ValluvarNeural"},
-{"n":"21", "title":"21_ta-IN-ValluvarNeural"},
-{"n":"22", "title":"22_ta-IN-ValluvarNeural"},
-{"n":"23", "title":"23_ta-IN-ValluvarNeural"},
-{"n":"24", "title":"24_ta-IN-ValluvarNeural"},
-{"n":"25", "title":"25_ta-IN-ValluvarNeural"},
-{"n":"26", "title":"26_ta-IN-ValluvarNeural"},
-{"n":"27", "title":"27_ta-IN-ValluvarNeural"},
-{"n":"28", "title":"28_ta-IN-ValluvarNeural"},
-{"n":"29", "title":"29_ta-IN-ValluvarNeural"},
-{"n":"30", "title":"30_ta-IN-ValluvarNeural"},
-{"n":"31", "title":"31_ta-IN-ValluvarNeural"},
-{"n":"32", "title":"32_ta-IN-ValluvarNeural"},
-{"n":"33", "title":"33_ta-IN-ValluvarNeural"},
-{"n":"34", "title":"34_ta-IN-ValluvarNeural"},
-{"n":"35", "title":"35_ta-IN-ValluvarNeural"},
-{"n":"36", "title":"36_ta-IN-ValluvarNeural"},
-{"n":"37", "title":"37_ta-IN-ValluvarNeural"},
-{"n":"38", "title":"38_ta-IN-ValluvarNeural"},
-{"n":"39", "title":"39_ta-IN-ValluvarNeural"},
-{"n":"40", "title":"40_ta-IN-ValluvarNeural"},
-{"n":"41", "title":"41_ta-IN-ValluvarNeural"},
-{"n":"42", "title":"42_ta-IN-ValluvarNeural"},
-{"n":"43", "title":"43_ta-IN-ValluvarNeural"},
-{"n":"44", "title":"44_ta-IN-ValluvarNeural"},
-{"n":"45", "title":"45_ta-IN-ValluvarNeural"},
-{"n":"46", "title":"46_ta-IN-ValluvarNeural"},
-{"n":"47", "title":"47_ta-IN-ValluvarNeural"},
-{"n":"48", "title":"48_ta-IN-ValluvarNeural"},
-{"n":"49", "title":"49_ta-IN-ValluvarNeural"},
-{"n":"50", "title":"50_ta-IN-ValluvarNeural"},
-{"n":"51", "title":"51_ta-IN-ValluvarNeural"},
-{"n":"52", "title":"52_ta-IN-ValluvarNeural"},
-{"n":"53", "title":"53_ta-IN-ValluvarNeural"},
-{"n":"54", "title":"54_ta-IN-ValluvarNeural"},
-{"n":"55", "title":"55_ta-IN-ValluvarNeural"},
-{"n":"56", "title":"56_ta-IN-ValluvarNeural"}
-];
-let h="";
-SONGS.forEach(s=>{
-  let play = `./audio/${s.n}_ta-IN-ValluvarNeural.mp3`;
-  h+=`<div class="card"><div class="title">${s.n}. ${s.title}</div><audio controls preload="metadata" playsinline controlsList="nodownload noplaybackrate" disablePictureInPicture oncontextmenu="return false" src="${play}"></audio></div>`;
-});
-document.getElementById('g').innerHTML=h;
-</script></body></html>
-<!DOCTYPE html>
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ANBUMITHTHIRAN 56 - anbumiththiran.in</title>
-<style>
-body{background:#000;color:#fff;font-family:system-ui;padding:12px}
-h1{text-align:center;color:#ff0040} .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
-.card{background:#111;padding:14px;border-radius:14px;border:1px solid #222}
-audio{width:100%} .dl{display:block;background:#ff0040;color:#fff;text-align:center;padding:8px;border-radius:8px;text-decoration:none;margin-top:8px}
-</style></head><body>
-<h1>🎧 ANBUMITHTHIRAN 56</h1>
-<p style="text-align:center;opacity:.6">Anbudan Miththiran - 56 Paadalgal - Drive Streaming</p>
-<div class="grid" id="g"></div>
-<script>
-const SONGS = [
-{"n":"01", "title":"01_ta-IN-ValluvarNeural", "file":"01_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"02", "title":"02_ta-IN-ValluvarNeural", "file":"02_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"03", "title":"03_ta-IN-ValluvarNeural", "file":"03_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"04", "title":"04_ta-IN-ValluvarNeural", "file":"04_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"05", "title":"05_ta-IN-ValluvarNeural", "file":"05_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"06", "title":"06_ta-IN-ValluvarNeural", "file":"06_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"07", "title":"07_ta-IN-ValluvarNeural", "file":"07_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"08", "title":"08_ta-IN-ValluvarNeural", "file":"08_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"09", "title":"09_ta-IN-ValluvarNeural", "file":"09_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"10", "title":"10_ta-IN-ValluvarNeural", "file":"10_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"11", "title":"11_ta-IN-ValluvarNeural", "file":"11_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"12", "title":"12_ta-IN-ValluvarNeural", "file":"12_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"13", "title":"13_ta-IN-ValluvarNeural", "file":"13_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"14", "title":"14_ta-IN-ValluvarNeural", "file":"14_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"15", "title":"15_ta-IN-ValluvarNeural", "file":"15_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"16", "title":"16_ta-IN-ValluvarNeural", "file":"16_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"17", "title":"17_ta-IN-ValluvarNeural", "file":"17_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"18", "title":"18_ta-IN-ValluvarNeural", "file":"18_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"19", "title":"19_ta-IN-ValluvarNeural", "file":"19_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"20", "title":"20_ta-IN-ValluvarNeural", "file":"20_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"21", "title":"21_ta-IN-ValluvarNeural", "file":"21_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"22", "title":"22_ta-IN-ValluvarNeural", "file":"22_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"23", "title":"23_ta-IN-ValluvarNeural", "file":"23_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"24", "title":"24_ta-IN-ValluvarNeural", "file":"24_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"25", "title":"25_ta-IN-ValluvarNeural", "file":"25_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"26", "title":"26_ta-IN-ValluvarNeural", "file":"26_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"27", "title":"27_ta-IN-ValluvarNeural", "file":"27_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"28", "title":"28_ta-IN-ValluvarNeural", "file":"28_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"29", "title":"29_ta-IN-ValluvarNeural", "file":"29_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"30", "title":"30_ta-IN-ValluvarNeural", "file":"30_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"31", "title":"31_ta-IN-ValluvarNeural", "file":"31_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"32", "title":"32_ta-IN-ValluvarNeural", "file":"32_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"33", "title":"33_ta-IN-ValluvarNeural", "file":"33_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"34", "title":"34_ta-IN-ValluvarNeural", "file":"34_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"35", "title":"35_ta-IN-ValluvarNeural", "file":"35_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"36", "title":"36_ta-IN-ValluvarNeural", "file":"36_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"37", "title":"37_ta-IN-ValluvarNeural", "file":"37_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"38", "title":"38_ta-IN-ValluvarNeural", "file":"38_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"39", "title":"39_ta-IN-ValluvarNeural", "file":"39_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"40", "title":"40_ta-IN-ValluvarNeural", "file":"40_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"41", "title":"41_ta-IN-ValluvarNeural", "file":"41_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"42", "title":"42_ta-IN-ValluvarNeural", "file":"42_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"43", "title":"43_ta-IN-ValluvarNeural", "file":"43_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"44", "title":"44_ta-IN-ValluvarNeural", "file":"44_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"45", "title":"45_ta-IN-ValluvarNeural", "file":"45_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"46", "title":"46_ta-IN-ValluvarNeural", "file":"46_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"47", "title":"47_ta-IN-ValluvarNeural", "file":"47_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"48", "title":"48_ta-IN-ValluvarNeural", "file":"48_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"49", "title":"49_ta-IN-ValluvarNeural", "file":"49_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"50", "title":"50_ta-IN-ValluvarNeural", "file":"50_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"51", "title":"51_ta-IN-ValluvarNeural", "file":"51_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"52", "title":"52_ta-IN-ValluvarNeural", "file":"52_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"53", "title":"53_ta-IN-ValluvarNeural", "file":"53_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"54", "title":"54_ta-IN-ValluvarNeural", "file":"54_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"55", "title":"55_ta-IN-ValluvarNeural", "file":"55_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
-{"n":"56", "title":"56_ta-IN-ValluvarNeural", "file":"56_ta-IN-ValluvarNeural.mp3", "drive_id":"PASTE_ID_HERE"},
+<h1>ANBUMITHTHIRAN</h1>
+<p class="sub">56 RADIO — anbumiththiran.in — LIVE</p>
 
-];
-let h="";
-SONGS.forEach(s=>{
-  let direct = `https://drive.google.com/uc?export=download&id=${s.drive_id}`;
-  // Better player link (stream)
-  let play = `https://docs.google.com/uc?export=open&id=${s.drive_id}`;
-  h+=`<div class=card><b>${s.n}. ${s.title}</b><audio controls src="${play}"></audio><a class=dl href="${direct}">Download</a></div>`;
+<div class="radio">
+  <div class="disc" id="disc"><div class="disc-inner">🎧</div></div>
+  <div id="now">Click Play — Radio Start</div>
+  <div id="count">56 Paadalgal — Non-Stop</div>
+  <audio id="audio" preload="metadata" playsinline controlsList="nodownload noplaybackrate" disablePictureInPicture oncontextmenu="return false"></audio>
+  <div class="row">
+    <button class="btn" id="prev">⏮</button>
+    <button class="btn main" id="play">▶ PLAY RADIO</button>
+    <button class="btn" id="next">⏭</button>
+  </div>
+  <div class="row">
+    <button class="btn" id="shuffle">🔀 Shuffle: OFF</button>
+    <button class="btn" id="auto">▶ Auto: ON</button>
+  </div>
+  <div class="live">● LIVE RADIO — NO DOWNLOAD</div>
+</div>
+
+<div class="list" id="list"></div>
+
+<script>
+const SONGS = Array.from({length:56},(_,i)=>{
+  let n=String(i+1).padStart(2,'0');
+  return {n, title:`${n}_ta-IN-ValluvarNeural`}
 });
-document.getElementById('g').innerHTML=h;
+
+let idx=0, isShuffle=false, isAuto=true;
+const audio=document.getElementById('audio');
+const now=document.getElementById('now');
+const count=document.getElementById('count');
+const disc=document.getElementById('disc');
+const list=document.getElementById('list');
+const playBtn=document.getElementById('play');
+
+function src(i){ return `./audio/${SONGS[i].n}_ta-IN-ValluvarNeural.mp3`; }
+
+function load(i, play=true){
+  idx=i;
+  audio.src=src(idx);
+  now.textContent=`${SONGS[idx].n}. ${SONGS[idx].title}`;
+  count.textContent=`${idx+1} / 56 — Radio Playing`;
+  if(play) audio.play();
+  render();
+}
+
+function next(){
+  if(isShuffle){ load(Math.floor(Math.random()*SONGS.length)); }
+  else { if(idx<55) load(idx+1); else load(0); }
+}
+function prev(){ if(idx>0) load(idx-1); else load(55); }
+
+function render(){
+  list.innerHTML=SONGS.map((s,i)=>`<div class="item ${i===idx?'active':''}" onclick="load(${i})"><span>${s.n}. Anbudan Miththiran</span><span>${i===idx?'●':''}</span></div>`).join('');
+}
+
+playBtn.onclick=()=>{
+  if(audio.paused){ audio.play(); } else { audio.pause(); }
+};
+audio.onplay=()=>{ disc.classList.add('playing'); playBtn.textContent='⏸ PAUSE'; };
+audio.onpause=()=>{ disc.classList.remove('playing'); playBtn.textContent='▶ PLAY RADIO'; };
+audio.onended=()=>{ if(isAuto) next(); };
+
+document.getElementById('next').onclick=next;
+document.getElementById('prev').onclick=prev;
+document.getElementById('shuffle').onclick=(e)=>{
+  isShuffle=!isShuffle; e.target.textContent=`🔀 Shuffle: ${isShuffle?'ON':'OFF'}`;
+};
+document.getElementById('auto').onclick=(e)=>{
+  isAuto=!isAuto; e.target.textContent=`▶ Auto: ${isAuto?'ON':'OFF'}`;
+};
+
+render();
+load(0,false);
+// Need one click to start due to browser policy
+now.textContent="🎙 ANBUMITHTHIRAN 56 RADIO — Tap PLAY";
 </script></body></html>
